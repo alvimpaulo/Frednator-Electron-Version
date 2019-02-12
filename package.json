@@ -10,7 +10,8 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "eslint src --color",
-    "build": "node-gyp configure build"
+    "build": "node-gyp configure build",
+    "build:dev": "node-gyp -j 16 build --debug"
   },
   "keywords": [],
   "author": "paulo",

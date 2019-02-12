@@ -1,26 +1,28 @@
 class mainImageCanvas {
   constructor (width, height) {
     this.canvas = document.createElement('canvas')
-    this.ctx = this.canvas.getContext('2d')
+    this.ctx = this.canvas.getContext('2d', { alpha: false })
     this.canvas.width = width
     this.canvas.height = height
     this.idata = this.ctx.createImageData(width, height)
     this.image = new Image()
-    let self = this
-    this.image.onload = function () {
-      let imgElement = document.getElementById('main-img')
-      imgElement.getContext('2d')
-      // .drawImage(this, 0, 0, imgElement.width, imgElement.height)
-      imgElement = null
-    }
+    // let self = this
+    // this.image.onload = function () {
+    //   let imgElement = document.getElementById('main-img')
+    //   imgElement.getContext('2d')
+    //   // .drawImage(this, 0, 0, imgElement.width, imgElement.height)
+    //   self.image.src = null
+    // }
   }
 }
-const Readable = require('stream').Readable
-const s = new Readable()
+
+let Readable = require('stream').Readable
 const addon = require('../build/Release/module')
 const { webFrame } = require('electron')
+
 let cap = addon.cvMatSenderReciever()
-let heapTotal = process.memoryUsage().heapUsed
+let imgStream = new Readable()
+imgStream._read = () => {}
 
 function printImg (customCanvas, imgArray) {
   // set our buffer as source
@@ -31,7 +33,7 @@ function printImg (customCanvas, imgArray) {
 
   let dataUri = customCanvas.canvas.toDataURL()
 
-  customCanvas.image.src = dataUri
+  document.getElementById('main-img').src = dataUri
 
   dataUri = null
 }
@@ -61,12 +63,13 @@ function mainLoop (customCanvas) {
   let newimgarray = addon.typedArrayFromCvMat(img)
   let t2 = performance.now()
   let m2 = process.memoryUsage()
-  console.log(
+  // imgStream.push(newimgarray)
+  /* console.log(
     'gerar array = ' +
       Math.round(t2 - t1) +
       ' milissegundos, ' +
       Math.round(m2.heapUsed - m1.heapUsed)
-  )
+  ) */
   printImg(customCanvas, newimgarray)
   let t3 = performance.now()
   let m3 = process.memoryUsage()
@@ -77,6 +80,7 @@ function mainLoop (customCanvas) {
       Math.round(m3.heapUsed - m2.heapUsed)
   ) */
   newimgarray = null
+  // console.log(imgStream.read())
   document.getElementById('heap-usage').innerHTML = getMemory()
   requestAnimationFrame(timestamp => {
     mainLoop(customCanvas)
@@ -93,5 +97,8 @@ $(function () {
     requestAnimationFrame(timestamp => {
       mainLoop(customCanvas)
     })
+    setInterval(() => {
+      webFrame.clearCache()
+    }, 10000)
   })
 })

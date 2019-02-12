@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Launch Program",
+            "preLaunchTask": "npm: build:dev",
+            "program": "electron-forge",
+            "args": [
+                "start",
+                "/home/paulo/frednator-2/src/index.js"
+            ]
+        }
+    ]
+}

@@ -9,10 +9,15 @@
 #include <iostream>
 #include <stdio.h>
 
-void cvMatSenderRecieverFinalizer(Napi::Env env, cv::Mat *mat)
+void cvMatFinalizer(Napi::Env env, cv::Mat *mat)
 {
-  //std::cout << "deleting sender reciever" << mat->cols << mat->rows << std::endl;
+  std::cout << "deleting mat" << std::endl;
   delete mat;
+}
+void vectorFinalizer(Napi::Env env, void *vec)
+{
+  std::cout << "deleting vec" << std::endl;
+  delete (uchar *)vec;
 }
 
 Napi::Value typedArrayFromCvMat(const Napi::CallbackInfo &info)
@@ -22,41 +27,50 @@ Napi::Value typedArrayFromCvMat(const Napi::CallbackInfo &info)
   img = info[0].As<Napi::External<cv::Mat>>().Data();
   cv::resize((*img), (*img), cv::Size(320, 240));
   std::vector<cv::Mat> *rgbchannels = new std::vector<cv::Mat>(3);
-  if (img->channels() == 3)
+  std::vector<u_char> *fourChannelVector = new std::vector<u_char>(img->cols * img->rows * 4);
+
+  if (img->channels() == 3) // RGB
   {
     cv::cvtColor((*img), (*img), CV_BGR2RGB);
     cv::split((*img), (*rgbchannels));
+    for (size_t i = 0; i < img->cols * img->rows; ++i)
+    {
+      (*fourChannelVector)[i * 4] = (*rgbchannels)[0].data[i];
+      (*fourChannelVector)[i * 4 + 1] = (*rgbchannels)[1].data[i];
+      (*fourChannelVector)[i * 4 + 2] = (*rgbchannels)[2].data[i];
+      (*fourChannelVector)[i * 4 + 3] = 255;
+    }
+    //std::cout << " fourchannelvector data: " << (int)fourChannelVector->at(0) << "\t" << (int)fourChannelVector->at(1) << "\t" << (int)fourChannelVector->at(2) << "\t" << (int)fourChannelVector->at(3) << "\t" << std::endl;
     ////std::cout << rgbchannels[0] << std::endl;
+  }
+
+  if (img->channels() == 1) //B&W
+  {
+    for (size_t i = 0; i < (img->cols * img->rows); i++)
+    {
+      if (img->channels() == 1)
+      {
+        u_char grayPixel = img->data[i];
+        (*fourChannelVector)[i * 4] = grayPixel;
+        (*fourChannelVector)[i * 4 + 1] = grayPixel;
+        (*fourChannelVector)[i * 4 + 2] = grayPixel;
+        (*fourChannelVector)[i * 4 + 3] = 255;
+      }
+    }
   }
 
   /* cv::imshow("a", img);
   cv::waitKey(0);
   cv::destroyAllWindows();
  */
-  //std::cout << img->cols << "\t" << img->rows << "\t" << img->channels() << "\t" << img->total() << "\t" << std::endl;
+  // std::cout << "img data: " << img->cols << "\t" << img->rows << "\t" << img->channels() << "\t" << img->total() << "\t" << std::endl;
 
-  Napi::ArrayBuffer arrayBuffer = Napi::ArrayBuffer::New(env, img->cols * img->rows * 4);
+  Napi::ArrayBuffer arrayBuffer = Napi::ArrayBuffer::New(env, fourChannelVector->data(), fourChannelVector->size(), vectorFinalizer);
+
+  // std::cout << " arraybuffer data: " << arrayBuffer.Data() << std::endl;
   //Four channel typed array of uchar
   Napi::TypedArrayOf<u_int8_t> typedArray = Napi::TypedArrayOf<uint8_t>::New(env, img->cols * img->rows * 4, arrayBuffer, 0);
 
-  for (size_t i = 0; i < (img->cols * img->rows); i++)
-  {
-
-    if (img->channels() == 1)
-    {
-      typedArray.Set(i * 4, img->data[i]);
-      typedArray.Set(i * 4 + 1, img->data[i]);
-      typedArray.Set(i * 4 + 2, img->data[i]);
-      typedArray.Set(i * 4 + 3, 255);
-    }
-    if (img->channels() == 3)
-    {
-      typedArray.Set(i * 4, (*rgbchannels)[0].data[i]);
-      typedArray.Set(i * 4 + 1, (*rgbchannels)[1].data[i]);
-      typedArray.Set(i * 4 + 2, (*rgbchannels)[2].data[i]);
-      typedArray.Set(i * 4 + 3, 255);
-    }
-  }
   delete rgbchannels;
   return typedArray;
 }
@@ -81,7 +95,7 @@ Napi::Value cvMatSenderReciever(const Napi::CallbackInfo &info)
       //cv::imshow("a", tempImg);
       //cv::waitKey(0);
       //cv::destroyAllWindows();
-      Napi::External<cv::Mat> externalData = Napi::External<cv::Mat>::New(env, tempImg, cvMatSenderRecieverFinalizer);
+      Napi::External<cv::Mat> externalData = Napi::External<cv::Mat>::New(env, tempImg, cvMatFinalizer);
       return externalData;
     }
     return info[0];
