@@ -1,0 +1,11 @@
+#main-img{
+    background-color: teal;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#main-img-div{
+    margin-left: 0;
+    margin-right:0;
+    padding: 0; 
+}
