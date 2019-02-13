@@ -11,12 +11,12 @@
 
 void cvMatFinalizer(Napi::Env env, cv::Mat *mat)
 {
-  std::cout << "deleting mat" << std::endl;
+  //std::cout << "deleting mat" << std::endl;
   delete mat;
 }
 void vectorFinalizer(Napi::Env env, void *vec)
 {
-  std::cout << "deleting vec" << std::endl;
+  //std::cout << "deleting vec" << std::endl;
   delete (uchar *)vec;
 }
 
