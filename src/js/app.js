@@ -17,10 +17,12 @@ class mainImageCanvas {
 }
 
 let Readable = require('stream').Readable
-const addon = require('../build/Release/module')
+const cvMatUtil = require('../build/Release/cvMatUtil')
+const videoUtil = require('../build/Release/videoUtil')
+
 const { webFrame } = require('electron')
 
-let cap = addon.cvMatSenderReciever()
+let cap = videoUtil.videoOpener()
 let imgStream = new Readable()
 imgStream._read = () => {}
 
@@ -49,9 +51,13 @@ function getMemory () {
 }
 
 function mainLoop (customCanvas) {
+  // test for time and heap
   let t0 = performance.now()
   let m0 = process.memoryUsage()
-  let img = addon.cvMatSenderReciever(cap)
+
+  let img = videoUtil.videoOpener(cap)
+
+  // test for time and heap
   let t1 = performance.now()
   let m1 = process.memoryUsage()
   /* console.log(
@@ -60,7 +66,9 @@ function mainLoop (customCanvas) {
       ' milissegundos, ' +
       Math.round(m1.heapUsed - m0.heapUsed)
   ) */
-  let newimgarray = addon.typedArrayFromCvMat(img)
+  let newimgarray = cvMatUtil.typedArrayFromCvMat(img)
+
+  // test for time and heap
   let t2 = performance.now()
   let m2 = process.memoryUsage()
   // imgStream.push(newimgarray)
