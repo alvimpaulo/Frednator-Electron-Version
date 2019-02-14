@@ -1,9 +1,10 @@
 importScripts('imgCreation.js')
 
 onmessage = function (e) {
+  let t0 = performance.now()
   console.log('I recieved ' + e.data)
-  createImageBlob(e.data).then(function (blob) {
-    postMessage(blob)
+  createMyImageBitmap().then(function (imgBitmap) {
+    postMessage(imgBitmap, [imgBitmap])
   })
   // console.log(imgDataUri)
 }

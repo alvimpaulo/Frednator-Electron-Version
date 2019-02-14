@@ -2,28 +2,41 @@ let Readable = require('stream').Readable
 
 const { webFrame } = require('electron')
 
+class mainImageCanvas {
+  constructor (width, height) {
+    this.canvas = new OffscreenCanvas(width, height)
+    this.ctx = this.canvas.getContext('2d', { alpha: false })
+    this.idata = this.ctx.createImageData(width, height)
+  }
+}
+
 let imgCreationWorker = new Worker('./js/imgCreationWorker.js')
 imgCreationWorker.onmessage = function (e) {
-  console.log('recebi msg do worker ' + performance.now())
+  console.log(e)
+  let t0 = performance.now()
+  // console.log('recebi msg do worker ' + t0)
 
-  let fr = new FileReader()
-  fr.onload = function (e) {
-    console.log('carreguei o arquivo ' + performance.now())
+  // document.getElementById('main-img').src = URL.createObjectURL(e.data)
+  document
+    .getElementById('canvas-ex')
+    .getContext('2d')
+    .drawImage(e.data, 0, 0)
+  e.data.close()
+  let t2 = performance.now()
+  // console.log('mudei a src da img ' + t2)
 
-    document.getElementById('main-img').src = e.target.result
-    console.log('mudei a src da img ' + performance.now())
+  requestAnimationFrame(timestamp => {
+    let t3 = performance.now()
+    // console.log('requisitei um novo frame ' + t3)
 
-    requestAnimationFrame(timestamp => {
-      console.log('requisitei um novo frame ' + performance.now())
+    document.getElementById('heap-usage').innerHTML = getMemory()
+    let t4 = performance.now()
+    // console.log('catei o uso da memoria ' + t4)
 
-      document.getElementById('heap-usage').innerHTML = getMemory()
-      console.log('catei o uso da memoria ' + performance.now())
-
-      imgCreationWorker.postMessage('animation frame at ' + timestamp)
-      console.log('mandei msg nova pro worker ' + performance.now())
-    })
-  }
-  fr.readAsDataURL(e.data)
+    imgCreationWorker.postMessage('animation frame at ' + timestamp)
+    let t5 = performance.now()
+    // console.log('mandei msg nova pro worker ' + t5)
+  })
 }
 
 function logBytes (x) {
