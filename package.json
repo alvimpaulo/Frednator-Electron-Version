@@ -11,7 +11,7 @@
     "publish": "electron-forge publish",
     "lint": "eslint src --color",
     "build": "node-gyp configure build --silly",
-    "build:dev": "node-gyp -j 16 build --debug"
+    "build:dev": "node-gyp -j 16 configure build --debug"
   },
   "keywords": [],
   "author": "paulo",

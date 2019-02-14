@@ -5,14 +5,14 @@
             "<!@(node -p \"require('node-addon-api').include\")"
         ],
         'cflags': [
-            '-std=c++11', "<!(pkg-config opencv --cflags)", "-fno-exceptions",
+            '-std=c++11', "<!(pkg-config opencv --cflags)",
         ],
         "cflags_cc!": ["-fno-exceptions"],
         'libraries': ["<!(pkg-config opencv --libs)"],
         'dependencies': [
             "<!(node -p \"require('node-addon-api').gyp\")"
         ],
-        'defines': ['NAPI_DISABLE_CPP_EXCEPTIONS'],
+        'defines': ['NAPI_CPP_EXCEPTIONS'],
         "sources": ["./src/cpp/cvMatUtil.cc"],
     }, {
         "target_name": "videoUtil",
@@ -20,14 +20,14 @@
             "<!@(node -p \"require('node-addon-api').include\")"
         ],
         'cflags': [
-            '-std=c++11', "<!(pkg-config opencv --cflags)", "-fno-exceptions",
+            '-std=c++11', "<!(pkg-config opencv --cflags)",
         ],
         "cflags_cc!": ["-fno-exceptions"],
         'libraries': ["<!(pkg-config opencv --libs)"],
         'dependencies': [
             "<!(node -p \"require('node-addon-api').gyp\")"
         ],
-        'defines': ['NAPI_DISABLE_CPP_EXCEPTIONS'],
+        'defines': ['NAPI_CPP_EXCEPTIONS'],
         "sources": ["./src/cpp/videoUtil.cc"],
     }]
 }

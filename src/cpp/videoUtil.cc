@@ -13,10 +13,9 @@ void cvMatFinalizer(Napi::Env env, cv::Mat *mat)
     delete mat;
 }
 
-Napi::Value videoOpener(const Napi::CallbackInfo &info)
+Napi::Value imgFromVideo(const Napi::CallbackInfo &info)
 {
     Napi::Env env = info.Env();
-    ////std::cout << "-1" << std::endl;
     if (info.Length() > 0 && info[0].IsExternal())
     {
         ////std::cout << "0" << std::endl;
@@ -38,22 +37,33 @@ Napi::Value videoOpener(const Napi::CallbackInfo &info)
         }
         return info[0];
     }
-    else
-    {
-        //std::cout << "D" << std::endl;
-        cv::VideoCapture *cap;
-        //(*cap).set(CV_CAP_PROP_FRAME_WIDTH, 320);
-        //(*cap).set(CV_CAP_PROP_FRAME_HEIGHT, 240);
-        cap = new cv::VideoCapture(0);
+    return Napi::Boolean::New(env, false);
+}
 
-        Napi::External<cv::VideoCapture> externalData = Napi::External<cv::VideoCapture>::New(env, cap);
-        return externalData;
+Napi::Value videoOpener(const Napi::CallbackInfo &info)
+{
+    Napi::Env env = info.Env();
+    ////std::cout << "-1" << std::endl;
+
+    //std::cout << "D" << std::endl;
+    cv::VideoCapture *cap;
+    //(*cap).set(CV_CAP_PROP_FRAME_WIDTH, 320);
+    //(*cap).set(CV_CAP_PROP_FRAME_HEIGHT, 240);
+    cap = new cv::VideoCapture(0);
+    if (!cap->isOpened())
+    {
+        Napi::Boolean videoCaptureSucceeded = Napi::Boolean::New(env, false);
+        return videoCaptureSucceeded;
     }
+
+    Napi::External<cv::VideoCapture> externalData = Napi::External<cv::VideoCapture>::New(env, cap);
+    return externalData;
 }
 
 Napi::Object Init(Napi::Env env, Napi::Object exports)
 {
     exports.Set(Napi::String::New(env, "videoOpener"), Napi::Function::New(env, videoOpener));
+    exports.Set(Napi::String::New(env, "imgFromVideo"), Napi::Function::New(env, imgFromVideo));
 
     return exports;
 }

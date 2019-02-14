@@ -14,37 +14,27 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row valign-wrapper">
-            <div class="col s12 m6" id="main-img-div">
-                <img id="main-img" height="240" width="320"></img>
-            </div>
-            <div class="col s12 offset-m2 m4">
-                <div id="fnSelector">
-                    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
+    <div id="main-grid">
+        <div id="main-img-div">
+            <img id="main-img" height="240" width="320"></img>
+        </div>
+        <div id="function-selector-div">
+            <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
 
-                    <ul id="dropdown1" class="dropdown-content">
-                        <li><a href="#!">yellow</a></li>
-                        <li><a href="#!">elipse</a></li>
-                        <li><a href="#!">ball</a></li>
-                        <li><a href="#!">goal</a></li>
-                    </ul>
-                </div>
-            </div>
+            <ul id="dropdown1" class="dropdown-content">
+                <li><a href="#!">yellow</a></li>
+                <li><a href="#!">elipse</a></li>
+                <li><a href="#!">ball</a></li>
+                <li><a href="#!">goal</a></li>
+            </ul>
         </div>
-        <div class="row valign-wrapper">
-            <div class="col s8 m6 input-field">
-                <input type="text" id="video-name">
-                <label for="video-name">Video file name</label>
-            </div>
-            <div class="col s4 m6">
-                <a class="waves-effect waves-light btn" id="record-video-btn">Record</a>
-            </div>
+        <div id="video-name-selector-div">
+            <input type="text" id="video-name">
+            <label for="video-name">Video file name</label>
+            <a class="waves-effect waves-light btn" id="record-video-btn">Record</a>
         </div>
-        <div class="row">
-            <div class="col s12">
-                <p id="heap-usage">0</p>
-            </div>
+        <div id="memory-used-div">
+            <p id="heap-usage">0</p>
         </div>
     </div>
 
