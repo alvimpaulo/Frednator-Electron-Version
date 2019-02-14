@@ -19,29 +19,29 @@ function createMyImageBitmap () {
 
     // test for time and heap
     let t1 = performance.now()
-  let m1 = process.memoryUsage()
-  console.log(
-    'gerar cvmat da captura = ' +
-      Math.round(t1 - t0) +
-      ' milissegundos, ' +
-      Math.round(m1.heapUsed - m0.heapUsed)
-  )
+    let m1 = process.memoryUsage()
+    console.log(
+      'gerar cvmat da captura = ' +
+        Math.round(t1 - t0) +
+        ' milissegundos, ' +
+        Math.round(m1.heapUsed - m0.heapUsed)
+    )
     let newimgarray = cvMatUtil.typedArrayFromCvMat(img)
 
     // test for time and heap
     let t2 = performance.now()
-  let m2 = process.memoryUsage()
-  // imgStream.push(newimgarray)
-  console.log(
-    'gerar array = ' +
-      Math.round(t2 - t1) +
-      ' milissegundos, ' +
-      Math.round(m2.heapUsed - m1.heapUsed)
-  )
+    let m2 = process.memoryUsage()
+    // imgStream.push(newimgarray)
+    console.log(
+      'gerar array = ' +
+        Math.round(t2 - t1) +
+        ' milissegundos, ' +
+        Math.round(m2.heapUsed - m1.heapUsed)
+    )
     let imageDataFromArray = new ImageData(
       new Uint8ClampedArray(newimgarray),
-      320,
-      240
+      640,
+      480
     )
 
     let t3 = performance.now()

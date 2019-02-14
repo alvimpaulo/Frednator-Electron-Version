@@ -6,6 +6,7 @@
 #include <opencv2/imgproc.hpp>
 #include <iostream>
 #include <stdio.h>
+#include <chrono>
 
 void cvMatFinalizer(Napi::Env env, cv::Mat *mat)
 {
@@ -16,23 +17,35 @@ void cvMatFinalizer(Napi::Env env, cv::Mat *mat)
 Napi::Value imgFromVideo(const Napi::CallbackInfo &info)
 {
     Napi::Env env = info.Env();
+    //auto started = std::chrono::high_resolution_clock::now();
     if (info.Length() > 0 && info[0].IsExternal())
     {
         ////std::cout << "0" << std::endl;
         cv::VideoCapture *img2;
+        // auto newCapture = std::chrono::high_resolution_clock::now();
+        // std::cout << "new capture = " << std::chrono::duration_cast<std::chrono::milliseconds>(newCapture - started).count() << std::endl;
         ////std::cout << "1" << std::endl;
         img2 = info[0].As<Napi::External<cv::VideoCapture>>().Data();
+        // auto img2Converted = std::chrono::high_resolution_clock::now();
+        // std::cout << "img2Converted = " << std::chrono::duration_cast<std::chrono::milliseconds>(img2Converted - started).count() << std::endl;
         ////std::cout << "2" << std::endl;
         if (img2->isOpened())
         {
             //std::cout << "a";
             cv::Mat *tempImg = new cv::Mat();
-            (*img2) >> (*tempImg);
+            img2->grab();
+            // auto imgGrabbed = std::chrono::high_resolution_clock::now();
+            // std::cout << "imgGrabbed = " << std::chrono::duration_cast<std::chrono::milliseconds>(imgGrabbed - started).count() << std::endl;
+            img2->retrieve(*tempImg);
+            // auto imgRetrieved = std::chrono::high_resolution_clock::now();
+            // std::cout << "imgRetrieved = " << std::chrono::duration_cast<std::chrono::milliseconds>(imgRetrieved - started).count() << std::endl;
             ////std::cout << "c" << std::endl;
             //cv::imshow("a", tempImg);
             //cv::waitKey(0);
             //cv::destroyAllWindows();
-            Napi::External<cv::Mat> externalData = Napi::External<cv::Mat>::New(env, tempImg, cvMatFinalizer);
+            Napi::External<cv::Mat>
+                externalData = Napi::External<cv::Mat>::New(env, tempImg, cvMatFinalizer);
+
             return externalData;
         }
         return info[0];
@@ -49,7 +62,7 @@ Napi::Value videoOpener(const Napi::CallbackInfo &info)
     cv::VideoCapture *cap;
     //(*cap).set(CV_CAP_PROP_FRAME_WIDTH, 320);
     //(*cap).set(CV_CAP_PROP_FRAME_HEIGHT, 240);
-    cap = new cv::VideoCapture(0);
+    cap = new cv::VideoCapture(0, cv::CAP_V4L2); //may crash in windows
     if (!cap->isOpened())
     {
         Napi::Boolean videoCaptureSucceeded = Napi::Boolean::New(env, false);

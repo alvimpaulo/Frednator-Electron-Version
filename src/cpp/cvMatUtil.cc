@@ -26,7 +26,7 @@ Napi::Value typedArrayFromCvMat(const Napi::CallbackInfo &info)
   Napi::Env env = info.Env();
   cv::Mat *img;
   img = info[0].As<Napi::External<cv::Mat>>().Data();
-  cv::resize((*img), (*img), cv::Size(320, 240));
+  //cv::resize((*img), (*img), cv::Size(320, 240)); //only needed if capture cant be set
   std::vector<cv::Mat> *rgbchannels = new std::vector<cv::Mat>(3);
   std::vector<u_char> *fourChannelVector = new std::vector<u_char>(img->cols * img->rows * 4);
 

@@ -38,7 +38,8 @@
         "optional": "cpp",
         "string_view": "cpp",
         "system_error": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "chrono": "cpp"
     },
     "lldb.executable": "lldb-7",
     "files.watcherExclude": {
