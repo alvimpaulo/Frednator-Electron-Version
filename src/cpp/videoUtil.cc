@@ -60,8 +60,8 @@ Napi::Value videoOpener(const Napi::CallbackInfo &info)
 
     //std::cout << "D" << std::endl;
     cv::VideoCapture *cap;
-    //(*cap).set(CV_CAP_PROP_FRAME_WIDTH, 320);
-    //(*cap).set(CV_CAP_PROP_FRAME_HEIGHT, 240);
+    //(*cap).set(CV_CAP_PROP_FRAME_WIDTH, 1280);
+    //(*cap).set(CV_CAP_PROP_FRAME_HEIGHT, 720);
     cap = new cv::VideoCapture(0, cv::CAP_V4L2); //may crash in windows
     if (!cap->isOpened())
     {

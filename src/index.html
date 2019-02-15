@@ -14,24 +14,34 @@
 </head>
 
 <body>
-    <div id="main-grid">
-        <div id="main-img-div">
-            <canvas id="canvas-ex" height="640" width="480"> </canvas>
+    <div class="grid-container">
+        <div class="capture-input">
+            <div class="input-field">
+                <input type="text" id="capture-param">
+                <label for="capture-param">Video Capture Parameter</label>
+            </div>
         </div>
-        <div id="function-selector-div">
-            <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
+        <div id="main-img-div" class="main-video">
+            <canvas id="video-canvas" height="480" width="640"> </canvas>
+        </div>
+        <div id="function-selector-div" class="function-selection">
+            <a class='dropdown-trigger btn' href='#' data-target='function-selection-dropdown'>Drop Me!</a>
 
-            <ul id="dropdown1" class="dropdown-content">
+            <ul id="function-selection-dropdown" class="dropdown-content">
                 <li><a href="#!">yellow</a></li>
                 <li><a href="#!">elipse</a></li>
                 <li><a href="#!">ball</a></li>
                 <li><a href="#!">goal</a></li>
             </ul>
         </div>
-        <div id="video-name-selector-div">
-            <input type="text" id="video-name">
-            <label for="video-name">Video file name</label>
-            <a class="waves-effect waves-light btn" id="record-video-btn">Record</a>
+        <div class="valign-wrapper video-recording">
+            <div class="col s8 input-field">
+                <input type="text" id="video-name">
+                <label for="video-name">Video file name</label>
+            </div>
+            <div class="col s4">
+                <a class="waves-effect waves-light btn" id="record-video-btn">Record</a>
+            </div>
         </div>
         <div id="memory-used-div">
             <p id="heap-usage">0</p>

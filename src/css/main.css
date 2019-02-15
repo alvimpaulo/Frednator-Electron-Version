@@ -1,9 +1,23 @@
-#main-grid{
+.grid-container {
     display: grid;
-    grid-template-columns: 1fr 0.5fr;
-    grid-template-rows: 1fr 0.5fr;
-    grid-template-areas: ". ." ". .";
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.4fr 2.2fr 0.4fr;
+    grid-template-areas: "capture-input capture-input capture-input function-selection" "video-area video-area video-area function-selection" "video-recording video-recording video-recording function-selection";
+    align-items: center;
+    justify-items: center;
 }
+  
+  .video-recording { 
+      grid-area: video-recording; }
+  
+  .capture-input { 
+      grid-area: capture-input; }
+  
+  .function-selection { 
+      grid-area: function-selection; 
+}
+  
+  .main-video { grid-area: video-area; }
 
 #main-img{
     background-color: teal;

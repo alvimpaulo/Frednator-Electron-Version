@@ -2,23 +2,15 @@ let Readable = require('stream').Readable
 
 const { webFrame } = require('electron')
 
-class mainImageCanvas {
-  constructor (width, height) {
-    this.canvas = new OffscreenCanvas(width, height)
-    this.ctx = this.canvas.getContext('2d', { alpha: false })
-    this.idata = this.ctx.createImageData(width, height)
-  }
-}
-
 let imgCreationWorker = new Worker('./js/imgCreationWorker.js')
 imgCreationWorker.onmessage = function (e) {
-  console.log(e)
+  // console.log(e)
   let t0 = performance.now()
   // console.log('recebi msg do worker ' + t0)
 
   // document.getElementById('main-img').src = URL.createObjectURL(e.data)
   document
-    .getElementById('canvas-ex')
+    .getElementById('video-canvas')
     .getContext('2d')
     .drawImage(e.data, 0, 0)
   e.data.close()
