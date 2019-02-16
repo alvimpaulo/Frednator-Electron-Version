@@ -25,7 +25,10 @@ imgCreationWorker.onmessage = function (e) {
     let t4 = performance.now()
     // console.log('catei o uso da memoria ' + t4)
 
-    imgCreationWorker.postMessage('animation frame at ' + timestamp)
+    imgCreationWorker.postMessage([
+      'animation frame at ' + timestamp,
+      document.getElementById('capture-param').value
+    ])
     let t5 = performance.now()
     // console.log('mandei msg nova pro worker ' + t5)
   })
@@ -45,10 +48,27 @@ $(function () {
   $(document).ready(function () {
     // Access the DOM elements here...
     console.log('appjs')
-    $('.dropdown-trigger').dropdown()
+    M.AutoInit()
 
-    requestAnimationFrame(timestamp => {
-      imgCreationWorker.postMessage('animation frame at ' + timestamp)
+    // -----------bindings------------------------
+    $('#capture-param').on('keyup', function (e) {
+      if (e.keyCode == 13) {
+        // enter pressed
+        imgCreationWorker.postMessage([
+          'Sent from ' + e.target,
+          document.getElementById('capture-param').value
+        ])
+      }
     })
+    $('#capture-param-btn').on('click', function (e) {
+      imgCreationWorker.postMessage([
+        'Sent from ' + e.target,
+        document.getElementById('capture-param').value
+      ])
+    })
+
+    /* requestAnimationFrame(timestamp => {
+      imgCreationWorker.postMessage('animation frame at ' + timestamp)
+    }) */
   })
 })

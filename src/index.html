@@ -16,32 +16,52 @@
 <body>
     <div class="grid-container">
         <div class="capture-input">
-            <div class="input-field">
-                <input type="text" id="capture-param">
-                <label for="capture-param">Video Capture Parameter</label>
+            <div class="row valign-wrapper">
+                <div class="input-field col s8">
+                    <input type="text" id="capture-param">
+                    <label for="capture-param">Video Capture Parameter</label>
+                </div>
+                <a class="waves-effect waves-light btn col s4" id="capture-param-btn"> Start</a>
             </div>
+
         </div>
         <div id="main-img-div" class="main-video">
             <canvas id="video-canvas" height="480" width="640"> </canvas>
         </div>
         <div id="function-selector-div" class="function-selection">
-            <a class='dropdown-trigger btn' href='#' data-target='function-selection-dropdown'>Drop Me!</a>
-
-            <ul id="function-selection-dropdown" class="dropdown-content">
-                <li><a href="#!">yellow</a></li>
-                <li><a href="#!">elipse</a></li>
-                <li><a href="#!">ball</a></li>
-                <li><a href="#!">goal</a></li>
+            <ul class="collapsible popout">
+                <li>
+                    <div class="collapsible-header"><span>Class name</span></div>
+                    <div class="collapsible-body">
+                        <span>Grid with whatever you want</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><span>Class name</span></div>
+                    <div class="collapsible-body">
+                        <span>Grid with whatever you want</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><span>Class name</span></div>
+                    <div class="collapsible-body">
+                        <span>Grid with whatever you want</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><span>Class name</span></div>
+                    <div class="collapsible-body">
+                        <span>Grid with whatever you want</span>
+                    </div>
+                </li>
             </ul>
         </div>
-        <div class="valign-wrapper video-recording">
+        <div class="valign-wrapper video-recording row">
             <div class="col s8 input-field">
                 <input type="text" id="video-name">
                 <label for="video-name">Video file name</label>
             </div>
-            <div class="col s4">
-                <a class="waves-effect waves-light btn" id="record-video-btn">Record</a>
-            </div>
+            <a class="waves-effect waves-light btn col s4" id="record-video-btn">Record</a>
         </div>
         <div id="memory-used-div">
             <p id="heap-usage">0</p>

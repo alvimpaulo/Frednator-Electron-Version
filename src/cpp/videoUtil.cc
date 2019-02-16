@@ -58,11 +58,18 @@ Napi::Value videoOpener(const Napi::CallbackInfo &info)
     Napi::Env env = info.Env();
     ////std::cout << "-1" << std::endl;
 
-    //std::cout << "D" << std::endl;
     cv::VideoCapture *cap;
+
+    //open video from a file
+    if (info.Length() == 1 && info[0].IsString())
+        cap = new cv::VideoCapture(info[0].ToString().Utf8Value(), cv::CAP_V4L2); //may crash in windows
+    else if (info.Length() == 1 && info[0].IsNumber())
+        cap = new cv::VideoCapture(info[0].ToNumber().Int64Value(), cv::CAP_V4L2); //may crash in windows
+
+    //std::cout << "D" << std::endl;
     //(*cap).set(CV_CAP_PROP_FRAME_WIDTH, 1280);
     //(*cap).set(CV_CAP_PROP_FRAME_HEIGHT, 720);
-    cap = new cv::VideoCapture(0, cv::CAP_V4L2); //may crash in windows
+
     if (!cap->isOpened())
     {
         Napi::Boolean videoCaptureSucceeded = Napi::Boolean::New(env, false);

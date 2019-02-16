@@ -4,14 +4,19 @@ const videoUtil = require('../../build/Release/videoUtil')
 let cap
 let pastCap
 
-function openCap () {
-  return videoUtil.videoOpener()
+function openCap (path) {
+  let capIndex = parseInt(path)
+  if (capIndex != NaN) {
+    return videoUtil.videoOpener(capIndex)
+  } else {
+    return videoUtil.videoOpener(path)
+  }
 }
 
-function createMyImageBitmap () {
+function createMyImageBitmap (captureParam = 0) {
   return new Promise((resolve, reject) => {
     let imgBitmap
-    if (!cap) cap = openCap()
+    if (!cap) cap = openCap(captureParam) // if capture isn't already open
     // test for time and heap
     let t0 = performance.now()
     let m0 = process.memoryUsage()

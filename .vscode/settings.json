@@ -39,7 +39,9 @@
         "string_view": "cpp",
         "system_error": "cpp",
         "algorithm": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "ctime": "cpp",
+        "ratio": "cpp"
     },
     "lldb.executable": "lldb-7",
     "files.watcherExclude": {
