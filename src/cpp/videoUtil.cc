@@ -33,22 +33,24 @@ Napi::Value imgFromVideo(const Napi::CallbackInfo &info)
         {
             //std::cout << "a";
             cv::Mat *tempImg = new cv::Mat();
-            img2->grab();
+            bool grabStatus = img2->grab();
+            if (!grabStatus) //If it reached end of the video
+            {
+                std::cout << "end of the video / couldn't grab" << std::endl;
+                return Napi::Boolean::New(env, false);
+            }
             // auto imgGrabbed = std::chrono::high_resolution_clock::now();
             // std::cout << "imgGrabbed = " << std::chrono::duration_cast<std::chrono::milliseconds>(imgGrabbed - started).count() << std::endl;
             img2->retrieve(*tempImg);
             // auto imgRetrieved = std::chrono::high_resolution_clock::now();
             // std::cout << "imgRetrieved = " << std::chrono::duration_cast<std::chrono::milliseconds>(imgRetrieved - started).count() << std::endl;
             ////std::cout << "c" << std::endl;
-            //cv::imshow("a", tempImg);
-            //cv::waitKey(0);
+            //cv::imshow("a", *tempImg);
+            //cv::waitKey(25);
             //cv::destroyAllWindows();
-            Napi::External<cv::Mat>
-                externalData = Napi::External<cv::Mat>::New(env, tempImg, cvMatFinalizer);
 
-            return externalData;
+            return Napi::External<cv::Mat>::New(env, tempImg, cvMatFinalizer);
         }
-        return info[0];
     }
     return Napi::Boolean::New(env, false);
 }
@@ -62,28 +64,60 @@ Napi::Value videoOpener(const Napi::CallbackInfo &info)
 
     //open video from a file
     if (info.Length() == 1 && info[0].IsString())
-        cap = new cv::VideoCapture(info[0].ToString().Utf8Value(), cv::CAP_V4L2); //may crash in windows
+    {
+        std::cout << info[0].ToString().Utf8Value() << std::endl;
+        cap = new cv::VideoCapture(info[0].ToString().Utf8Value(), cv::CAP_GSTREAMER); //may crash in windows
+    }
     else if (info.Length() == 1 && info[0].IsNumber())
         cap = new cv::VideoCapture(info[0].ToNumber().Int64Value(), cv::CAP_V4L2); //may crash in windows
 
     //std::cout << "D" << std::endl;
-    //(*cap).set(CV_CAP_PROP_FRAME_WIDTH, 1280);
-    //(*cap).set(CV_CAP_PROP_FRAME_HEIGHT, 720);
+    //(*cap).set(CV_CAP_PROP_FRAME_WIDTH, 1280); //not working
+    //(*cap).set(CV_CAP_PROP_FRAME_HEIGHT, 720); //not working
 
     if (!cap->isOpened())
     {
-        Napi::Boolean videoCaptureSucceeded = Napi::Boolean::New(env, false);
-        return videoCaptureSucceeded;
+        //std::cout << "cap not opened" << std::endl;
+        return Napi::Boolean::New(env, false);
     }
-
+    //std::cout << "cap opened" << std::endl;
     Napi::External<cv::VideoCapture> externalData = Napi::External<cv::VideoCapture>::New(env, cap);
     return externalData;
+}
+
+Napi::Value videoCloser(const Napi::CallbackInfo &info)
+{
+    Napi::Env env = info.Env();
+
+    cv::VideoCapture *cap;
+
+    //if used as intended
+    if (info.Length() == 1 && info[0].IsExternal())
+    {
+        cap = info[0].As<Napi::External<cv::VideoCapture>>().Data();
+    }
+    else
+    {
+        return Napi::Boolean::New(env, false);
+    }
+
+    cap->release();
+
+    if (cap->isOpened()) //couldn't close capture
+    {
+        //std::cout << "cap not closed" << std::endl;
+        return Napi::Boolean::New(env, false);
+    }
+    //std::cout << "cap closed" << std::endl;
+
+    return Napi::Boolean::New(env, true);
 }
 
 Napi::Object Init(Napi::Env env, Napi::Object exports)
 {
     exports.Set(Napi::String::New(env, "videoOpener"), Napi::Function::New(env, videoOpener));
     exports.Set(Napi::String::New(env, "imgFromVideo"), Napi::Function::New(env, imgFromVideo));
+    exports.Set(Napi::String::New(env, "videoCloser"), Napi::Function::New(env, videoCloser));
 
     return exports;
 }

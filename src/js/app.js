@@ -1,74 +1,95 @@
-let Readable = require('stream').Readable
+let Readable = require("stream").Readable;
 
-const { webFrame } = require('electron')
+const { webFrame } = require("electron");
 
-let imgCreationWorker = new Worker('./js/imgCreationWorker.js')
-imgCreationWorker.onmessage = function (e) {
+let imgCreationWorker = new Worker("./js/imgCreationWorker.js");
+imgCreationWorker.onmessage = function(e) {
   // console.log(e)
-  let t0 = performance.now()
+  // let t0 = performance.now()
   // console.log('recebi msg do worker ' + t0)
+
+  if (e.data == "capture is boolean" || e.data == "capture closed") {
+    // couldn't get image from worker
+    document
+      .getElementById("video-canvas")
+      .getContext("2d")
+      .clearRect(0, 0, 640, 480);
+    $("#capture-param").prop("disabled", false);
+    $("#capture-param-btn").toggleClass("red");
+    $("#capture-param-btn").text("start");
+    return false;
+  }
 
   // document.getElementById('main-img').src = URL.createObjectURL(e.data)
   document
-    .getElementById('video-canvas')
-    .getContext('2d')
-    .drawImage(e.data, 0, 0)
-  e.data.close()
-  let t2 = performance.now()
+    .getElementById("video-canvas")
+    .getContext("2d")
+    .drawImage(e.data, 0, 0);
+  e.data.close();
+  let t2 = performance.now();
   // console.log('mudei a src da img ' + t2)
 
   requestAnimationFrame(timestamp => {
-    let t3 = performance.now()
+    // let t3 = performance.now()
     // console.log('requisitei um novo frame ' + t3)
 
-    document.getElementById('heap-usage').innerHTML = getMemory()
-    let t4 = performance.now()
+    document.getElementById("heap-usage").innerHTML = getMemory();
+    // let t4 = performance.now()
     // console.log('catei o uso da memoria ' + t4)
 
     imgCreationWorker.postMessage([
-      'animation frame at ' + timestamp,
-      document.getElementById('capture-param').value
-    ])
-    let t5 = performance.now()
+      "animation frame at " + timestamp,
+      document.getElementById("capture-param").value
+    ]);
+    // let t5 = performance.now()
     // console.log('mandei msg nova pro worker ' + t5)
-  })
+  });
+};
+
+function logBytes(x) {
+  return x[0] + x[1] / (1000.0 * 1000) + " MB <br>";
 }
 
-function logBytes (x) {
-  return x[0] + x[1] / (1000.0 * 1000) + ' MB <br>'
-}
-
-function getMemory () {
+function getMemory() {
   return Object.entries(process.memoryUsage())
     .map(logBytes)
-    .toString()
+    .toString();
 }
 
-$(function () {
-  $(document).ready(function () {
-    // Access the DOM elements here...
-    console.log('appjs')
-    M.AutoInit()
+function videoTriedToBeStartedOrStopped(e) {
+  if ($("#capture-param-btn").text() == "stop") {
+    imgCreationWorker.postMessage("stop");
+  } else {
+    $("#capture-param").prop("disabled", true);
+    $("#capture-param-btn").toggleClass("red");
+    $("#capture-param-btn").text("stop");
 
-    // -----------bindings------------------------
-    $('#capture-param').on('keyup', function (e) {
+    imgCreationWorker.postMessage([
+      "Sent from " + e.target.id,
+      document.getElementById("capture-param").value
+    ]);
+  }
+}
+
+$(function() {
+  $(document).ready(function() {
+    // Access the DOM elements here...
+    console.log("appjs");
+    M.AutoInit();
+
+    // -----------------bindings---------------------------
+    $("#capture-param").on("keyup", function(e) {
       if (e.keyCode == 13) {
-        // enter pressed
-        imgCreationWorker.postMessage([
-          'Sent from ' + e.target,
-          document.getElementById('capture-param').value
-        ])
+        videoTriedToBeStartedOrStopped(e);
       }
-    })
-    $('#capture-param-btn').on('click', function (e) {
-      imgCreationWorker.postMessage([
-        'Sent from ' + e.target,
-        document.getElementById('capture-param').value
-      ])
-    })
+    });
+    $("#capture-param-btn").on("click", function(e) {
+      videoTriedToBeStartedOrStopped(e);
+    });
+    // -------------------------------------------------------
 
     /* requestAnimationFrame(timestamp => {
       imgCreationWorker.postMessage('animation frame at ' + timestamp)
     }) */
-  })
-})
+  });
+});

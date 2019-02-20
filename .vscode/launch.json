@@ -2,40 +2,26 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Attach",
-            "type": "cppdbg",
-            "request": "attach",
-            "program": "/home/paulo/frednator-2/build/Debug/obj.target/videoUtil/src/cpp/videoUtil.o",
-            "processId": "${command:pickProcess}",
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ]
-        },
-        {
-            "name": "(gdb) Launch",
-            "type": "cppdbg",
+            "type": "lldb",
             "request": "launch",
+            "name": "(lldb) Launch Forge",
             "program": "/usr/bin/node",
             "args": [
-                "/home/paulo/frednator-2/bin/linux-x64-64/frednator-2.node"
+                "${workspaceFolder}/node_modules/electron-forge/dist/electron-forge-start.js",
+                "-i"
             ],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": true,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ]
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "(lldb) Launch Program",
+            "preLaunchTask": "npm: build:dev",
+            "program": "/usr/bin/node",
+            "args": [
+                "src/js/napi-tester.js"
+            ],
+            "cwd": "${workspaceFolder}"
         },
         {
             "type": "node",
@@ -48,6 +34,19 @@
             // runtimeArgs will be passed directly to your Electron application
             "runtimeArgs": [],
             "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Debug Main Process",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+            "windows": {
+                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+            },
+            "args": [
+                "."
+            ]
         }
     ]
 }

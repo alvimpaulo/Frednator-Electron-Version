@@ -17,6 +17,7 @@
     
   .function-selection { 
       grid-area: function-selection; 
+      justify-self: stretch;
 }
   
   .main-video { grid-area: video-area; }
