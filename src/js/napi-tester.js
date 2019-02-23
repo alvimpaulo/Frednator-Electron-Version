@@ -1,4 +1,3 @@
-const cvMatUtil = require("../../build/Debug/cvMatUtil");
 const videoUtil = require("../../build/Debug/videoUtil");
 
 let cap;
@@ -18,5 +17,5 @@ while (cap && img) {
   img = videoUtil.imgFromVideo(cap);
   console.log(cap);
   console.log(img);
-  // let newimgarray = cvMatUtil.typedArrayFromCvMat(img)
+  // let newimgarray = videoUtil.typedArrayFromCvMat(img)
 }

@@ -1,4 +1,3 @@
-const cvMatUtil = require("../../build/Debug/cvMatUtil");
 const videoUtil = require("../../build/Debug/videoUtil");
 
 let cap;
@@ -50,7 +49,7 @@ function createMyImageBitmap(captureParam = 0) {
         ' milissegundos, ' +
         Math.round(m1.heapUsed - m0.heapUsed)
     ) */
-    let newimgarray = cvMatUtil.typedArrayFromCvMat(img);
+    let newimgarray = videoUtil.typedArrayFromCvMat(img);
 
     // test for time and heap
     /* let t2 = performance.now()
