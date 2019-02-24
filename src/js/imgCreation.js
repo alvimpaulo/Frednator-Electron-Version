@@ -1,4 +1,4 @@
-const videoUtil = require("../../build/Debug/videoUtil");
+const videoUtil = require("../../build/Release/videoUtil");
 
 let cap;
 

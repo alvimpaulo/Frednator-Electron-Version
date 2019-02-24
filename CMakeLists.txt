@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 # Name of the project (will be the name of the plugin)
-project(addon)
+project(videoUtil)
 
 #Opencv dependency
 find_package( OpenCV REQUIRED )
