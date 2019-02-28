@@ -10,7 +10,7 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "eslint src --color",
-    "build": "node-gyp configure build --silly",
+    "build": "cmake-js compile",
     "build:dev": "node-gyp -j 16 configure build --debug",
     "forge-debug": "electron-forge start -i"
   },

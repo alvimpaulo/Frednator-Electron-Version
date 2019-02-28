@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <chrono>
 
+#include "../../includes-competition-code/perception/include/yellowDetector.hpp"
+
 void vectorFinalizer(Napi::Env env, void *vec)
 {
     //std::cout << "deleting vec" << std::endl;
