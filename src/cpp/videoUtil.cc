@@ -4,6 +4,7 @@
 #include <opencv2/videoio.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
+#include <opencv2/features2d.hpp>
 #include <iostream>
 #include <stdio.h>
 #include <chrono>
@@ -14,6 +15,29 @@ void vectorFinalizer(Napi::Env env, void *vec)
 {
     //std::cout << "deleting vec" << std::endl;
     delete (uchar *)vec; // Probably has leak, deleting only the vector pure data, not the object itself
+}
+
+void cvMatFinalizer(Napi::Env env, cv::Mat *mat)
+{
+    //std::cout << "deleting mat" << std::endl;
+    delete mat;
+}
+
+Napi::Value yellowDetectorRun(const Napi::CallbackInfo &info)
+{
+    std::cout << "yd run" << std::endl;
+    Napi::Env env = info.Env();
+    if (info.Length() == 1 && info[0].IsExternal())
+    { //recieved cv mat
+        std::cout << "yd run received cvmat" << std::endl;
+        YellowDetector detector = YellowDetector();
+        std::cout << "yd run created yd" << std::endl;
+        cv::Mat *img = info[0].As<Napi::External<cv::Mat>>().Data();
+        std::cout << "yd run converted cvmat" << std::endl;
+        *img = detector.run(*img, *img);
+        std::cout << "yd run runned" << std::endl;
+        return Napi::External<cv::Mat>::New(env, img);
+    }
 }
 
 Napi::Value typedArrayFromCvMat(const Napi::CallbackInfo &info)
@@ -69,12 +93,6 @@ Napi::Value typedArrayFromCvMat(const Napi::CallbackInfo &info)
 
     delete rgbchannels;
     return typedArray;
-}
-
-void cvMatFinalizer(Napi::Env env, cv::Mat *mat)
-{
-    //std::cout << "deleting mat" << std::endl;
-    delete mat;
 }
 
 Napi::Value imgFromVideo(const Napi::CallbackInfo &info)
@@ -182,6 +200,7 @@ Napi::Object Init(Napi::Env env, Napi::Object exports)
     exports.Set(Napi::String::New(env, "imgFromVideo"), Napi::Function::New(env, imgFromVideo));
     exports.Set(Napi::String::New(env, "videoCloser"), Napi::Function::New(env, videoCloser));
     exports.Set(Napi::String::New(env, "typedArrayFromCvMat"), Napi::Function::New(env, typedArrayFromCvMat));
+    exports.Set(Napi::String::New(env, "yellowDetectorRun"), Napi::Function::New(env, yellowDetectorRun));
 
     return exports;
 }

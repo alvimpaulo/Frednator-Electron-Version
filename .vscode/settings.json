@@ -41,7 +41,17 @@
         "algorithm": "cpp",
         "chrono": "cpp",
         "ctime": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "csignal": "cpp",
+        "atomic": "cpp",
+        "strstream": "cpp",
+        "bitset": "cpp",
+        "list": "cpp",
+        "slist": "cpp",
+        "iomanip": "cpp",
+        "thread": "cpp",
+        "typeindex": "cpp",
+        "memory": "cpp"
     },
     "lldb.executable": "lldb-7",
     "files.watcherExclude": {

@@ -5,7 +5,9 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include "featureDetector.hpp"
+#ifndef FREDNATOR
 #include "../../unboard/unBoard.hpp"
+#endif
 #include <time.h>
 
 class YellowDetector : public FeatureDetector
@@ -56,10 +58,12 @@ public:
   int iLowV;
   int iHighV;
 
+#ifndef FREDNATOR
   virtual void run(cv::Mat topImg, cv::Mat goalImg, PerceptionData *data);
-
   virtual void updateData(PerceptionData *data);
-
+#else
+  virtual cv::Mat run(cv::Mat topImg, cv::Mat goalImg);
+#endif
   virtual int getDistance();
 };
 

@@ -40,6 +40,8 @@ function createMyImageBitmap(captureParam = 0) {
       return;
     }
 
+    img = videoUtil.yellowDetectorRun(img);
+
     // test for time and heap
     /* let t1 = performance.now()
     let m1 = process.memoryUsage()
