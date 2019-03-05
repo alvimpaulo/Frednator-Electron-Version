@@ -51,7 +51,8 @@
         "iomanip": "cpp",
         "thread": "cpp",
         "typeindex": "cpp",
-        "memory": "cpp"
+        "memory": "cpp",
+        "string": "cpp"
     },
     "lldb.executable": "lldb-7",
     "files.watcherExclude": {

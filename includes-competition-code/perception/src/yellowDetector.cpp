@@ -1,82 +1,122 @@
-#include "../include/yellowDetector.hpp"
-#ifndef FREDNATOR
-#include <qi/log.hpp>
-#endif
+/** 
+    \file yellowDetector.cpp
+    \author UnBeatables
+    \date LARC2018
+    \name yellowDetector
+*/
 
-//#define DEBUG_PERCEPTION 0
+#include "../include/yellowDetector.hpp"
 #ifndef FREDNATOR
 void YellowDetector::run(cv::Mat topImg, cv::Mat goalImg, PerceptionData *data)
 #else
-cv::Mat YellowDetector::run(cv::Mat topImg, cv::Mat goalImg)
+cv::Mat YellowDetector::run(cv::Mat topImg, cv::Mat goalImg, PerceptionData *data)
 #endif
 {
-    std::cout << "yellow" << std::endl;
     cv::Mat src = topImg.clone();
 
+    //Yellow HSL values range definitions
+    int iLowH = 22;
+    int iHighH = 29;
+    int iLowS = 100;
+    int iHighS = 255;
+    int iLowV = 100;
+    int iHighV = 255;
+
+    //Variables initialization
     cv::Mat src_HSV;
     std::vector<std::vector<cv::Point>> contours;
     int thresh = 100;
     std::vector<cv::Vec4i> hierarchy;
 
+    //Color transformations
     cv::cvtColor(src, src_HSV, cv::COLOR_BGR2HSV);
-    return src_HSV;
     cv::blur(src_HSV, src_HSV, cv::Size(2, 2));
     cv::inRange(src_HSV, cv::Scalar(iLowH, iLowS, iLowV), cv::Scalar(iHighH, iHighS, iHighV), src_HSV);
+
+    //Morphological transformations
     cv::Mat element = cv::getStructuringElement(0, cv::Size(3, 3), cv::Point(1, 1));
-
-    //cv::erode(src_HSV, src_HSV, element);
+    cv::erode(src_HSV, src_HSV, element);
     cv::dilate(src_HSV, src_HSV, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(5, 5)));
+    cv::erode(src_HSV, src_HSV, element);
 
-    //FAZ O BLOB
-    cv::Mat topYellowMask = src_HSV;
+    //Edge and Contours detections
+    cv::Canny(src_HSV, src_HSV, thresh, thresh * 2, 3);
+    cv::findContours(src_HSV, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
 
-    cv::bitwise_not(src_HSV, topYellowMask);
-    cv::SimpleBlobDetector::Params params;
+    //Variables initialization
+    std::vector<std::vector<cv::Point>> contours_poly(contours.size());
+    cv::Rect boundRect;
+    this->distance = -1;
+    int n_bound = 0;
 
-    params.minThreshold = minThreshold;
-    params.maxThreshold = maxThreshold;
-    params.filterByArea = filterByArea;
-    params.minArea = minArea;
-    params.filterByCircularity = filterByCircularity;
-    params.minCircularity = minCircularity;
-    params.filterByConvexity = filterByConvexity;
-    params.minConvexity = minConvexity;
-    params.filterByInertia = filterByInertia;
-    params.minInertiaRatio = minInertiaRatio;
+#ifdef DEBUG_PERCEPTION
+    //Auxiliar variables for drawing initialization
+    cv::RNG rng(12345);
+    cv::Mat drawing = cv::Mat::zeros(src_HSV.size(), CV_8UC3);
+    cv::Scalar color = cv::Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
+#endif
 
-    cv::SimpleBlobDetector *topDetector = cv::SimpleBlobDetector::create(params);
-    std::vector<cv::KeyPoint> keypoints;
-    topDetector->detect(topYellowMask, keypoints);
-    cv::Mat im_with_keypoints;
-    cv::drawKeypoints(topYellowMask, keypoints, im_with_keypoints, cv::Scalar(0, 0, 255), cv::DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS);
-
-    //float fieldpercentage = (float)keypoints.size()/(src.rows*src.cols);
-
-    //TODO consertar a distância
-    if (keypoints.size() != 0)
+    float avgx = 0;
+    float avgy = 0;
+    for (std::size_t i = 0; i < contours.size(); i++)
     {
-        this->distance = keypoints[0].size; //retorna raio
-    }
-    else
-    {
-        this->distance = -1;
-    }
-    std::cout << "Distance: " << this->distance << std::endl;
+        //Creates bounding rectangle for each contour
+        cv::approxPolyDP(cv::Mat(contours[i]), contours_poly[i], 3, true);
+        boundRect = cv::boundingRect(cv::Mat(contours_poly[i]));
 
-#ifndef FREDNATOR
+        //Excludes too small, big, narrow and wide candidates
+        if (boundRect.y < 100)
+            continue;
+        if (boundRect.height < 40)
+            continue;
+        if (boundRect.height > 2 * boundRect.width)
+            continue;
+        if (2 * boundRect.height < boundRect.width)
+            continue;
+
+#ifdef DEBUG_PERCEPTION
+        //Draws valid bounding rectangle
+        cv::drawContours(drawing, contours_poly, i, color, 1, 8, std::vector<cv::Vec4i>(), 0, cv::Point());
+        //std::cout << "teste " << "height " << boundRect.height << std::endl;
+#endif
+
+        //this->distance += 58.8 -0.165 * boundRect.height + 0.000128 * boundRect.height * boundRect.height;
+        this->distance += 948 - 47.2 * boundRect.height + 0.642 * boundRect.height * boundRect.height;
+        //this->distance += -10 * boundRect.height + 466;
+        avgx += boundRect.x;
+        avgy += boundRect.y;
+        n_bound++;
+    }
+    if (n_bound)
+    {
+        this->distance = this->distance / n_bound;
+        avgx = avgx / n_bound;
+        avgy = avgy / n_bound;
+    }
+
+#ifdef DEBUG_PERCEPTION
+    //std::cout << "teste "<<"distance: " << this->distance <<std::endl ;
+    cv::imwrite("Contornos.jpg", drawing);
+#endif
+
+    avgy = 687 - avgy;
+    avgx = 160 - avgx;
+    float ratio = avgx / avgy;
+    this->angle = 2 * (ratio - ratio * ratio * ratio / 3 + ratio * ratio * ratio * ratio * ratio / 5);
+
     updateData(data);
-#else
-    return topYellowMask;
+#ifdef FREDNATOR
+    return src_HSV;
 #endif
 }
-#ifndef FREDNATOR
+
 void YellowDetector::updateData(PerceptionData *data)
 {
     //data->yellowCenter = this->mc;
     data->approxDistance = this->distance;
-    //data->approxAngle = this->angle;
+    data->approxAngle = this->angle;
 }
-#endif
+
 int YellowDetector::getDistance()
 {
     return this->distance;

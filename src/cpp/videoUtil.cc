@@ -1,6 +1,5 @@
 #include <napi.h>
 
-#include <opencv2/core.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
@@ -10,6 +9,8 @@
 #include <chrono>
 
 #include "../../includes-competition-code/perception/include/yellowDetector.hpp"
+
+// #define IMAGE_FROM_VIDEO_DEBUG
 
 void vectorFinalizer(Napi::Env env, void *vec)
 {
@@ -25,17 +26,38 @@ void cvMatFinalizer(Napi::Env env, cv::Mat *mat)
 
 Napi::Value yellowDetectorRun(const Napi::CallbackInfo &info)
 {
+
+#ifdef YELLOW_DETECTOR_DEBUG
     std::cout << "yd run" << std::endl;
+#endif
+
     Napi::Env env = info.Env();
     if (info.Length() == 1 && info[0].IsExternal())
     { //recieved cv mat
+        PerceptionData *data = new PerceptionData();
+
+#ifdef YELLOW_DETECTOR_DEBUG
         std::cout << "yd run received cvmat" << std::endl;
+#endif
+
         YellowDetector detector = YellowDetector();
+
+#ifdef YELLOW_DETECTOR_DEBUG
         std::cout << "yd run created yd" << std::endl;
+#endif
+
         cv::Mat *img = info[0].As<Napi::External<cv::Mat>>().Data();
+
+#ifdef YELLOW_DETECTOR_DEBUG
         std::cout << "yd run converted cvmat" << std::endl;
-        *img = detector.run(*img, *img);
+#endif
+
+        *img = detector.run(*img, *img, data);
+
+#ifdef YELLOW_DETECTOR_DEBUG
         std::cout << "yd run runned" << std::endl;
+#endif
+
         return Napi::External<cv::Mat>::New(env, img);
     }
 }
@@ -98,37 +120,58 @@ Napi::Value typedArrayFromCvMat(const Napi::CallbackInfo &info)
 Napi::Value imgFromVideo(const Napi::CallbackInfo &info)
 {
     Napi::Env env = info.Env();
-    //auto started = std::chrono::high_resolution_clock::now();
+#ifdef IMAGE_FROM_VIDEO_DEBUG
+    auto started = std::chrono::high_resolution_clock::now();
+#endif
     if (info.Length() > 0 && info[0].IsExternal())
     {
-        ////std::cout << "0" << std::endl;
-        cv::VideoCapture *img2;
-        // auto newCapture = std::chrono::high_resolution_clock::now();
-        // std::cout << "new capture = " << std::chrono::duration_cast<std::chrono::milliseconds>(newCapture - started).count() << std::endl;
-        ////std::cout << "1" << std::endl;
-        img2 = info[0].As<Napi::External<cv::VideoCapture>>().Data();
-        // auto img2Converted = std::chrono::high_resolution_clock::now();
-        // std::cout << "img2Converted = " << std::chrono::duration_cast<std::chrono::milliseconds>(img2Converted - started).count() << std::endl;
-        ////std::cout << "2" << std::endl;
-        if (img2->isOpened())
+#ifdef IMAGE_FROM_VIDEO_DEBUG
+        std::cout << "ImgFromVideo: 0" << std::endl;
+#endif
+        cv::VideoCapture *capture;
+#ifdef IMAGE_FROM_VIDEO_DEBUG
+        auto newCapture = std::chrono::high_resolution_clock::now();
+        std::cout << "ImgFromVideo: new capture = " << std::chrono::duration_cast<std::chrono::milliseconds>(newCapture - started).count() << std::endl;
+        std::cout << "ImgFromVideo: 1" << std::endl;
+#endif
+        capture = info[0].As<Napi::External<cv::VideoCapture>>().Data();
+#ifdef IMAGE_FROM_VIDEO_DEBUG
+        auto captureConverted = std::chrono::high_resolution_clock::now();
+        std::cout << "ImgFromVideo: captureConverted = " << std::chrono::duration_cast<std::chrono::milliseconds>(captureConverted - started).count() << std::endl;
+        std::cout << "ImgFromVideo: 2" << std::endl;
+#endif
+        if (capture->isOpened())
         {
-            //std::cout << "a";
+#ifdef IMAGE_FROM_VIDEO_DEBUG
+            std::cout << "ImgFromVideo: a" << std::endl;
+#endif
             cv::Mat *tempImg = new cv::Mat();
-            bool grabStatus = img2->grab();
+            bool grabStatus = capture->grab();
             if (!grabStatus) //If it reached end of the video
             {
                 std::cout << "end of the video / couldn't grab" << std::endl;
                 return Napi::Boolean::New(env, false);
             }
-            // auto imgGrabbed = std::chrono::high_resolution_clock::now();
-            // std::cout << "imgGrabbed = " << std::chrono::duration_cast<std::chrono::milliseconds>(imgGrabbed - started).count() << std::endl;
-            img2->retrieve(*tempImg);
-            // auto imgRetrieved = std::chrono::high_resolution_clock::now();
-            // std::cout << "imgRetrieved = " << std::chrono::duration_cast<std::chrono::milliseconds>(imgRetrieved - started).count() << std::endl;
-            ////std::cout << "c" << std::endl;
-            //cv::imshow("a", *tempImg);
-            //cv::waitKey(25);
-            //cv::destroyAllWindows();
+#ifdef IMAGE_FROM_VIDEO_DEBUG
+            auto imgGrabbed = std::chrono::high_resolution_clock::now();
+            std::cout << "ImgFromVideo: imgGrabbed = " << std::chrono::duration_cast<std::chrono::milliseconds>(imgGrabbed - started).count() << std::endl;
+#endif
+
+            capture->retrieve(*tempImg);
+#ifdef IMAGE_FROM_VIDEO_DEBUG
+            auto imgRetrieved = std::chrono::high_resolution_clock::now();
+            std::cout << "ImgFromVideo: imgRetrieved = " << std::chrono::duration_cast<std::chrono::milliseconds>(imgRetrieved - started).count() << std::endl;
+            std::cout << "ImgFromVideo: c" << std::endl;
+
+            std::cout << capture->get(CV_CAP_PROP_FRAME_WIDTH) << "\t" << capture->get(CV_CAP_PROP_FRAME_HEIGHT) << std::endl;
+            std::cout << tempImg->channels() << "\t" << tempImg->cols << "\t" << tempImg->rows << std::endl;
+
+            cv::imshow("tempimg", *tempImg);
+            cv::waitKey(0);
+            cv::destroyAllWindows();
+
+            std::cout << "ImgFromVideo: Img shown / end of ImgFromVideo" << std::endl;
+#endif
 
             return Napi::External<cv::Mat>::New(env, tempImg, cvMatFinalizer);
         }
@@ -146,15 +189,19 @@ Napi::Value videoOpener(const Napi::CallbackInfo &info)
     //open video from a file
     if (info.Length() == 1 && info[0].IsString())
     {
-        std::cout << info[0].ToString().Utf8Value() << std::endl;
+        std::cout << "capture from path " << info[0].ToString().Utf8Value() << std::endl;
         cap = new cv::VideoCapture(info[0].ToString().Utf8Value(), cv::CAP_GSTREAMER); //may crash in windows
     }
     else if (info.Length() == 1 && info[0].IsNumber())
+    {
+        std::cout << "capture from number " << info[0].ToNumber().Int64Value() << std::endl;
         cap = new cv::VideoCapture(info[0].ToNumber().Int64Value(), cv::CAP_V4L2); //may crash in windows
+    }
+    cv::Mat tempimg;
 
-    //std::cout << "D" << std::endl;
-    //(*cap).set(CV_CAP_PROP_FRAME_WIDTH, 1280); //not working
-    //(*cap).set(CV_CAP_PROP_FRAME_HEIGHT, 720); //not working
+    std::cout << "D" << std::endl;
+    //(*cap).set(CV_CAP_PROP_FRAME_WIDTH, 640);  //not working
+    //(*cap).set(CV_CAP_PROP_FRAME_HEIGHT, 480); //not working
 
     if (!cap->isOpened())
     {
@@ -162,8 +209,7 @@ Napi::Value videoOpener(const Napi::CallbackInfo &info)
         return Napi::Boolean::New(env, false);
     }
     //std::cout << "cap opened" << std::endl;
-    Napi::External<cv::VideoCapture> externalData = Napi::External<cv::VideoCapture>::New(env, cap);
-    return externalData;
+    return Napi::External<cv::VideoCapture>::New(env, cap);
 }
 
 Napi::Value videoCloser(const Napi::CallbackInfo &info)

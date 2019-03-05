@@ -1,0 +1,1646 @@
+[ '/usr/bin/node', '/usr/bin/cmake-js', 'rebuild' ]
+Not searching for unused variables given on the command line.
+-- The C compiler identification is GNU 7.3.0
+-- The CXX compiler identification is GNU 7.3.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found OpenCV: /usr/local (found version "3.4.4") 
+-- Boost version: 1.65.1
+-- Found the following Boost libraries:
+--   system
+--   filesystem
+-- LOOKING FOR ALCOMMON
+-- /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/lib/libalcommon.so
+-- LOOKING FOR ALPROXIES
+-- /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/lib/libalproxies.so
+-- LOOKING FOR ALVISION
+-- /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/lib/libalvision.so
+-- LOOKING FOR ALVALUES
+-- /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/lib/libalvalue.so
+-- LOOKING FOR QI
+-- /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/lib/libqi.so
+-- LOOKING FOR QITYPE
+-- /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/lib/libqitype.so
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/paulo/frednator-2/build
+[1/8] Building CXX object CMakeFiles/MISC_SRC_LIB.dir/includes-competition-code/module/basemodule.cpp.o
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:32:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/detail/shared_count.hpp:323:33: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+                                 ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:247:65: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+ template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+                                                                 ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:446:31: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+                               ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:459:22: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+                      ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:525:34: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     shared_ptr & operator=( std::auto_ptr<Y> & r )
+                                  ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:534:34: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     shared_ptr & operator=( std::auto_ptr<Y> && r )
+                                  ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:536:38: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+                                      ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/bind/mem_fn.hpp:25:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/mem_fn.hpp:22,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/function/detail/prologue.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/function.hpp:24,
+                 from ../includes-competition-code/unboard/unBoard.hpp:5,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/get_pointer.hpp: At global scope:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/get_pointer.hpp:27:40: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+ template<class T> T * get_pointer(std::auto_ptr<T> const& p)
+                                        ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from ../includes-competition-code/motion/runswift/Eigen/Core:109:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:1,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.hpp:13,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:36:44: warning: ignoring attributes on template argument ‘__m128 {aka __vector(4) float}’ [-Wignored-attributes]
+ template<> struct ei_unpacket_traits<__m128>  { typedef float  type; enum {size=4}; };
+                                            ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:37:45: warning: ignoring attributes on template argument ‘__m128d {aka __vector(2) double}’ [-Wignored-attributes]
+ template<> struct ei_unpacket_traits<__m128d> { typedef double type; enum {size=2}; };
+                                             ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:38:45: warning: ignoring attributes on template argument ‘__m128i {aka __vector(2) long long int}’ [-Wignored-attributes]
+ template<> struct ei_unpacket_traits<__m128i> { typedef int    type; enum {size=4}; };
+                                             ^
+In file included from ../includes-competition-code/motion/runswift/Eigen/Core:109:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:1,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.hpp:13,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:265:36: warning: ignoring attributes on template argument ‘__m128 {aka __vector(4) float}’ [-Wignored-attributes]
+ struct ei_palign_impl<Offset,__m128>
+                                    ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:288:37: warning: ignoring attributes on template argument ‘__m128i {aka __vector(2) long long int}’ [-Wignored-attributes]
+ struct ei_palign_impl<Offset,__m128i>
+                                     ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:311:37: warning: ignoring attributes on template argument ‘__m128d {aka __vector(2) double}’ [-Wignored-attributes]
+ struct ei_palign_impl<Offset,__m128d>
+                                     ^
+In file included from ../includes-competition-code/motion/runswift/Eigen/Array:28:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:2,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.hpp:13,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+../includes-competition-code/motion/runswift/Eigen/src/Array/Functors.h:266:31: warning: ‘template<class _Operation> class std::binder2nd’ is deprecated [-Wdeprecated-declarations]
+ struct ei_functor_traits<std::binder2nd<T> >
+                               ^~~~~~~~~
+In file included from /usr/include/c++/7/bits/stl_function.h:1127:0,
+                 from /usr/include/c++/7/string:48,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/exceptions.hpp:20,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:12,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/usr/include/c++/7/backward/binders.h:143:11: note: declared here
+     class binder2nd
+           ^~~~~~~~~
+In file included from ../includes-competition-code/motion/runswift/Eigen/Array:28:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:2,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.hpp:13,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+../includes-competition-code/motion/runswift/Eigen/src/Array/Functors.h:270:31: warning: ‘template<class _Operation> class std::binder1st’ is deprecated [-Wdeprecated-declarations]
+ struct ei_functor_traits<std::binder1st<T> >
+                               ^~~~~~~~~
+In file included from /usr/include/c++/7/bits/stl_function.h:1127:0,
+                 from /usr/include/c++/7/string:48,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/exceptions.hpp:20,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:12,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/module/basemodule.hpp:4,
+                 from ../includes-competition-code/module/basemodule.cpp:1:
+/usr/include/c++/7/backward/binders.h:108:11: note: declared here
+     class binder1st
+           ^~~~~~~~~
+[2/8] Building CXX object CMakeFiles/MISC_SRC_LIB.dir/includes-competition-code/unboard/unBoard.cpp.o
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:32:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/detail/shared_count.hpp:323:33: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+                                 ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:247:65: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+ template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+                                                                 ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:446:31: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+                               ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:459:22: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+                      ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:525:34: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     shared_ptr & operator=( std::auto_ptr<Y> & r )
+                                  ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:534:34: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     shared_ptr & operator=( std::auto_ptr<Y> && r )
+                                  ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:536:38: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+                                      ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/bind/mem_fn.hpp:25:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/mem_fn.hpp:22,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/function/detail/prologue.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/function.hpp:24,
+                 from ../includes-competition-code/unboard/unBoard.hpp:5,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/get_pointer.hpp: At global scope:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/get_pointer.hpp:27:40: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+ template<class T> T * get_pointer(std::auto_ptr<T> const& p)
+                                        ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from ../includes-competition-code/motion/runswift/Eigen/Core:109:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:1,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.hpp:13,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:36:44: warning: ignoring attributes on template argument ‘__m128 {aka __vector(4) float}’ [-Wignored-attributes]
+ template<> struct ei_unpacket_traits<__m128>  { typedef float  type; enum {size=4}; };
+                                            ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:37:45: warning: ignoring attributes on template argument ‘__m128d {aka __vector(2) double}’ [-Wignored-attributes]
+ template<> struct ei_unpacket_traits<__m128d> { typedef double type; enum {size=2}; };
+                                             ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:38:45: warning: ignoring attributes on template argument ‘__m128i {aka __vector(2) long long int}’ [-Wignored-attributes]
+ template<> struct ei_unpacket_traits<__m128i> { typedef int    type; enum {size=4}; };
+                                             ^
+In file included from ../includes-competition-code/motion/runswift/Eigen/Core:109:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:1,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.hpp:13,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:265:36: warning: ignoring attributes on template argument ‘__m128 {aka __vector(4) float}’ [-Wignored-attributes]
+ struct ei_palign_impl<Offset,__m128>
+                                    ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:288:37: warning: ignoring attributes on template argument ‘__m128i {aka __vector(2) long long int}’ [-Wignored-attributes]
+ struct ei_palign_impl<Offset,__m128i>
+                                     ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:311:37: warning: ignoring attributes on template argument ‘__m128d {aka __vector(2) double}’ [-Wignored-attributes]
+ struct ei_palign_impl<Offset,__m128d>
+                                     ^
+In file included from ../includes-competition-code/motion/runswift/Eigen/Array:28:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:2,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.hpp:13,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+../includes-competition-code/motion/runswift/Eigen/src/Array/Functors.h:266:31: warning: ‘template<class _Operation> class std::binder2nd’ is deprecated [-Wdeprecated-declarations]
+ struct ei_functor_traits<std::binder2nd<T> >
+                               ^~~~~~~~~
+In file included from /usr/include/c++/7/bits/stl_function.h:1127:0,
+                 from /usr/include/c++/7/string:48,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/exceptions.hpp:20,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:12,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/usr/include/c++/7/backward/binders.h:143:11: note: declared here
+     class binder2nd
+           ^~~~~~~~~
+In file included from ../includes-competition-code/motion/runswift/Eigen/Array:28:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:2,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.hpp:13,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+../includes-competition-code/motion/runswift/Eigen/src/Array/Functors.h:270:31: warning: ‘template<class _Operation> class std::binder1st’ is deprecated [-Wdeprecated-declarations]
+ struct ei_functor_traits<std::binder1st<T> >
+                               ^~~~~~~~~
+In file included from /usr/include/c++/7/bits/stl_function.h:1127:0,
+                 from /usr/include/c++/7/string:48,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/exceptions.hpp:20,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:12,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.cpp:1:
+/usr/include/c++/7/backward/binders.h:108:11: note: declared here
+     class binder1st
+           ^~~~~~~~~
+[3/8] Building CXX object CMakeFiles/P_SRC_LIB.dir/includes-competition-code/perception/src/yellowDetector.cpp.o
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:32:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/perception/src/../include/../../unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:11,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/detail/shared_count.hpp:323:33: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+                                 ^~~~~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/iomanip:43,
+                 from /usr/local/include/opencv2/flann/lsh_table.h:40,
+                 from /usr/local/include/opencv2/flann/lsh_index.h:49,
+                 from /usr/local/include/opencv2/flann/all_indices.h:42,
+                 from /usr/local/include/opencv2/flann/flann_base.hpp:43,
+                 from /usr/local/include/opencv2/flann.hpp:48,
+                 from /usr/local/include/opencv2/opencv.hpp:65,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:10,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/perception/src/../include/../../unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:11,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:247:65: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+ template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+                                                                 ^~~~~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/iomanip:43,
+                 from /usr/local/include/opencv2/flann/lsh_table.h:40,
+                 from /usr/local/include/opencv2/flann/lsh_index.h:49,
+                 from /usr/local/include/opencv2/flann/all_indices.h:42,
+                 from /usr/local/include/opencv2/flann/flann_base.hpp:43,
+                 from /usr/local/include/opencv2/flann.hpp:48,
+                 from /usr/local/include/opencv2/opencv.hpp:65,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:10,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/perception/src/../include/../../unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:11,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:446:31: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+                               ^~~~~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/iomanip:43,
+                 from /usr/local/include/opencv2/flann/lsh_table.h:40,
+                 from /usr/local/include/opencv2/flann/lsh_index.h:49,
+                 from /usr/local/include/opencv2/flann/all_indices.h:42,
+                 from /usr/local/include/opencv2/flann/flann_base.hpp:43,
+                 from /usr/local/include/opencv2/flann.hpp:48,
+                 from /usr/local/include/opencv2/opencv.hpp:65,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:10,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/perception/src/../include/../../unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:11,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:459:22: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+                      ^~~~~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/iomanip:43,
+                 from /usr/local/include/opencv2/flann/lsh_table.h:40,
+                 from /usr/local/include/opencv2/flann/lsh_index.h:49,
+                 from /usr/local/include/opencv2/flann/all_indices.h:42,
+                 from /usr/local/include/opencv2/flann/flann_base.hpp:43,
+                 from /usr/local/include/opencv2/flann.hpp:48,
+                 from /usr/local/include/opencv2/opencv.hpp:65,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:10,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/perception/src/../include/../../unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:11,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:525:34: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     shared_ptr & operator=( std::auto_ptr<Y> & r )
+                                  ^~~~~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/iomanip:43,
+                 from /usr/local/include/opencv2/flann/lsh_table.h:40,
+                 from /usr/local/include/opencv2/flann/lsh_index.h:49,
+                 from /usr/local/include/opencv2/flann/all_indices.h:42,
+                 from /usr/local/include/opencv2/flann/flann_base.hpp:43,
+                 from /usr/local/include/opencv2/flann.hpp:48,
+                 from /usr/local/include/opencv2/opencv.hpp:65,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:10,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/perception/src/../include/../../unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:11,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:534:34: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     shared_ptr & operator=( std::auto_ptr<Y> && r )
+                                  ^~~~~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/iomanip:43,
+                 from /usr/local/include/opencv2/flann/lsh_table.h:40,
+                 from /usr/local/include/opencv2/flann/lsh_index.h:49,
+                 from /usr/local/include/opencv2/flann/all_indices.h:42,
+                 from /usr/local/include/opencv2/flann/flann_base.hpp:43,
+                 from /usr/local/include/opencv2/flann.hpp:48,
+                 from /usr/local/include/opencv2/opencv.hpp:65,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:10,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/perception/src/../include/../../unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:11,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:536:38: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+                                      ^~~~~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/iomanip:43,
+                 from /usr/local/include/opencv2/flann/lsh_table.h:40,
+                 from /usr/local/include/opencv2/flann/lsh_index.h:49,
+                 from /usr/local/include/opencv2/flann/all_indices.h:42,
+                 from /usr/local/include/opencv2/flann/flann_base.hpp:43,
+                 from /usr/local/include/opencv2/flann.hpp:48,
+                 from /usr/local/include/opencv2/opencv.hpp:65,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:10,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/bind/mem_fn.hpp:25:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/mem_fn.hpp:22,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/function/detail/prologue.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/function.hpp:24,
+                 from ../includes-competition-code/perception/src/../include/../../unboard/unBoard.hpp:5,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:11,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/get_pointer.hpp: At global scope:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/get_pointer.hpp:27:40: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+ template<class T> T * get_pointer(std::auto_ptr<T> const& p)
+                                        ^~~~~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/iomanip:43,
+                 from /usr/local/include/opencv2/flann/lsh_table.h:40,
+                 from /usr/local/include/opencv2/flann/lsh_index.h:49,
+                 from /usr/local/include/opencv2/flann/all_indices.h:42,
+                 from /usr/local/include/opencv2/flann/flann_base.hpp:43,
+                 from /usr/local/include/opencv2/flann.hpp:48,
+                 from /usr/local/include/opencv2/opencv.hpp:65,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:10,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from ../includes-competition-code/motion/runswift/Eigen/Core:109:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:1,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../includes-competition-code/perception/src/../include/../../unboard/unBoard.hpp:13,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:11,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:36:44: warning: ignoring attributes on template argument ‘__m128 {aka __vector(4) float}’ [-Wignored-attributes]
+ template<> struct ei_unpacket_traits<__m128>  { typedef float  type; enum {size=4}; };
+                                            ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:37:45: warning: ignoring attributes on template argument ‘__m128d {aka __vector(2) double}’ [-Wignored-attributes]
+ template<> struct ei_unpacket_traits<__m128d> { typedef double type; enum {size=2}; };
+                                             ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:38:45: warning: ignoring attributes on template argument ‘__m128i {aka __vector(2) long long int}’ [-Wignored-attributes]
+ template<> struct ei_unpacket_traits<__m128i> { typedef int    type; enum {size=4}; };
+                                             ^
+In file included from ../includes-competition-code/motion/runswift/Eigen/Core:109:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:1,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../includes-competition-code/perception/src/../include/../../unboard/unBoard.hpp:13,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:11,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:265:36: warning: ignoring attributes on template argument ‘__m128 {aka __vector(4) float}’ [-Wignored-attributes]
+ struct ei_palign_impl<Offset,__m128>
+                                    ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:288:37: warning: ignoring attributes on template argument ‘__m128i {aka __vector(2) long long int}’ [-Wignored-attributes]
+ struct ei_palign_impl<Offset,__m128i>
+                                     ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:311:37: warning: ignoring attributes on template argument ‘__m128d {aka __vector(2) double}’ [-Wignored-attributes]
+ struct ei_palign_impl<Offset,__m128d>
+                                     ^
+In file included from ../includes-competition-code/motion/runswift/Eigen/Array:28:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:2,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../includes-competition-code/perception/src/../include/../../unboard/unBoard.hpp:13,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:11,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+../includes-competition-code/motion/runswift/Eigen/src/Array/Functors.h:266:31: warning: ‘template<class _Operation> class std::binder2nd’ is deprecated [-Wdeprecated-declarations]
+ struct ei_functor_traits<std::binder2nd<T> >
+                               ^~~~~~~~~
+In file included from /usr/include/c++/7/bits/stl_function.h:1127:0,
+                 from /usr/include/c++/7/string:48,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:11,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/usr/include/c++/7/backward/binders.h:143:11: note: declared here
+     class binder2nd
+           ^~~~~~~~~
+In file included from ../includes-competition-code/motion/runswift/Eigen/Array:28:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:2,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../includes-competition-code/perception/src/../include/../../unboard/unBoard.hpp:13,
+                 from ../includes-competition-code/perception/src/../include/featureDetector.hpp:11,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:14,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+../includes-competition-code/motion/runswift/Eigen/src/Array/Functors.h:270:31: warning: ‘template<class _Operation> class std::binder1st’ is deprecated [-Wdeprecated-declarations]
+ struct ei_functor_traits<std::binder1st<T> >
+                               ^~~~~~~~~
+In file included from /usr/include/c++/7/bits/stl_function.h:1127:0,
+                 from /usr/include/c++/7/string:48,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from ../includes-competition-code/perception/src/../include/yellowDetector.hpp:11,
+                 from ../includes-competition-code/perception/src/yellowDetector.cpp:8:
+/usr/include/c++/7/backward/binders.h:108:11: note: declared here
+     class binder1st
+           ^~~~~~~~~
+[4/8] Building CXX object CMakeFiles/MISC_SRC_LIB.dir/includes-competition-code/thread/threadClass.cpp.o
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:32:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/detail/shared_count.hpp:323:33: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+                                 ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:247:65: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+ template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+                                                                 ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:446:31: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+                               ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:459:22: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+                      ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:525:34: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     shared_ptr & operator=( std::auto_ptr<Y> & r )
+                                  ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:534:34: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     shared_ptr & operator=( std::auto_ptr<Y> && r )
+                                  ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:536:38: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+                                      ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/bind/mem_fn.hpp:25:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/mem_fn.hpp:22,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/function/detail/prologue.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/function.hpp:24,
+                 from ../includes-competition-code/unboard/unBoard.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/get_pointer.hpp: At global scope:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/get_pointer.hpp:27:40: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+ template<class T> T * get_pointer(std::auto_ptr<T> const& p)
+                                        ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from ../includes-competition-code/motion/runswift/Eigen/Core:109:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:1,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.hpp:13,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:36:44: warning: ignoring attributes on template argument ‘__m128 {aka __vector(4) float}’ [-Wignored-attributes]
+ template<> struct ei_unpacket_traits<__m128>  { typedef float  type; enum {size=4}; };
+                                            ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:37:45: warning: ignoring attributes on template argument ‘__m128d {aka __vector(2) double}’ [-Wignored-attributes]
+ template<> struct ei_unpacket_traits<__m128d> { typedef double type; enum {size=2}; };
+                                             ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:38:45: warning: ignoring attributes on template argument ‘__m128i {aka __vector(2) long long int}’ [-Wignored-attributes]
+ template<> struct ei_unpacket_traits<__m128i> { typedef int    type; enum {size=4}; };
+                                             ^
+In file included from ../includes-competition-code/motion/runswift/Eigen/Core:109:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:1,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.hpp:13,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:265:36: warning: ignoring attributes on template argument ‘__m128 {aka __vector(4) float}’ [-Wignored-attributes]
+ struct ei_palign_impl<Offset,__m128>
+                                    ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:288:37: warning: ignoring attributes on template argument ‘__m128i {aka __vector(2) long long int}’ [-Wignored-attributes]
+ struct ei_palign_impl<Offset,__m128i>
+                                     ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:311:37: warning: ignoring attributes on template argument ‘__m128d {aka __vector(2) double}’ [-Wignored-attributes]
+ struct ei_palign_impl<Offset,__m128d>
+                                     ^
+In file included from ../includes-competition-code/motion/runswift/Eigen/Array:28:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:2,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.hpp:13,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+../includes-competition-code/motion/runswift/Eigen/src/Array/Functors.h:266:31: warning: ‘template<class _Operation> class std::binder2nd’ is deprecated [-Wdeprecated-declarations]
+ struct ei_functor_traits<std::binder2nd<T> >
+                               ^~~~~~~~~
+In file included from /usr/include/c++/7/bits/stl_function.h:1127:0,
+                 from /usr/include/c++/7/string:48,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from ../includes-competition-code/thread/threadClass.hpp:1,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/usr/include/c++/7/backward/binders.h:143:11: note: declared here
+     class binder2nd
+           ^~~~~~~~~
+In file included from ../includes-competition-code/motion/runswift/Eigen/Array:28:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:2,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../includes-competition-code/unboard/unBoard.hpp:13,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+../includes-competition-code/motion/runswift/Eigen/src/Array/Functors.h:270:31: warning: ‘template<class _Operation> class std::binder1st’ is deprecated [-Wdeprecated-declarations]
+ struct ei_functor_traits<std::binder1st<T> >
+                               ^~~~~~~~~
+In file included from /usr/include/c++/7/bits/stl_function.h:1127:0,
+                 from /usr/include/c++/7/string:48,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from ../includes-competition-code/thread/threadClass.hpp:1,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/usr/include/c++/7/backward/binders.h:108:11: note: declared here
+     class binder1st
+           ^~~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread.hpp:13:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread.hpp:13,
+                 from ../includes-competition-code/thread/threadClass.tcc:2,
+                 from ../includes-competition-code/thread/threadClass.hpp:41,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/detail/thread_group.hpp: In member function ‘boost::thread* boost::thread_group::create_thread(F)’:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/detail/thread_group.hpp:78:18: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+             std::auto_ptr<thread> new_thread(new thread(threadfunc));
+                  ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/scoped_ptr.hpp:14:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/future.hpp:30,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread.hpp:24,
+                 from ../includes-competition-code/thread/threadClass.tcc:2,
+                 from ../includes-competition-code/thread/threadClass.hpp:41,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/scoped_ptr.hpp: At global scope:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/scoped_ptr.hpp:68:31: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     explicit scoped_ptr( std::auto_ptr<T> p ) BOOST_NOEXCEPT : px( p.release() )
+                               ^~~~~~~~
+In file included from /usr/include/c++/7/memory:80:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/config/no_tr1/memory.hpp:21,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../includes-competition-code/unboard/unBoard.hpp:3,
+                 from ../includes-competition-code/thread/threadClass.hpp:5,
+                 from ../includes-competition-code/thread/threadClass.cpp:2:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+[5/8] Building CXX object CMakeFiles/videoUtil.dir/src/cpp/videoUtil.cc.o
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:32:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../src/cpp/../../includes-competition-code/perception/include/../../unboard/unBoard.hpp:3,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:11,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/detail/shared_count.hpp:323:33: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+                                 ^~~~~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/iomanip:43,
+                 from /usr/local/include/opencv2/flann/lsh_table.h:40,
+                 from /usr/local/include/opencv2/flann/lsh_index.h:49,
+                 from /usr/local/include/opencv2/flann/all_indices.h:42,
+                 from /usr/local/include/opencv2/flann/flann_base.hpp:43,
+                 from /usr/local/include/opencv2/flann.hpp:48,
+                 from /usr/local/include/opencv2/opencv.hpp:65,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:10,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../src/cpp/../../includes-competition-code/perception/include/../../unboard/unBoard.hpp:3,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:11,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:247:65: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+ template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+                                                                 ^~~~~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/iomanip:43,
+                 from /usr/local/include/opencv2/flann/lsh_table.h:40,
+                 from /usr/local/include/opencv2/flann/lsh_index.h:49,
+                 from /usr/local/include/opencv2/flann/all_indices.h:42,
+                 from /usr/local/include/opencv2/flann/flann_base.hpp:43,
+                 from /usr/local/include/opencv2/flann.hpp:48,
+                 from /usr/local/include/opencv2/opencv.hpp:65,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:10,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../src/cpp/../../includes-competition-code/perception/include/../../unboard/unBoard.hpp:3,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:11,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:446:31: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+                               ^~~~~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/iomanip:43,
+                 from /usr/local/include/opencv2/flann/lsh_table.h:40,
+                 from /usr/local/include/opencv2/flann/lsh_index.h:49,
+                 from /usr/local/include/opencv2/flann/all_indices.h:42,
+                 from /usr/local/include/opencv2/flann/flann_base.hpp:43,
+                 from /usr/local/include/opencv2/flann.hpp:48,
+                 from /usr/local/include/opencv2/opencv.hpp:65,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:10,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../src/cpp/../../includes-competition-code/perception/include/../../unboard/unBoard.hpp:3,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:11,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:459:22: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+                      ^~~~~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/iomanip:43,
+                 from /usr/local/include/opencv2/flann/lsh_table.h:40,
+                 from /usr/local/include/opencv2/flann/lsh_index.h:49,
+                 from /usr/local/include/opencv2/flann/all_indices.h:42,
+                 from /usr/local/include/opencv2/flann/flann_base.hpp:43,
+                 from /usr/local/include/opencv2/flann.hpp:48,
+                 from /usr/local/include/opencv2/opencv.hpp:65,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:10,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../src/cpp/../../includes-competition-code/perception/include/../../unboard/unBoard.hpp:3,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:11,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:525:34: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     shared_ptr & operator=( std::auto_ptr<Y> & r )
+                                  ^~~~~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/iomanip:43,
+                 from /usr/local/include/opencv2/flann/lsh_table.h:40,
+                 from /usr/local/include/opencv2/flann/lsh_index.h:49,
+                 from /usr/local/include/opencv2/flann/all_indices.h:42,
+                 from /usr/local/include/opencv2/flann/flann_base.hpp:43,
+                 from /usr/local/include/opencv2/flann.hpp:48,
+                 from /usr/local/include/opencv2/opencv.hpp:65,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:10,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../src/cpp/../../includes-competition-code/perception/include/../../unboard/unBoard.hpp:3,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:11,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:534:34: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+     shared_ptr & operator=( std::auto_ptr<Y> && r )
+                                  ^~~~~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/iomanip:43,
+                 from /usr/local/include/opencv2/flann/lsh_table.h:40,
+                 from /usr/local/include/opencv2/flann/lsh_index.h:49,
+                 from /usr/local/include/opencv2/flann/all_indices.h:42,
+                 from /usr/local/include/opencv2/flann/flann_base.hpp:43,
+                 from /usr/local/include/opencv2/flann.hpp:48,
+                 from /usr/local/include/opencv2/opencv.hpp:65,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:10,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/shared_ptr.hpp:17:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/date_time/time_clock.hpp:17,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/thread_time.hpp:9,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/lock_types.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/pthread/mutex.hpp:14,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/thread/mutex.hpp:16,
+                 from ../src/cpp/../../includes-competition-code/perception/include/../../unboard/unBoard.hpp:3,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:11,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/smart_ptr/shared_ptr.hpp:536:38: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+                                      ^~~~~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/iomanip:43,
+                 from /usr/local/include/opencv2/flann/lsh_table.h:40,
+                 from /usr/local/include/opencv2/flann/lsh_index.h:49,
+                 from /usr/local/include/opencv2/flann/all_indices.h:42,
+                 from /usr/local/include/opencv2/flann/flann_base.hpp:43,
+                 from /usr/local/include/opencv2/flann.hpp:48,
+                 from /usr/local/include/opencv2/opencv.hpp:65,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:10,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/bind/mem_fn.hpp:25:0,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/mem_fn.hpp:22,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/function/detail/prologue.hpp:18,
+                 from /home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/function.hpp:24,
+                 from ../src/cpp/../../includes-competition-code/perception/include/../../unboard/unBoard.hpp:5,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:11,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/get_pointer.hpp: At global scope:
+/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include/boost/get_pointer.hpp:27:40: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+ template<class T> T * get_pointer(std::auto_ptr<T> const& p)
+                                        ^~~~~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/iomanip:43,
+                 from /usr/local/include/opencv2/flann/lsh_table.h:40,
+                 from /usr/local/include/opencv2/flann/lsh_index.h:49,
+                 from /usr/local/include/opencv2/flann/all_indices.h:42,
+                 from /usr/local/include/opencv2/flann/flann_base.hpp:43,
+                 from /usr/local/include/opencv2/flann.hpp:48,
+                 from /usr/local/include/opencv2/opencv.hpp:65,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:10,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+/usr/include/c++/7/bits/unique_ptr.h:51:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^~~~~~~~
+In file included from ../includes-competition-code/motion/runswift/Eigen/Core:109:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:1,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../src/cpp/../../includes-competition-code/perception/include/../../unboard/unBoard.hpp:13,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:11,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:36:44: warning: ignoring attributes on template argument ‘__m128 {aka __vector(4) float}’ [-Wignored-attributes]
+ template<> struct ei_unpacket_traits<__m128>  { typedef float  type; enum {size=4}; };
+                                            ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:37:45: warning: ignoring attributes on template argument ‘__m128d {aka __vector(2) double}’ [-Wignored-attributes]
+ template<> struct ei_unpacket_traits<__m128d> { typedef double type; enum {size=2}; };
+                                             ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:38:45: warning: ignoring attributes on template argument ‘__m128i {aka __vector(2) long long int}’ [-Wignored-attributes]
+ template<> struct ei_unpacket_traits<__m128i> { typedef int    type; enum {size=4}; };
+                                             ^
+In file included from ../includes-competition-code/motion/runswift/Eigen/Core:109:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:1,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../src/cpp/../../includes-competition-code/perception/include/../../unboard/unBoard.hpp:13,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:11,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:265:36: warning: ignoring attributes on template argument ‘__m128 {aka __vector(4) float}’ [-Wignored-attributes]
+ struct ei_palign_impl<Offset,__m128>
+                                    ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:288:37: warning: ignoring attributes on template argument ‘__m128i {aka __vector(2) long long int}’ [-Wignored-attributes]
+ struct ei_palign_impl<Offset,__m128i>
+                                     ^
+../includes-competition-code/motion/runswift/Eigen/src/Core/arch/SSE/PacketMath.h:311:37: warning: ignoring attributes on template argument ‘__m128d {aka __vector(2) double}’ [-Wignored-attributes]
+ struct ei_palign_impl<Offset,__m128d>
+                                     ^
+In file included from ../includes-competition-code/motion/runswift/Eigen/Array:28:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:2,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../src/cpp/../../includes-competition-code/perception/include/../../unboard/unBoard.hpp:13,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:11,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+../includes-competition-code/motion/runswift/Eigen/src/Array/Functors.h:266:31: warning: ‘template<class _Operation> class std::binder2nd’ is deprecated [-Wdeprecated-declarations]
+ struct ei_functor_traits<std::binder2nd<T> >
+                               ^~~~~~~~~
+In file included from /usr/include/c++/7/bits/stl_function.h:1127:0,
+                 from /usr/include/c++/7/functional:49,
+                 from ../node_modules/node-addon-api/napi.h:5,
+                 from ../src/cpp/videoUtil.cc:1:
+/usr/include/c++/7/backward/binders.h:143:11: note: declared here
+     class binder2nd
+           ^~~~~~~~~
+In file included from ../includes-competition-code/motion/runswift/Eigen/Array:28:0,
+                 from ../includes-competition-code/motion/runswift/Eigen/Dense:2,
+                 from ../includes-competition-code/motion/runswift/Eigen/Eigen:1,
+                 from ../includes-competition-code/motion/runswift/types/Point.hpp:3,
+                 from ../includes-competition-code/motion/runswift/utils/basic_maths.hpp:35,
+                 from ../includes-competition-code/motion/runswift/utils/angles.hpp:40,
+                 from ../includes-competition-code/motion/runswift/utils/body.hpp:45,
+                 from ../includes-competition-code/motion/runswift/types/ActionCommand.hpp:49,
+                 from ../includes-competition-code/unboard/BehaviorRequest.hpp:3,
+                 from ../src/cpp/../../includes-competition-code/perception/include/../../unboard/unBoard.hpp:13,
+                 from ../src/cpp/../../includes-competition-code/perception/include/featureDetector.hpp:11,
+                 from ../src/cpp/../../includes-competition-code/perception/include/yellowDetector.hpp:14,
+                 from ../src/cpp/videoUtil.cc:11:
+../includes-competition-code/motion/runswift/Eigen/src/Array/Functors.h:270:31: warning: ‘template<class _Operation> class std::binder1st’ is deprecated [-Wdeprecated-declarations]
+ struct ei_functor_traits<std::binder1st<T> >
+                               ^~~~~~~~~
+In file included from /usr/include/c++/7/bits/stl_function.h:1127:0,
+                 from /usr/include/c++/7/functional:49,
+                 from ../node_modules/node-addon-api/napi.h:5,
+                 from ../src/cpp/videoUtil.cc:1:
+/usr/include/c++/7/backward/binders.h:108:11: note: declared here
+     class binder1st
+           ^~~~~~~~~
+[6/8] Linking CXX shared library Release/libP_SRC_LIB.so
+[7/8] Linking CXX shared library Release/libMISC_SRC_LIB.so
+[8/8] Linking CXX shared library Release/videoUtil.node

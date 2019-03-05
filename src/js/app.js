@@ -8,7 +8,11 @@ imgCreationWorker.onmessage = function(e) {
   // let t0 = performance.now()
   // console.log('recebi msg do worker ' + t0)
 
-  if (e.data == "capture is boolean" || e.data == "capture closed") {
+  if (
+    e.data == "capture is boolean" ||
+    e.data == "capture closed" ||
+    e.data == "Img is boolean"
+  ) {
     // couldn't get image from worker
     document
       .getElementById("video-canvas")
