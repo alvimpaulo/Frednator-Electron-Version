@@ -11,8 +11,9 @@
 #include <iostream>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/features2d.hpp>
 #include "featureDetector.hpp"
+
+
 
 class YellowDetector : public FeatureDetector
 {
@@ -23,33 +24,34 @@ class YellowDetector : public FeatureDetector
     int distance;
     float angle;
 
-  public:
+public:
+
 #ifdef DEBUG_PERCEPTION
     std::vector<cv::Mat> debugImgVector;
 #endif
 
-    /**
+/**
         \brief Class constructor
     */
-    YellowDetector() : //PARÂMETROS DO BLOB
-                       minThreshold(150),
-                       maxThreshold(255),
-                       filterByArea(true),
-                       minArea(250),
-                       filterByCircularity(true),
-                       minCircularity(0.1),
-                       filterByConvexity(true),
-                       minConvexity(0.01),
-                       filterByInertia(true),
-                       minInertiaRatio(0.1),
-                       iLowH(30),
-                       iHighH(45),
-                       iLowS(100),
-                       iHighS(255),
-                       iLowV(50),
-                       iHighV(255)
-    {
-    }
+    YellowDetector():
+    //PARÂMETROS DO BLOB
+        minThreshold(150),
+        maxThreshold(255),
+        filterByArea(true),
+        minArea(250),
+        filterByCircularity(true),
+        minCircularity(0.1),
+        filterByConvexity(true),
+        minConvexity(0.01),
+        filterByInertia(true),
+        minInertiaRatio(0.1),
+        iLowH(30),
+        iHighH(45),
+        iLowS(100),
+        iHighS(255),
+        iLowV(50),
+        iHighV(255)
+    {}
 
     int minThreshold;
     int maxThreshold;

@@ -1,0 +1,205 @@
+#include "ellipseDetector.hpp"
+
+void EllipseDetector::run(cv::Mat topImg,  cv::Mat greenFrame, PerceptionData *data)
+{
+
+    cv::Mat src  =  topImg.clone();
+
+    #ifdef DEBUG_PERCEPTION
+    //Create an image vector, put the desired images inside it and atualize the perception data debugImages with it.
+    debugImgVector.assign(1, src);
+    #endif
+    
+
+    //GREEN SEGMENTATION
+    cv::cvtColor(src, greenFrame, CV_BGR2HSV);
+    cv::blur(greenFrame, greenFrame, cv::Size(2,2));
+    cv::inRange(greenFrame, cv::Scalar(35, 80, 0), cv::Scalar(85, 210, 210), greenFrame);
+    cv::Mat element = cv::getStructuringElement( 0, cv::Size( 3, 3 ), cv::Point( 1, 1 ) );
+
+    cv::erode(greenFrame, greenFrame, element);
+
+    int fieldDistance = 0;
+    int fieldAverage = 0;
+    std::vector<cv::Point> fieldPixels, fieldBestPixels;
+    int checkPoints = 40;
+
+
+    for (int i = 0; i < checkPoints; i++)
+    {
+      fieldPixels.push_back(cv::Point((i*greenFrame.cols)/checkPoints, greenFrame.rows));
+      for (int j = 0; j < greenFrame.rows; j++)
+        if ( greenFrame.at<uchar>( j, greenFrame.cols/checkPoints ) != 0 ) {
+          fieldPixels[i].y = j;
+          fieldAverage += j;
+          j = greenFrame.rows;
+        }
+    }
+    
+    for (int j = 0; j < greenFrame.rows; j++)
+    {
+        if (greenFrame.at<uchar>(j, greenFrame.cols - 1) != 0) {
+          fieldPixels.push_back(cv::Point(greenFrame.cols - 1, j));
+          fieldAverage += j;
+          j = greenFrame.rows;
+        }
+    }
+
+
+
+    fieldAverage = fieldAverage/checkPoints;
+
+    if (fieldPixels.size() > 2) {
+      for (int i = 1; i < fieldPixels.size() - 1; i++) {
+        if (abs(fieldPixels[i].y - fieldAverage) <= 60) {
+          fieldBestPixels.push_back(fieldPixels[i]);
+          fieldDistance += fieldPixels[i].y;
+        }
+      }
+      fieldDistance = (float)fieldDistance/(float)fieldBestPixels.size();
+    }
+
+
+
+    cv::Mat roi_field(greenFrame.rows, greenFrame.cols, CV_8UC1);
+    roi_field = cv::Scalar(0);
+
+    if (fieldBestPixels.size() > 1)
+    {
+      for (int i = 0; i < fieldBestPixels.size() - 1; i++)
+      {
+        int a = (fieldBestPixels[i+1].y-fieldBestPixels[i].y)/(fieldBestPixels[i+1].x-fieldBestPixels[i].x);
+        for (int j = fieldBestPixels[i].x; j < fieldBestPixels[i+1].x; j++)
+        {
+          int y_max = a*(j-fieldBestPixels[i].x)+fieldBestPixels[i].y;
+          for (int k = 0; k < greenFrame.rows; k++) {
+            if (k >= y_max)
+              roi_field.at<uchar>(k,j) = 255;
+          }
+        }
+      }
+    }
+
+
+    cv::Mat canny_output;
+    cv::Canny(greenFrame, canny_output, 50, 120);
+
+    //alternativa ao canny: threshold
+    //cv::threshold(greenFrame, canny_output, 1, 255, CV_THRESH_BINARY);
+    //cv::bitwise_and(canny_output,roi_field,canny_output);
+
+
+    //Morphological Transformation
+    cv::dilate(canny_output, canny_output, cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3)) );
+    
+    cv::erode(canny_output, canny_output, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(3, 3)) );
+
+
+    //FIND ELLIPSES
+    std::vector<std::vector<cv::Point> > contours;
+    std::vector<cv::RotatedRect> box_vector;
+  
+
+    std::vector<cv::Vec4i> hierarchy;
+    //get masses contours
+
+
+    cv::findContours(canny_output, contours, hierarchy, CV_RETR_LIST, CV_CHAIN_APPROX_NONE, cv::Point(0, 0));
+
+    //cv::findContours(canny_output, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_NONE, cv::Point(0, 0)); 
+    //cv::findContours(canny_output, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_NONE, cv::Point(0, 0)); 
+
+
+    #ifdef DEBUG_PERCEPTION
+      std::cout << "teste 2" << "\n";
+      debugImgVector.push_back(canny_output);
+      cv::imwrite("contours.jpg",canny_output);
+      std::cout << "teste 3" << "\n";
+    #endif
+
+    cv::Mat cimage = cv::Mat::zeros(canny_output.size(), CV_8UC3);
+
+
+    for(size_t i = 0; i < contours.size(); i++)
+    {
+        size_t count = contours[i].size();
+        if( count < 6 )
+            continue;
+
+        cv::Mat pointsf;
+        cv::Mat(contours[i]).convertTo(pointsf, CV_32F);
+        cv::RotatedRect box = cv::fitEllipse(pointsf);
+      
+        if  ( MAX(box.size.width, box.size.height) > MIN(box.size.width, box.size.height)*30 )
+            continue;
+
+
+        if (box.center.y > (0.3687*box.size.height + 121.2 +20))
+            continue;
+        if (box.center.y < (0.3687*box.size.height + 121.2 - 20))
+            continue;
+
+
+        //Exclui candidatos pequenos.
+        if ((box.size.height) < 100) //Menor largura que assume : 110px
+          continue;
+        
+        box_vector.push_back(box);
+
+        #ifdef DEBUG_PERCEPTION
+          cv::drawContours(cimage, contours, (int)i, cv::Scalar::all(255), 1, 8);
+          cv::ellipse(cimage, box, cv::Scalar(0,0,255), 1, CV_AA);
+          cv::ellipse(cimage, box.center, box.size*0.5f, box.angle, 0, 360, cv::Scalar(0,255,255), 1, CV_AA);
+          cv::Point2f vtx[4];
+          box.points(vtx);
+          for( int j = 0; j < 4; j++ )
+            cv::line(cimage, vtx[j], vtx[(j+1)%4], cv::Scalar(0,255,0), 1, CV_AA);
+          debugImgVector.push_back(cimage);
+        #endif
+    }
+
+    this->media.x=0;
+    this->media.y=0;
+    this->media_angle=0;
+
+    for (std::vector<cv::RotatedRect>::iterator it = box_vector.begin(); it < box_vector.end(); ++it)
+    {
+      this->media.x += (*it).center.x;
+      this->media.y += (*it).center.y;
+      this->media_angle += (*it).angle;
+    }
+
+    if (box_vector.size())
+    {
+      this->media.x = this->media.x/box_vector.size();
+      this->media.y = this->media.y/box_vector.size();
+      this->media_angle = this->media_angle/box_vector.size();
+    }
+
+    updateData(data);
+
+#ifdef DEBUG_PERCEPTION
+  std::cout << "x:" << this->media.x << "\n";
+  std::cout << "y:" << this->media.y << "\n";
+  std::cout << "a:" << this->media_angle << "\n";
+
+  cv::circle(src,media,4,cv::Scalar(255,0,0),2);
+  debugImgVector.push_back(src);
+  cv::imwrite("ellipse.jpg",src);
+  cv::Mat output;
+  cv::cvtColor(greenFrame, output, CV_GRAY2BGR);
+
+std::pair<std::map<std::string,std::vector<cv::Mat> >::iterator, bool> debugInsertion;
+  debugInsertion = data->debugImages.insert(std::make_pair("ellipseDetector", debugImgVector));
+  if(!debugInsertion.second){
+      data->debugImages["ellipseDetector"] = debugImgVector;
+  }
+#endif
+
+}
+
+void EllipseDetector::updateData(PerceptionData *data)
+{
+    data->ellipseAverage = this->media;
+    data->ellipseAngle = this->media_angle;
+}

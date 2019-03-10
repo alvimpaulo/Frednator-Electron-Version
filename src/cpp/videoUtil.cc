@@ -11,11 +11,14 @@
 #include "../../includes-competition-code/perception/include/yellowDetector.hpp"
 
 // #define IMAGE_FROM_VIDEO_DEBUG
+// #define YELLOW_DETECTOR_DEBUG
+// #define VIDEO_OPENER_DEBUG
+// #define VIDEO_CLOSER_DEBUG
 
 void vectorFinalizer(Napi::Env env, void *vec)
 {
     //std::cout << "deleting vec" << std::endl;
-    delete (uchar *)vec; // Probably has leak, deleting only the vector pure data, not the object itself
+    delete (uchar *)vec; // Probably has leak, deleting only the vector raw data, not the object itself
 }
 
 void cvMatFinalizer(Napi::Env env, cv::Mat *mat)
@@ -53,7 +56,6 @@ Napi::Value yellowDetectorRun(const Napi::CallbackInfo &info)
 #endif
 
         *img = detector.run(*img, *img, data);
-
 #ifdef YELLOW_DETECTOR_DEBUG
         std::cout << "yd run runned" << std::endl;
 #endif
@@ -189,19 +191,25 @@ Napi::Value videoOpener(const Napi::CallbackInfo &info)
     //open video from a file
     if (info.Length() == 1 && info[0].IsString())
     {
+#ifdef VIDEO_OPENER_DEBUG
         std::cout << "capture from path " << info[0].ToString().Utf8Value() << std::endl;
+#endif
         cap = new cv::VideoCapture(info[0].ToString().Utf8Value(), cv::CAP_GSTREAMER); //may crash in windows
     }
     else if (info.Length() == 1 && info[0].IsNumber())
     {
+#ifdef VIDEO_OPENER_DEBUG
         std::cout << "capture from number " << info[0].ToNumber().Int64Value() << std::endl;
+#endif
         cap = new cv::VideoCapture(info[0].ToNumber().Int64Value(), cv::CAP_V4L2); //may crash in windows
     }
     cv::Mat tempimg;
 
+#ifdef VIDEO_OPENER_DEBUG
     std::cout << "D" << std::endl;
-    //(*cap).set(CV_CAP_PROP_FRAME_WIDTH, 640);  //not working
-    //(*cap).set(CV_CAP_PROP_FRAME_HEIGHT, 480); //not working
+#endif
+    (*cap).set(CV_CAP_PROP_FRAME_WIDTH, 640);  //not working
+    (*cap).set(CV_CAP_PROP_FRAME_HEIGHT, 480); //not working
 
     if (!cap->isOpened())
     {
@@ -232,10 +240,12 @@ Napi::Value videoCloser(const Napi::CallbackInfo &info)
 
     if (cap->isOpened()) //couldn't close capture
     {
-        //std::cout << "cap not closed" << std::endl;
+#ifdef VIDEO_CLOSER_DEBUG
+        std::cout << "cap not closed" << std::endl;
+#endif
         return Napi::Boolean::New(env, false);
     }
-    //std::cout << "cap closed" << std::endl;
+    std::cout << "cap closed" << std::endl;
 
     return Napi::Boolean::New(env, true);
 }
