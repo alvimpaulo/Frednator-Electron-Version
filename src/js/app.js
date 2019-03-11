@@ -43,7 +43,9 @@ imgCreationWorker.onmessage = function(e) {
 
     imgCreationWorker.postMessage([
       "animation frame at " + timestamp,
-      document.getElementById("capture-param").value
+      document.getElementById("capture-param").value,
+      document.getElementById("debug-image-index").value,
+      $("li.active>div.collapsible-header").text()
     ]);
     // let t5 = performance.now()
     // console.log('mandei msg nova pro worker ' + t5)
@@ -70,7 +72,9 @@ function videoTriedToBeStartedOrStopped(e) {
 
     imgCreationWorker.postMessage([
       "Sent from " + e.target.id,
-      document.getElementById("capture-param").value
+      document.getElementById("capture-param").value,
+      document.getElementById("debug-image-index").value,
+      $("li.active>div.collapsible-header").text()
     ]);
   }
 }

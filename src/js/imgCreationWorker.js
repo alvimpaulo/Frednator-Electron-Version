@@ -11,7 +11,7 @@ onmessage = function(e) {
     !(e.data[0].startsWith("animation frame") && typeof cap == "boolean")
   ) {
     //if cap is false and it have been requested by an animation frame, get out
-    createMyImageBitmap(e.data[1]).then(
+    createMyImageBitmap(e.data[1], e.data[2], e.data[3]).then(
       function(imgBitmap) {
         postMessage(imgBitmap, [imgBitmap]);
       },

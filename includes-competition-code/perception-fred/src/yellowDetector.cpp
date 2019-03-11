@@ -84,7 +84,7 @@ cv::Mat YellowDetector::run(cv::Mat topImg, cv::Mat goalImg, PerceptionData *dat
     else{
         this->distance = -1;
     }
-    std::cout << "Distance: " << this->distance << std::endl;
+    //std::cout << "Distance: " << this->distance << std::endl;
 
 #ifdef DEBUG_PERCEPTION
 

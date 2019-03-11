@@ -1,82 +1,115 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css"
-        media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="./css/main.css" media="screen,projection" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="../node_modules/materialize-css/dist/css/materialize.min.css"
+      media="screen,projection"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="./css/main.css"
+      media="screen,projection"
+    />
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="grid-container">
-        <div class="capture-input">
-            <div class="row valign-wrapper">
-                <div class="input-field col s8">
-                    <input type="text" id="capture-param" placeholder="../blobteste2.avi or 0">
-                    <label for="capture-param">Video Capture Parameter</label>
-                </div>
-                <a class="waves-effect waves-light btn col s4" id="capture-param-btn"> Start</a>
+      <div class="capture-input">
+        <div class="row valign-wrapper">
+          <div class="input-field col s8">
+            <input
+              type="text"
+              id="capture-param"
+              placeholder="../blobteste2.avi or 0"
+            />
+            <label for="capture-param">Video Capture Parameter</label>
+          </div>
+          <a class="waves-effect waves-light btn col s4" id="capture-param-btn">
+            Start</a
+          >
+        </div>
+        <div class="row valign-wrapper">
+          <div class="input-field col s12">
+            <input type="text" id="debug-image-index" />
+            <label for="capture-param">Debug Image Vector Index</label>
+          </div>
+        </div>
+      </div>
+      <div id="main-img-div" class="main-video">
+        <canvas id="video-canvas" height="480" width="640"> </canvas>
+      </div>
+      <div id="function-selector-div" class="function-selection">
+        <ul class="collapsible popout" style="margin-right: 5vw">
+          <li>
+            <div class="collapsible-header"><span>Yellow Detector</span></div>
+            <div class="collapsible-body">
+              <span>Grid with whatever you want</span>
             </div>
-
-        </div>
-        <div id="main-img-div" class="main-video">
-            <canvas id="video-canvas" height="480" width="640"> </canvas>
-        </div>
-        <div id="function-selector-div" class="function-selection">
-            <ul class="collapsible popout" style="margin-right: 5vw">
-                <li>
-                    <div class="collapsible-header"><span>Class name</span></div>
-                    <div class="collapsible-body">
-                        <span>Grid with whatever you want</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="collapsible-header"><span>Class name</span></div>
-                    <div class="collapsible-body">
-                        <span>Grid with whatever you want</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="collapsible-header"><span>Class name</span></div>
-                    <div class="collapsible-body">
-                        <span>Grid with whatever you want</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="collapsible-header"><span>Class name</span></div>
-                    <div class="collapsible-body">
-                        <span>Grid with whatever you want</span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="valign-wrapper video-recording row">
-            <div class="col s8 input-field">
-                <input type="text" id="video-name">
-                <label for="video-name">Video file name</label>
+          </li>
+          <li>
+            <div class="collapsible-header"><span>Class name</span></div>
+            <div class="collapsible-body">
+              <span>Grid with whatever you want</span>
             </div>
-            <a class="waves-effect waves-light btn col s4" id="record-video-btn">Record</a>
+          </li>
+          <li>
+            <div class="collapsible-header"><span>Class name</span></div>
+            <div class="collapsible-body">
+              <span>Grid with whatever you want</span>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header"><span>Class name</span></div>
+            <div class="collapsible-body">
+              <span>Grid with whatever you want</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="valign-wrapper video-recording row">
+        <div class="col s8 input-field">
+          <input type="text" id="video-name" />
+          <label for="video-name">Video file name</label>
         </div>
-        <div id="memory-used-div">
-            <p id="heap-usage">0</p>
-        </div>
+        <a class="waves-effect waves-light btn col s4" id="record-video-btn"
+          >Record</a
+        >
+      </div>
+      <div id="memory-used-div">
+        <p id="heap-usage">0</p>
+      </div>
     </div>
 
     <!-- Insert this line above script imports  -->
-    <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+    <script>
+      if (typeof module === "object") {
+        window.module = module;
+        module = undefined;
+      }
+    </script>
 
     <script src="./js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../node_modules/materialize-css/dist/js/materialize.min.js"
+    ></script>
     <script type="text/javascript" src="./js/app.js"></script>
 
     <!-- Insert this line after script imports -->
-    <script>if (window.module) module = window.module;</script>
-</body>
-
+    <script>
+      if (window.module) module = window.module;
+    </script>
+  </body>
 </html>

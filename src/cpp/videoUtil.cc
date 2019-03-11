@@ -21,10 +21,11 @@ void vectorFinalizer(Napi::Env env, void *vec)
     delete (uchar *)vec; // Probably has leak, deleting only the vector raw data, not the object itself
 }
 
-void cvMatFinalizer(Napi::Env env, cv::Mat *mat)
+template <class genericClass>
+void genericFinalizer(Napi::Env env, genericClass *genericObject, std::string hint)
 {
-    //std::cout << "deleting mat" << std::endl;
-    delete mat;
+    std::cout << "deleted " << hint << std::endl;
+    delete genericObject;
 }
 
 Napi::Value yellowDetectorRun(const Napi::CallbackInfo &info)
@@ -35,32 +36,31 @@ Napi::Value yellowDetectorRun(const Napi::CallbackInfo &info)
 #endif
 
     Napi::Env env = info.Env();
-    if (info.Length() == 1 && info[0].IsExternal())
-    { //recieved cv mat
-        PerceptionData *data = new PerceptionData();
 
+#ifdef YELLOW_DETECTOR_DEBUG
+    std::cout << info.Length() << "\t" << info[0].IsExternal() << "\t" << info[1].IsExternal() << "\t" << info[2].IsExternal() << "\t" << info[3].IsNumber() << "\t" << std::endl;
+#endif
+
+    if (info.Length() == 4 && info[0].IsExternal() && info[1].IsExternal() && info[2].IsExternal() && info[3].IsNumber())
+    { //recieved cv mat
 #ifdef YELLOW_DETECTOR_DEBUG
         std::cout << "yd run received cvmat" << std::endl;
 #endif
-
-        YellowDetector detector = YellowDetector();
-
-#ifdef YELLOW_DETECTOR_DEBUG
-        std::cout << "yd run created yd" << std::endl;
-#endif
-
         cv::Mat *img = info[0].As<Napi::External<cv::Mat>>().Data();
-
+        YellowDetector *detector = info[1].As<Napi::External<YellowDetector>>().Data();
+        PerceptionData *perceptionData = info[2].As<Napi::External<PerceptionData>>().Data();
+        uint32_t debugImagesIndex = info[3].ToNumber().Uint32Value();
 #ifdef YELLOW_DETECTOR_DEBUG
         std::cout << "yd run converted cvmat" << std::endl;
 #endif
-
-        *img = detector.run(*img, *img, data);
+        cv::Mat *imgFromDetector = new cv::Mat();
+        detector->run(*img, *img, perceptionData).clone();
+        *imgFromDetector = detector->debugImgVector[debugImagesIndex];
 #ifdef YELLOW_DETECTOR_DEBUG
         std::cout << "yd run runned" << std::endl;
 #endif
 
-        return Napi::External<cv::Mat>::New(env, img);
+        return Napi::External<cv::Mat>::New(env, imgFromDetector, genericFinalizer<cv::Mat>, "cv::Mat");
     }
 }
 
@@ -175,7 +175,7 @@ Napi::Value imgFromVideo(const Napi::CallbackInfo &info)
             std::cout << "ImgFromVideo: Img shown / end of ImgFromVideo" << std::endl;
 #endif
 
-            return Napi::External<cv::Mat>::New(env, tempImg, cvMatFinalizer);
+            return Napi::External<cv::Mat>::New(env, tempImg, genericFinalizer<cv::Mat>, "cv::Mat");
         }
     }
     return Napi::Boolean::New(env, false);
@@ -252,11 +252,20 @@ Napi::Value videoCloser(const Napi::CallbackInfo &info)
 
 Napi::Object Init(Napi::Env env, Napi::Object exports)
 {
+
+    //functions to be called within JS
     exports.Set(Napi::String::New(env, "videoOpener"), Napi::Function::New(env, videoOpener));
     exports.Set(Napi::String::New(env, "imgFromVideo"), Napi::Function::New(env, imgFromVideo));
     exports.Set(Napi::String::New(env, "videoCloser"), Napi::Function::New(env, videoCloser));
     exports.Set(Napi::String::New(env, "typedArrayFromCvMat"), Napi::Function::New(env, typedArrayFromCvMat));
     exports.Set(Napi::String::New(env, "yellowDetectorRun"), Napi::Function::New(env, yellowDetectorRun));
+
+    //object creation
+    YellowDetector *yellowDetector = new YellowDetector();
+    exports.Set(Napi::String::New(env, "yellowDetector"), Napi::External<YellowDetector>::New(env, yellowDetector, genericFinalizer<YellowDetector>, "Yellow Detector"));
+
+    PerceptionData *perceptionData = new PerceptionData();
+    exports.Set(Napi::String::New(env, "yellowDetectorPerceptionData"), Napi::External<PerceptionData>::New(env, perceptionData, genericFinalizer<PerceptionData>, "Perception Data"));
 
     return exports;
 }

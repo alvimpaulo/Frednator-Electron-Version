@@ -21,7 +21,11 @@ function closeCap(capToClose) {
   }
 }
 
-function createMyImageBitmap(captureParam = 0) {
+function createMyImageBitmap(
+  captureParam = 0,
+  debugImageVectorIndex = 0,
+  classSelected
+) {
   return new Promise((resolve, reject) => {
     let imgBitmap;
     if (!cap) cap = openCap(captureParam); // if capture isn't already open
@@ -31,8 +35,8 @@ function createMyImageBitmap(captureParam = 0) {
       return;
     }
     // test for time and heap
-    // let t0 = performance.now()
-    // let m0 = process.memoryUsage()
+    let t0 = performance.now();
+    let m0 = process.memoryUsage();
     let img = videoUtil.imgFromVideo(cap);
     if (typeof img === "boolean") {
       cap = false;
@@ -40,17 +44,25 @@ function createMyImageBitmap(captureParam = 0) {
       return;
     }
 
-    img = videoUtil.yellowDetectorRun(img);
+    if (classSelected === "Yellow Detector") {
+      img = videoUtil.yellowDetectorRun(
+        img,
+        videoUtil.yellowDetector,
+        videoUtil.yellowDetectorPerceptionData,
+        parseInt(debugImageVectorIndex)
+      );
+    }
 
     // test for time and heap
-    /* let t1 = performance.now()
-    let m1 = process.memoryUsage()
-    console.log(
+    let t1 = performance.now();
+    let m1 = process.memoryUsage();
+    /* console.log(
       'gerar cvmat da captura = ' +
         Math.round(t1 - t0) +
         ' milissegundos, ' +
         Math.round(m1.heapUsed - m0.heapUsed)
     ) */
+    console.log("rss used = " + (m1.rss - m0.rss));
     let newimgarray = videoUtil.typedArrayFromCvMat(img);
 
     // test for time and heap
