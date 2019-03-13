@@ -39,7 +39,7 @@ imgCreationWorker.onmessage = function(e) {
     $("#yellow-detector-index-tabs").html(tabsHtml);
     return;
   }
-  // document.getElementById('main-img').src = URL.createObjectURL(e.data)
+
   document
     .getElementById("video-canvas")
     .getContext("2d")
@@ -49,6 +49,7 @@ imgCreationWorker.onmessage = function(e) {
   // console.log('mudei a src da img ' + t2)
 
   requestAnimationFrame(timestamp => {
+    let className = "";
     // let t3 = performance.now()
     // console.log('requisitei um novo frame ' + t3)
 
@@ -64,6 +65,19 @@ imgCreationWorker.onmessage = function(e) {
     ]);
     // let t5 = performance.now()
     // console.log('mandei msg nova pro worker ' + t5)
+
+    if (
+      (className = $("#function-selector-div>ul>li.active")
+        .children()
+        .first()
+        .text()) &&
+      $("#function-selector-div>ul>li.active>.collapsible-body a").text() ===
+        "0"
+    ) {
+      if (className === "Yellow Detector") {
+        imgCreationWorker.postMessage("getYellowDetectorDebugImagesSize");
+      }
+    }
   });
 };
 
@@ -78,6 +92,7 @@ function getMemory() {
 }
 
 function videoTriedToBeStartedOrStopped(e) {
+  let className = "";
   if ($("#capture-param-btn").text() == "stop") {
     imgCreationWorker.postMessage("stop");
   } else {

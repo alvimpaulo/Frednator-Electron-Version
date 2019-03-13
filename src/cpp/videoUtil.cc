@@ -9,7 +9,7 @@
 #include <chrono>
 
 // #define IMAGE_FROM_VIDEO_DEBUG
-// #define VIDEO_OPENER_DEBUG
+#define VIDEO_OPENER_DEBUG
 // #define VIDEO_CLOSER_DEBUG
 
 void vectorFinalizer(Napi::Env env, void *vec)
@@ -21,7 +21,7 @@ void vectorFinalizer(Napi::Env env, void *vec)
 template <class genericClass>
 void genericFinalizer(Napi::Env env, genericClass *genericObject, std::string hint)
 {
-    std::cout << "deleted " << hint << std::endl;
+    //std::cout << "deleted " << hint << std::endl;
     delete genericObject;
 }
 

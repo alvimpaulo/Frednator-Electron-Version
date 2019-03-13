@@ -23,7 +23,7 @@
 template <class genericClass>
 void genericFinalizer(Napi::Env env, genericClass *genericObject, std::string hint)
 {
-    std::cout << "deleted " << hint << std::endl;
+    //std::cout << "deleted " << hint << std::endl;
     delete genericObject;
 }
 
