@@ -7,6 +7,13 @@ onmessage = function(e) {
     closeCap(cap);
     postMessage("capture closed");
     console.log("capture closed");
+  } else if (e.data == "getYellowDetectorDebugImagesSize") {
+    postMessage([
+      "YellowDetectorDebugImagesSize",
+      yellowDetectorUtil.getYellowDetectorDebugImagesSize(
+        yellowDetectorUtil.yellowDetector
+      )
+    ]);
   } else if (
     !(e.data[0].startsWith("animation frame") && typeof cap == "boolean")
   ) {

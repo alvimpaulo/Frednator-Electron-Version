@@ -8,10 +8,7 @@
 #include <stdio.h>
 #include <chrono>
 
-#include "../../includes-competition-code/perception/include/yellowDetector.hpp"
-
 // #define IMAGE_FROM_VIDEO_DEBUG
-// #define YELLOW_DETECTOR_DEBUG
 // #define VIDEO_OPENER_DEBUG
 // #define VIDEO_CLOSER_DEBUG
 
@@ -26,42 +23,6 @@ void genericFinalizer(Napi::Env env, genericClass *genericObject, std::string hi
 {
     std::cout << "deleted " << hint << std::endl;
     delete genericObject;
-}
-
-Napi::Value yellowDetectorRun(const Napi::CallbackInfo &info)
-{
-
-#ifdef YELLOW_DETECTOR_DEBUG
-    std::cout << "yd run" << std::endl;
-#endif
-
-    Napi::Env env = info.Env();
-
-#ifdef YELLOW_DETECTOR_DEBUG
-    std::cout << info.Length() << "\t" << info[0].IsExternal() << "\t" << info[1].IsExternal() << "\t" << info[2].IsExternal() << "\t" << info[3].IsNumber() << "\t" << std::endl;
-#endif
-
-    if (info.Length() == 4 && info[0].IsExternal() && info[1].IsExternal() && info[2].IsExternal() && info[3].IsNumber())
-    { //recieved cv mat
-#ifdef YELLOW_DETECTOR_DEBUG
-        std::cout << "yd run received cvmat" << std::endl;
-#endif
-        cv::Mat *img = info[0].As<Napi::External<cv::Mat>>().Data();
-        YellowDetector *detector = info[1].As<Napi::External<YellowDetector>>().Data();
-        PerceptionData *perceptionData = info[2].As<Napi::External<PerceptionData>>().Data();
-        uint32_t debugImagesIndex = info[3].ToNumber().Uint32Value();
-#ifdef YELLOW_DETECTOR_DEBUG
-        std::cout << "yd run converted cvmat" << std::endl;
-#endif
-        cv::Mat *imgFromDetector = new cv::Mat();
-        detector->run(*img, *img, perceptionData).clone();
-        *imgFromDetector = detector->debugImgVector[debugImagesIndex];
-#ifdef YELLOW_DETECTOR_DEBUG
-        std::cout << "yd run runned" << std::endl;
-#endif
-
-        return Napi::External<cv::Mat>::New(env, imgFromDetector, genericFinalizer<cv::Mat>, "cv::Mat");
-    }
 }
 
 Napi::Value typedArrayFromCvMat(const Napi::CallbackInfo &info)
@@ -208,15 +169,22 @@ Napi::Value videoOpener(const Napi::CallbackInfo &info)
 #ifdef VIDEO_OPENER_DEBUG
     std::cout << "D" << std::endl;
 #endif
-    (*cap).set(CV_CAP_PROP_FRAME_WIDTH, 640);  //not working
-    (*cap).set(CV_CAP_PROP_FRAME_HEIGHT, 480); //not working
+    if (info[0].IsNumber())
+    {
+        (*cap).set(CV_CAP_PROP_FRAME_WIDTH, 640);  //not working
+        (*cap).set(CV_CAP_PROP_FRAME_HEIGHT, 480); //not working
+    }
 
     if (!cap->isOpened())
     {
-        //std::cout << "cap not opened" << std::endl;
+#ifdef VIDEO_OPENER_DEBUG
+        std::cout << "cap not opened" << std::endl;
+#endif
         return Napi::Boolean::New(env, false);
     }
-    //std::cout << "cap opened" << std::endl;
+#ifdef VIDEO_OPENER_DEBUG
+    std::cout << "cap opened" << std::endl;
+#endif
     return Napi::External<cv::VideoCapture>::New(env, cap);
 }
 
@@ -258,15 +226,6 @@ Napi::Object Init(Napi::Env env, Napi::Object exports)
     exports.Set(Napi::String::New(env, "imgFromVideo"), Napi::Function::New(env, imgFromVideo));
     exports.Set(Napi::String::New(env, "videoCloser"), Napi::Function::New(env, videoCloser));
     exports.Set(Napi::String::New(env, "typedArrayFromCvMat"), Napi::Function::New(env, typedArrayFromCvMat));
-    exports.Set(Napi::String::New(env, "yellowDetectorRun"), Napi::Function::New(env, yellowDetectorRun));
-
-    //object creation
-    YellowDetector *yellowDetector = new YellowDetector();
-    exports.Set(Napi::String::New(env, "yellowDetector"), Napi::External<YellowDetector>::New(env, yellowDetector, genericFinalizer<YellowDetector>, "Yellow Detector"));
-
-    PerceptionData *perceptionData = new PerceptionData();
-    exports.Set(Napi::String::New(env, "yellowDetectorPerceptionData"), Napi::External<PerceptionData>::New(env, perceptionData, genericFinalizer<PerceptionData>, "Perception Data"));
-
     return exports;
 }
 

@@ -1,4 +1,5 @@
 const videoUtil = require("../../build/Release/videoUtil");
+const yellowDetectorUtil = require("../../build/Release/yellowDetectorUtil");
 
 let cap;
 
@@ -45,24 +46,23 @@ function createMyImageBitmap(
     }
 
     if (classSelected === "Yellow Detector") {
-      img = videoUtil.yellowDetectorRun(
+      img = yellowDetectorUtil.yellowDetectorRun(
         img,
-        videoUtil.yellowDetector,
-        videoUtil.yellowDetectorPerceptionData,
+        yellowDetectorUtil.yellowDetector,
+        yellowDetectorUtil.yellowDetectorPerceptionData,
         parseInt(debugImageVectorIndex)
       );
     }
-
     // test for time and heap
-    let t1 = performance.now();
-    let m1 = process.memoryUsage();
+    // let t1 = performance.now();
+    // let m1 = process.memoryUsage();
     /* console.log(
       'gerar cvmat da captura = ' +
         Math.round(t1 - t0) +
         ' milissegundos, ' +
         Math.round(m1.heapUsed - m0.heapUsed)
     ) */
-    console.log("rss used = " + (m1.rss - m0.rss));
+    // console.log("rss used = " + (m1.rss - m0.rss));
     let newimgarray = videoUtil.typedArrayFromCvMat(img);
 
     // test for time and heap

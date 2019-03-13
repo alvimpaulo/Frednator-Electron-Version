@@ -47,11 +47,8 @@ class FeatureDetector
     {
         this->lastSeen++;
     }
-#ifndef FREDNATOR
+
     virtual void run(cv::Mat topImg, cv::Mat goalImg, PerceptionData *data) = 0;
-#else
-    virtual cv::Mat run(cv::Mat topImg, cv::Mat goalImg, PerceptionData *data) = 0;
-#endif
     virtual void updateData(PerceptionData *) = 0;
 };
 

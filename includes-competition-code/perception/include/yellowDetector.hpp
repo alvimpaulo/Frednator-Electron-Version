@@ -75,11 +75,7 @@ class YellowDetector : public FeatureDetector
         \param goalImg 
         \param data perception data to update
     */
-#ifndef FREDNATOR
     virtual void run(cv::Mat topImg, cv::Mat goalImg, PerceptionData *data);
-#else
-    virtual cv::Mat run(cv::Mat topImg, cv::Mat goalImg, PerceptionData *data);
-#endif
 
     /** \brief This function updates the perception data with information received from yellow detector.
         \param data perception data to update

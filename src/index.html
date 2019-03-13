@@ -40,12 +40,6 @@
             Start</a
           >
         </div>
-        <div class="row valign-wrapper">
-          <div class="input-field col s12">
-            <input type="text" id="debug-image-index" />
-            <label for="capture-param">Debug Image Vector Index</label>
-          </div>
-        </div>
       </div>
       <div id="main-img-div" class="main-video">
         <canvas id="video-canvas" height="480" width="640"> </canvas>
@@ -55,7 +49,15 @@
           <li>
             <div class="collapsible-header"><span>Yellow Detector</span></div>
             <div class="collapsible-body">
-              <span>Grid with whatever you want</span>
+              <div class="row">
+                <div class="col s12">
+                  <ul class="tabs" id="yellow-detector-index-tabs">
+                    <li class="tab col s3">
+                      <a href="#index0" class="active">0</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </li>
           <li>

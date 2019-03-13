@@ -22,8 +22,23 @@ imgCreationWorker.onmessage = function(e) {
     $("#capture-param-btn").toggleClass("red");
     $("#capture-param-btn").text("start");
     return false;
+  } else if (e.data[0] === "YellowDetectorDebugImagesSize") {
+    let tabsHtml = "";
+    for (
+      let debugImgIndex = 0;
+      debugImgIndex < parseInt(e.data[1]);
+      debugImgIndex++
+    ) {
+      tabsHtml +=
+        '<li class="tab col s3"><a href="#index' +
+        debugImgIndex +
+        '">' +
+        debugImgIndex +
+        "</a></li>";
+    }
+    $("#yellow-detector-index-tabs").html(tabsHtml);
+    return;
   }
-
   // document.getElementById('main-img').src = URL.createObjectURL(e.data)
   document
     .getElementById("video-canvas")
@@ -44,7 +59,7 @@ imgCreationWorker.onmessage = function(e) {
     imgCreationWorker.postMessage([
       "animation frame at " + timestamp,
       document.getElementById("capture-param").value,
-      document.getElementById("debug-image-index").value,
+      $("#yellow-detector-index-tabs>li>a.active").text(),
       $("li.active>div.collapsible-header").text()
     ]);
     // let t5 = performance.now()
@@ -69,13 +84,22 @@ function videoTriedToBeStartedOrStopped(e) {
     $("#capture-param").prop("disabled", true);
     $("#capture-param-btn").toggleClass("red");
     $("#capture-param-btn").text("stop");
-
     imgCreationWorker.postMessage([
       "Sent from " + e.target.id,
       document.getElementById("capture-param").value,
-      document.getElementById("debug-image-index").value,
+      $("#yellow-detector-index-tabs>li>a.active").text(),
       $("li.active>div.collapsible-header").text()
     ]);
+    if (
+      (className = $("#function-selector-div>ul>li.active")
+        .children()
+        .first()
+        .text())
+    ) {
+      if (className === "Yellow Detector") {
+        imgCreationWorker.postMessage("getYellowDetectorDebugImagesSize");
+      }
+    }
   }
 }
 

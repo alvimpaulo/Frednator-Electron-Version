@@ -6,11 +6,7 @@
 */
 
 #include "../include/yellowDetector.hpp"
-#ifndef FREDNATOR
 void YellowDetector::run(cv::Mat topImg, cv::Mat goalImg, PerceptionData *data)
-#else
-cv::Mat YellowDetector::run(cv::Mat topImg, cv::Mat goalImg, PerceptionData *data)
-#endif
 {
     debugImgVector.clear();
     cv::Mat src = topImg.clone();
@@ -38,9 +34,7 @@ cv::Mat YellowDetector::run(cv::Mat topImg, cv::Mat goalImg, PerceptionData *dat
     //Create an image vector, put the desired images inside it and atualize the perception data debugImages with it.
     debugImgVector.assign(1, topImg); //0
 
-    cv::cvtColor(src_HSV, src_HSV, CV_GRAY2BGR);
-    debugImgVector.push_back(src_HSV); //2
-    cv::cvtColor(src_HSV, src_HSV, CV_BGR2GRAY);
+    debugImgVector.push_back(src_HSV); //1
 
 #endif
     //Morphological transformations
@@ -54,11 +48,7 @@ cv::Mat YellowDetector::run(cv::Mat topImg, cv::Mat goalImg, PerceptionData *dat
 
     cv::bitwise_not(src_HSV, topYellowMask);
 
-#ifdef FREDNATOR
     cv::SimpleBlobDetector::Params params;
-#else
-    cv::SimpleBlobDetector::Params params;
-#endif
 
     params.minThreshold = minThreshold;
     params.maxThreshold = maxThreshold;
@@ -82,7 +72,7 @@ cv::Mat YellowDetector::run(cv::Mat topImg, cv::Mat goalImg, PerceptionData *dat
     topDetector.detect(topYellowMask, keypoints);
 #endif
     cv::Mat im_with_keypoints;
-    cv::drawKeypoints(topYellowMask, keypoints, im_with_keypoints, cv::Scalar(0, 0, 255), cv::DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS);
+    cv::drawKeypoints(topYellowMask, keypoints, im_with_keypoints, cv::Scalar(0, 0, 255), cv::DrawMatchesFlags::DEFAULT);
 
     //float fieldpercentage = (float)keypoints.size()/(src.rows*src.cols);
 
@@ -101,11 +91,13 @@ cv::Mat YellowDetector::run(cv::Mat topImg, cv::Mat goalImg, PerceptionData *dat
 
     //Create an image vector, put the desired images inside it and atualize the perception data debugImages with it.
 
-    cv::cvtColor(topYellowMask, topYellowMask, CV_GRAY2BGR);
     debugImgVector.push_back(topYellowMask); //2
-    cv::cvtColor(topYellowMask, topYellowMask, CV_BGR2GRAY);
 
-    debugImgVector.push_back(im_with_keypoints);
+    /*     cv::imshow("a", im_with_keypoints);
+    cv::waitKey(0);
+    cv::destroyAllWindows(); */
+
+    debugImgVector.push_back(im_with_keypoints); //3
 
     // atualize the perception data debugImages with debugImgVector.
     std::pair<std::map<std::string, std::vector<cv::Mat>>::iterator, bool> debugInsertion;
@@ -117,9 +109,6 @@ cv::Mat YellowDetector::run(cv::Mat topImg, cv::Mat goalImg, PerceptionData *dat
 #endif
 
     updateData(data);
-#ifdef FREDNATOR
-    return src_HSV;
-#endif
 }
 
 void YellowDetector::updateData(PerceptionData *data)
