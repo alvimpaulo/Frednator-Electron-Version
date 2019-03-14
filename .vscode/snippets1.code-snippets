@@ -20,5 +20,10 @@
     "prefix": "ifdef",
     "body": ["#ifdef ${1:VIDEO_CLOSER_DEBUG}", "$TM_SELECTED_TEXT", "#endif"],
     "description": "For Loop"
+  },
+  "attr.set": {
+    "prefix": "attr.set",
+    "body": ["attrObj.Set(\"$TM_SELECTED_TEXT\",detector->$TM_SELECTED_TEXT);"],
+    "description": "setting attributes for a detector"
   }
 }

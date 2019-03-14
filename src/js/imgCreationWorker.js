@@ -12,8 +12,17 @@ onmessage = function(e) {
       "YellowDetectorDebugImagesSize",
       yellowDetectorUtil.getDebugImageSize(yellowDetectorUtil.detector)
     ]);
+  } else if (e.data == "getYellowDetectorParameters") {
+    postMessage([
+      "YellowDetectorParameters",
+      yellowDetectorUtil.getParameters(yellowDetectorUtil.detector)
+    ]);
   } else if (
-    !(e.data[0].startsWith("animation frame") && typeof cap == "boolean")
+    !(
+      (e.data[0].startsWith("animation frame") ||
+        e.data[0].startsWith("detectorStarted")) &&
+      typeof cap == "boolean"
+    )
   ) {
     //if cap is false and it have been requested by an animation frame, get out
     createMyImageBitmap(e.data[1], e.data[2], e.data[3]).then(
@@ -26,5 +35,4 @@ onmessage = function(e) {
       }
     );
   }
-  // console.log(imgDataUri)
 };

@@ -1,35 +1,44 @@
 .grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 0.4fr 2.2fr 0.4fr;
-    grid-template-areas: "capture-input capture-input capture-input function-selection" "video-area video-area video-area function-selection" "video-recording video-recording video-recording function-selection";
-    justify-items: center;
-    align-items: center;
-
-}
-  
-  .video-recording { 
-      grid-area: video-recording; }
-  
-  .capture-input { 
-      grid-area: capture-input; 
-    }
-    
-  .function-selection { 
-      grid-area: function-selection; 
-      justify-self: stretch;
-}
-  
-  .main-video { grid-area: video-area; }
-
-#video-canvas{
-    background-color: teal;
-    border-style: solid;
-    border-width: 1px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 0.4fr 2.2fr 0.4fr;
+  grid-template-areas: "capture-input capture-input capture-input function-selection" "video-area video-area video-area function-selection" "video-recording video-recording video-recording function-selection";
+  justify-items: center;
+  align-items: center;
 }
 
-#main-img-div{
-    margin-left: 0;
-    margin-right:0;
-    padding: 0; 
+.video-recording {
+  grid-area: video-recording;
+}
+
+.capture-input {
+  grid-area: capture-input;
+}
+
+.function-selection {
+  grid-area: function-selection;
+  justify-self: stretch;
+}
+
+.main-video {
+  grid-area: video-area;
+}
+
+#video-canvas {
+  background-color: teal;
+  border-style: solid;
+  border-width: 1px;
+}
+
+#main-img-div {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+}
+
+.parameters-div {
+  display: grid;
+  grid-template-columns: 80%;
+  justify-items: center;
+  align-items: center;
 }

@@ -23,20 +23,57 @@ imgCreationWorker.onmessage = function(e) {
     $("#capture-param-btn").text("start");
     return false;
   } else if (e.data[0] === "YellowDetectorDebugImagesSize") {
-    let tabsHtml = "";
-    for (
-      let debugImgIndex = 0;
-      debugImgIndex < parseInt(e.data[1]);
-      debugImgIndex++
-    ) {
-      tabsHtml +=
-        '<li class="tab col s3"><a href="#index' +
-        debugImgIndex +
-        '">' +
-        debugImgIndex +
-        "</a></li>";
+    let radioHtml = "";
+
+    if (e.data[1] == 0) {
+      //if debugImages is empty
+      radioHtml = String.raw`
+      <label>
+        <input name="yellowDetectorDebugImageIndex" type="radio" />
+        <span>0</span>
+      </label>`;
+    } else {
+      for (let index = 0; index < e.data[1]; index++) {
+        radioHtml += String.raw` <label>
+        <input name="yellowDetectorDebugImageIndex" type="radio" />
+        <span>${index}</span>
+        </label> `;
+      }
     }
-    $("#yellow-detector-index-tabs").html(tabsHtml);
+    $(
+      "#function-selector-div>ul>li.active>.collapsible-body>div>.debug-image-index-div"
+    ).html(radioHtml);
+    return;
+  } else if (e.data[0] === "YellowDetectorParameters") {
+    let parametersHtml = "";
+
+    for (let parameter in e.data[1]) {
+      let parameterType = typeof e.data[1][parameter];
+      if (parameterType === "boolean") {
+        parametersHtml += String.raw`<div class="col s12">
+        <p>
+          <label for="${parameter}">
+            <input
+              type="checkbox"
+              name="${parameter}"
+              id="${parameter}"
+            />
+            <span>${parameter}</span>
+          </label>
+        </p>
+      </div>`;
+      } else if (parameterType === "number") {
+        parametersHtml += String.raw`
+        <div class="input-field col s12">
+                      <input value="${
+                        e.data[1][parameter]
+                      }" id="${parameter}" type="text" />
+                      <label for="${parameter}">${parameter}</label>
+                    </div>`;
+      }
+    }
+    $("#function-selector-div>ul>li.active form").html(parametersHtml);
+    M.updateTextFields();
     return;
   }
 
@@ -49,6 +86,8 @@ imgCreationWorker.onmessage = function(e) {
   // console.log('mudei a src da img ' + t2)
 
   requestAnimationFrame(timestamp => {
+    //get next frame
+
     let className = "";
     // let t3 = performance.now()
     // console.log('requisitei um novo frame ' + t3)
@@ -60,24 +99,11 @@ imgCreationWorker.onmessage = function(e) {
     imgCreationWorker.postMessage([
       "animation frame at " + timestamp,
       document.getElementById("capture-param").value,
-      $("#yellow-detector-index-tabs>li>a.active").text(),
+      getSelectedIndex(),
       $("li.active>div.collapsible-header").text()
     ]);
     // let t5 = performance.now()
     // console.log('mandei msg nova pro worker ' + t5)
-
-    if (
-      (className = $("#function-selector-div>ul>li.active")
-        .children()
-        .first()
-        .text()) &&
-      $("#function-selector-div>ul>li.active>.collapsible-body a").text() ===
-        "0"
-    ) {
-      if (className === "Yellow Detector") {
-        imgCreationWorker.postMessage("getYellowDetectorDebugImagesSize");
-      }
-    }
   });
 };
 
@@ -102,7 +128,7 @@ function videoTriedToBeStartedOrStopped(e) {
     imgCreationWorker.postMessage([
       "Sent from " + e.target.id,
       document.getElementById("capture-param").value,
-      $("#yellow-detector-index-tabs>li>a.active").text(),
+      getSelectedIndex(),
       $("li.active>div.collapsible-header").text()
     ]);
     if (
@@ -111,11 +137,52 @@ function videoTriedToBeStartedOrStopped(e) {
         .first()
         .text())
     ) {
-      if (className === "Yellow Detector") {
+      if (className.includes("Yellow Detector")) {
         imgCreationWorker.postMessage("getYellowDetectorDebugImagesSize");
       }
     }
   }
+}
+
+function detectorClicked(event) {
+  if (
+    event.currentTarget.parentElement.classList["toString"]().includes("active")
+  ) {
+    event.currentTarget.nextElementSibling.innerHTML = String.raw`<div class="row">
+    <div class="col s12 debug-image-index-div">
+      <label>
+        <input name="group1" type="radio" checked />
+        <span>0</span>
+      </label>
+    </div>
+    <div class="col s12 parameters-div">
+      <form></form>
+    </div>
+  </div>`;
+  }
+  let className = event.target.innerText;
+  if (className.includes("Yellow Detector")) {
+    imgCreationWorker.postMessage([
+      "detectorStarted",
+      document.getElementById("capture-param").value,
+      $("li.active>.collapsible-body>div>div>ul>li>a.active").text(),
+      $("li.active>div.collapsible-header").text()
+    ]);
+    imgCreationWorker.postMessage("getYellowDetectorDebugImagesSize");
+    imgCreationWorker.postMessage("getYellowDetectorParameters");
+  }
+  console.log(event.target);
+}
+
+function getSelectedIndex() {
+  let indexSelected = "";
+  $(
+    "#function-selector-div>ul>li.active>.collapsible-body>div>div>label>input"
+  ).each(function(index, element) {
+    if (element.checked)
+      indexSelected = element.nextSibling.nextSibling.textContent;
+  });
+  return indexSelected;
 }
 
 $(function() {
@@ -132,6 +199,10 @@ $(function() {
     });
     $("#capture-param-btn").on("click", function(e) {
       videoTriedToBeStartedOrStopped(e);
+    });
+
+    $(".function-selection>ul>li>.collapsible-header").on("click", e => {
+      detectorClicked(e);
     });
     // -------------------------------------------------------
 

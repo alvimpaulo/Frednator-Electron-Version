@@ -82,8 +82,35 @@ Napi::Value getDebugImageSize(const Napi::CallbackInfo &info)
     }
 }
 
-Napi::Value getYellowDetectorParameters(const Napi::CallbackInfo &info)
+Napi::Value getParameters(const Napi::CallbackInfo &info)
 {
+    Napi::Env env = info.Env();
+
+    Napi::Object attrObj = Napi::Object::New(env);
+
+    if (info.Length() == 1 && info[0].IsExternal())
+    {
+        YellowDetector *detector = info[0].As<Napi::External<YellowDetector>>().Data();
+
+        attrObj.Set("minThreshold", detector->minThreshold);
+        attrObj.Set("maxThreshold", detector->maxThreshold);
+        attrObj.Set("filterByArea", detector->filterByArea);
+        attrObj.Set("minArea", detector->minArea);
+        attrObj.Set("filterByCircularity", detector->filterByCircularity);
+        attrObj.Set("minCircularity", detector->minCircularity);
+        attrObj.Set("filterByConvexity", detector->filterByConvexity);
+        attrObj.Set("minConvexity", detector->minConvexity);
+        attrObj.Set("filterByInertia", detector->filterByInertia);
+        attrObj.Set("minInertiaRatio", detector->minInertiaRatio);
+        attrObj.Set("iLowH", detector->iLowH);
+        attrObj.Set("iHighH", detector->iHighH);
+        attrObj.Set("iLowS", detector->iLowS);
+        attrObj.Set("iHighS", detector->iHighS);
+        attrObj.Set("iLowV", detector->iLowV);
+        attrObj.Set("iHighV", detector->iHighV);
+
+        return attrObj;
+    }
 }
 
 Napi::Object Init(Napi::Env env, Napi::Object exports)
@@ -92,16 +119,13 @@ Napi::Object Init(Napi::Env env, Napi::Object exports)
     //functions to be called within JS
     exports.Set(Napi::String::New(env, "run"), Napi::Function::New(env, run));
     exports.Set(Napi::String::New(env, "getDebugImageSize"), Napi::Function::New(env, getDebugImageSize));
-
+    exports.Set(Napi::String::New(env, "getParameters"), Napi::Function::New(env, getParameters));
     //object creation
     YellowDetector *yellowDetector = new YellowDetector();
     exports.Set(Napi::String::New(env, "detector"), Napi::External<YellowDetector>::New(env, yellowDetector, genericFinalizer<YellowDetector>, "Yellow Detector"));
 
     PerceptionData *perceptionData = new PerceptionData();
     exports.Set(Napi::String::New(env, "perceptionData"), Napi::External<PerceptionData>::New(env, perceptionData, genericFinalizer<PerceptionData>, "Perception Data"));
-
-    Napi::Object attrObj = Napi::Object::New(env);
-    exports.Set(Napi::String::New(env, "attrObj"), attrObj);
 
     return exports;
 }
