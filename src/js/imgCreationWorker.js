@@ -10,9 +10,7 @@ onmessage = function(e) {
   } else if (e.data == "getYellowDetectorDebugImagesSize") {
     postMessage([
       "YellowDetectorDebugImagesSize",
-      yellowDetectorUtil.getYellowDetectorDebugImagesSize(
-        yellowDetectorUtil.yellowDetector
-      )
+      yellowDetectorUtil.getDebugImageSize(yellowDetectorUtil.detector)
     ]);
   } else if (
     !(e.data[0].startsWith("animation frame") && typeof cap == "boolean")

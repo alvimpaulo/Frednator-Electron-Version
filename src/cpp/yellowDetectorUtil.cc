@@ -27,7 +27,7 @@ void genericFinalizer(Napi::Env env, genericClass *genericObject, std::string hi
     delete genericObject;
 }
 
-Napi::Value yellowDetectorRun(const Napi::CallbackInfo &info)
+Napi::Value run(const Napi::CallbackInfo &info)
 {
 
 #ifdef YELLOW_DETECTOR_DEBUG
@@ -67,7 +67,7 @@ Napi::Value yellowDetectorRun(const Napi::CallbackInfo &info)
     }
 }
 
-Napi::Value getYellowDetectorDebugImagesSize(const Napi::CallbackInfo &info)
+Napi::Value getDebugImageSize(const Napi::CallbackInfo &info)
 {
     Napi::Env env = info.Env();
 
@@ -82,19 +82,26 @@ Napi::Value getYellowDetectorDebugImagesSize(const Napi::CallbackInfo &info)
     }
 }
 
+Napi::Value getYellowDetectorParameters(const Napi::CallbackInfo &info)
+{
+}
+
 Napi::Object Init(Napi::Env env, Napi::Object exports)
 {
 
     //functions to be called within JS
-    exports.Set(Napi::String::New(env, "yellowDetectorRun"), Napi::Function::New(env, yellowDetectorRun));
-    exports.Set(Napi::String::New(env, "getYellowDetectorDebugImagesSize"), Napi::Function::New(env, getYellowDetectorDebugImagesSize));
+    exports.Set(Napi::String::New(env, "run"), Napi::Function::New(env, run));
+    exports.Set(Napi::String::New(env, "getDebugImageSize"), Napi::Function::New(env, getDebugImageSize));
 
     //object creation
     YellowDetector *yellowDetector = new YellowDetector();
-    exports.Set(Napi::String::New(env, "yellowDetector"), Napi::External<YellowDetector>::New(env, yellowDetector, genericFinalizer<YellowDetector>, "Yellow Detector"));
+    exports.Set(Napi::String::New(env, "detector"), Napi::External<YellowDetector>::New(env, yellowDetector, genericFinalizer<YellowDetector>, "Yellow Detector"));
 
     PerceptionData *perceptionData = new PerceptionData();
-    exports.Set(Napi::String::New(env, "yellowDetectorPerceptionData"), Napi::External<PerceptionData>::New(env, perceptionData, genericFinalizer<PerceptionData>, "Perception Data"));
+    exports.Set(Napi::String::New(env, "perceptionData"), Napi::External<PerceptionData>::New(env, perceptionData, genericFinalizer<PerceptionData>, "Perception Data"));
+
+    Napi::Object attrObj = Napi::Object::New(env);
+    exports.Set(Napi::String::New(env, "attrObj"), attrObj);
 
     return exports;
 }

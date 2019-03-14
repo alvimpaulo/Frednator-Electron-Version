@@ -46,10 +46,10 @@ function createMyImageBitmap(
     }
 
     if (classSelected === "Yellow Detector") {
-      img = yellowDetectorUtil.yellowDetectorRun(
+      img = yellowDetectorUtil.run(
         img,
-        yellowDetectorUtil.yellowDetector,
-        yellowDetectorUtil.yellowDetectorPerceptionData,
+        yellowDetectorUtil.detector,
+        yellowDetectorUtil.perceptionData,
         parseInt(debugImageVectorIndex)
       );
     }
