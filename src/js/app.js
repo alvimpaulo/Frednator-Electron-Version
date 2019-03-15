@@ -48,6 +48,7 @@ imgCreationWorker.onmessage = function(e) {
     let parametersHtml = "";
 
     for (let parameter in e.data[1]) {
+      //create boolean checkboxes
       let parameterType = typeof e.data[1][parameter];
       if (parameterType === "boolean") {
         parametersHtml += String.raw`<div class="col s12">
@@ -74,6 +75,10 @@ imgCreationWorker.onmessage = function(e) {
     }
     $("#function-selector-div>ul>li.active form").html(parametersHtml);
     M.updateTextFields();
+    for (let parameter in e.data[1]) {
+      // atualize boolean checkboxes values
+      $("#" + parameter).prop("checked", e.data[1][parameter]);
+    }
     return;
   }
 
@@ -165,8 +170,8 @@ function detectorClicked(event) {
     imgCreationWorker.postMessage([
       "detectorStarted",
       document.getElementById("capture-param").value,
-      $("li.active>.collapsible-body>div>div>ul>li>a.active").text(),
-      $("li.active>div.collapsible-header").text()
+      getSelectedIndex(),
+      "Yellow Detector"
     ]);
     imgCreationWorker.postMessage("getYellowDetectorDebugImagesSize");
     imgCreationWorker.postMessage("getYellowDetectorParameters");
