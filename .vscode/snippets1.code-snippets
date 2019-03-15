@@ -22,8 +22,18 @@
     "description": "For Loop"
   },
   "attr.set": {
-    "prefix": "attr.set",
+    "prefix": "setAttribute",
     "body": ["attrObj.Set(\"$TM_SELECTED_TEXT\",detector->$TM_SELECTED_TEXT);"],
     "description": "setting attributes for a detector"
+  },
+  "detectorParamSet": {
+    "prefix": "detectorParamSet",
+    "body": [
+      "if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare(\"$TM_SELECTED_TEXT\") == 0)",
+      "{",
+      "detector->$TM_SELECTED_TEXT = attrObj[propertyName].operator Napi::Value().ToBoolean;",
+      "}"
+    ],
+    "description": "Creates the code to set some parameter (which should be selected) in a detector"
   }
 }

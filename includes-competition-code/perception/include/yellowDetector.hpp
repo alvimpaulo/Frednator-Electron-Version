@@ -42,11 +42,11 @@ class YellowDetector : public FeatureDetector
                        minConvexity(0.01),
                        filterByInertia(true),
                        minInertiaRatio(0.1),
-                       iLowH(30),
-                       iHighH(45),
+                       iLowH(22),
+                       iHighH(29),
                        iLowS(100),
                        iHighS(255),
-                       iLowV(50),
+                       iLowV(100),
                        iHighV(255)
     {
     }
@@ -61,14 +61,14 @@ class YellowDetector : public FeatureDetector
     double minConvexity;
     bool filterByInertia;
     double minInertiaRatio;
-    int iLowH;
-    int iHighH;
-    int iLowS;
-    int iHighS;
-    int iLowV;
-    int iHighV;
+    unsigned char iLowH;
+    unsigned char iHighH;
+    unsigned char iLowS;
+    unsigned char iHighS;
+    unsigned char iLowV;
+    unsigned char iHighV;
 
-/**
+    /**
         \brief This function checks for golkeaper yellow shirt to prevent own goals.
         \details Using a yellow mask, this function looks for yellow masses and estimates its distance.
         \param topImg Top camera frame

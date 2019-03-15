@@ -11,14 +11,6 @@ void YellowDetector::run(cv::Mat topImg, cv::Mat goalImg, PerceptionData *data)
     debugImgVector.clear();
     cv::Mat src = topImg.clone();
 
-    //Yellow HSL values range definitions
-    int iLowH = 22;
-    int iHighH = 29;
-    int iLowS = 100;
-    int iHighS = 255;
-    int iLowV = 100;
-    int iHighV = 255;
-
     //Variables initialization
     cv::Mat src_HSV;
     std::vector<std::vector<cv::Point>> contours;

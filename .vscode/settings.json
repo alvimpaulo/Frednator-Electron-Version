@@ -52,7 +52,8 @@
         "thread": "cpp",
         "typeindex": "cpp",
         "memory": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "mutex": "cpp"
     },
     "lldb.executable": "lldb-7",
     "files.watcherExclude": {

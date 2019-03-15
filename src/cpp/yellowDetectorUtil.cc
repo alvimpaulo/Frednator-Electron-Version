@@ -113,6 +113,90 @@ Napi::Value getParameters(const Napi::CallbackInfo &info)
     }
 }
 
+Napi::Value setParameters(const Napi::CallbackInfo &info)
+{
+    Napi::Env env = info.Env();
+
+    if (info.Length() == 2 && info[0].IsExternal() && info[1].IsObject())
+    {
+        YellowDetector *detector = info[0].As<Napi::External<YellowDetector>>().Data();
+        Napi::Object attrObj = info[1].As<Napi::Object>();
+
+        Napi::Array attrObjProperties = attrObj.GetPropertyNames();
+
+        for (int i = 0; i < attrObjProperties.Length(); ++i)
+        {
+            std::string propertyName = attrObjProperties[i].operator Napi::Value().ToString().Utf8Value();
+
+            std::cout << attrObjProperties[i].operator Napi::Value().ToString().Utf8Value() << std::endl;
+            if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("minThreshold") == 0)
+                detector->minThreshold = attrObj[propertyName].operator Napi::Value().ToNumber().Int32Value();
+            else if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("maxThreshold") == 0)
+            {
+                detector->maxThreshold = attrObj[propertyName].operator Napi::Value().ToNumber().Int32Value();
+            }
+            else if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("filterByArea") == 0)
+            {
+                detector->filterByArea = attrObj[propertyName].operator Napi::Value().ToBoolean();
+            }
+            else if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("minArea") == 0)
+            {
+                detector->minArea = attrObj[propertyName].operator Napi::Value().ToNumber().Int32Value();
+            }
+            else if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("filterByCircularity") == 0)
+            {
+                detector->filterByCircularity = attrObj[propertyName].operator Napi::Value().ToBoolean();
+            }
+            else if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("minCircularity") == 0)
+            {
+                detector->minCircularity = attrObj[propertyName].operator Napi::Value().ToNumber().DoubleValue();
+            }
+            else if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("filterByConvexity") == 0)
+            {
+                detector->filterByConvexity = attrObj[propertyName].operator Napi::Value().ToBoolean();
+            }
+            else if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("minConvexity") == 0)
+            {
+                detector->minConvexity = attrObj[propertyName].operator Napi::Value().ToNumber().DoubleValue();
+            }
+            else if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("filterByInertia") == 0)
+            {
+                detector->filterByInertia = attrObj[propertyName].operator Napi::Value().ToBoolean();
+            }
+            else if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("minInertiaRatio") == 0)
+            {
+                detector->minInertiaRatio = attrObj[propertyName].operator Napi::Value().ToNumber().DoubleValue();
+            }
+            else if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("iLowH") == 0)
+            {
+                detector->iLowH = attrObj[propertyName].operator Napi::Value().ToNumber().Int32Value();
+            }
+            else if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("iHighH") == 0)
+            {
+                detector->iHighH = attrObj[propertyName].operator Napi::Value().ToNumber().Int32Value();
+            }
+            else if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("iLowS") == 0)
+            {
+                detector->iLowS = attrObj[propertyName].operator Napi::Value().ToNumber().Int32Value();
+            }
+            else if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("iHighS") == 0)
+            {
+                detector->iHighS = attrObj[propertyName].operator Napi::Value().ToNumber().Int32Value();
+            }
+            else if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("iLowV") == 0)
+            {
+                detector->iLowV = attrObj[propertyName].operator Napi::Value().ToNumber().Int32Value();
+            }
+            else if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("iHighV") == 0)
+            {
+                detector->iHighV = attrObj[propertyName].operator Napi::Value().ToNumber().Int32Value();
+            }
+        }
+
+        return attrObj;
+    }
+}
+
 Napi::Object Init(Napi::Env env, Napi::Object exports)
 {
 
@@ -120,6 +204,8 @@ Napi::Object Init(Napi::Env env, Napi::Object exports)
     exports.Set(Napi::String::New(env, "run"), Napi::Function::New(env, run));
     exports.Set(Napi::String::New(env, "getDebugImageSize"), Napi::Function::New(env, getDebugImageSize));
     exports.Set(Napi::String::New(env, "getParameters"), Napi::Function::New(env, getParameters));
+    exports.Set(Napi::String::New(env, "setParameters"), Napi::Function::New(env, setParameters));
+
     //object creation
     YellowDetector *yellowDetector = new YellowDetector();
     exports.Set(Napi::String::New(env, "detector"), Napi::External<YellowDetector>::New(env, yellowDetector, genericFinalizer<YellowDetector>, "Yellow Detector"));
