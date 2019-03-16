@@ -77,20 +77,36 @@ imgCreationWorker.onmessage = function(e) {
       $("#function-selector-div>ul>li.active form").html(parametersHtml);
       M.updateTextFields();
       for (let parameter in e.data[2]) {
-        // atualize boolean checkboxes values
-        $("#" + parameter).prop("checked", e.data[2][parameter]);
-        //change detector parameter on
-        $("#" + parameter).on("change", checkBoxEvent => {
-          imgCreationWorker.postMessage([
-            "yellowDetector",
-            "setParameters",
-            parameter,
-            checkBoxEvent.currentTarget.checked
-          ]);
-        });
+        let parameterType = typeof e.data[2][parameter];
+        if (parameterType === "boolean") {
+          // atualize boolean checkboxes values
+          $("#" + parameter).prop("checked", e.data[2][parameter]);
+          //change detector parameter
+          $("#" + parameter).on("change", checkBoxEvent => {
+            imgCreationWorker.postMessage([
+              "yellowDetector",
+              "setParameters",
+              parameter,
+              checkBoxEvent.currentTarget.checked
+            ]);
+          });
+        }
+        if (parameterType === "number") {
+          $("#" + parameter).on("keyup", keyupEvent => {
+            if (keyupEvent.key === "Enter") {
+              imgCreationWorker.postMessage([
+                "yellowDetector",
+                "setParameters",
+                parameter,
+                keyupEvent.target.value
+              ]);
+            }
+          });
+        }
       }
     } else if (e.data[1] === "setParameters") {
       for (parameter in e.data[2]) {
+        //atualize values
         let parameterType = typeof e.data[2][parameter];
 
         if (parameterType === "number") {
