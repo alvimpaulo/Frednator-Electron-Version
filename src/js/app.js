@@ -22,36 +22,37 @@ imgCreationWorker.onmessage = function(e) {
     $("#capture-param-btn").toggleClass("red");
     $("#capture-param-btn").text("start");
     return false;
-  } else if (e.data[0] === "YellowDetectorDebugImagesSize") {
-    let radioHtml = "";
+  } else if (e.data[0] === "yellowDetector") {
+    if (e.data[1] === "getDebugImageSize") {
+      let radioHtml = "";
 
-    if (e.data[1] == 0) {
-      //if debugImages is empty
-      radioHtml = String.raw`
+      if (e.data[2] == 0) {
+        //if debugImages is empty
+        radioHtml = String.raw`
       <label>
         <input name="yellowDetectorDebugImageIndex" type="radio" />
         <span>0</span>
       </label>`;
-    } else {
-      for (let index = 0; index < e.data[1]; index++) {
-        radioHtml += String.raw` <label>
+      } else {
+        for (let index = 0; index < e.data[2]; index++) {
+          radioHtml += String.raw` <label>
         <input name="yellowDetectorDebugImageIndex" type="radio" />
         <span>${index}</span>
         </label> `;
+        }
       }
-    }
-    $(
-      "#function-selector-div>ul>li.active>.collapsible-body>div>.debug-image-index-div"
-    ).html(radioHtml);
-    return;
-  } else if (e.data[0] === "YellowDetectorParameters") {
-    let parametersHtml = "";
+      $(
+        "#function-selector-div>ul>li.active>.collapsible-body>div>.debug-image-index-div"
+      ).html(radioHtml);
+      return;
+    } else if (e.data[1] === "getParameters") {
+      let parametersHtml = "";
 
-    for (let parameter in e.data[1]) {
-      //create boolean checkboxes
-      let parameterType = typeof e.data[1][parameter];
-      if (parameterType === "boolean") {
-        parametersHtml += String.raw`<div class="col s12">
+      for (let parameter in e.data[2]) {
+        //create boolean checkboxes
+        let parameterType = typeof e.data[2][parameter];
+        if (parameterType === "boolean") {
+          parametersHtml += String.raw`<div class="col s12">
         <p>
           <label for="${parameter}">
             <input
@@ -63,21 +64,41 @@ imgCreationWorker.onmessage = function(e) {
           </label>
         </p>
       </div>`;
-      } else if (parameterType === "number") {
-        parametersHtml += String.raw`
+        } else if (parameterType === "number") {
+          parametersHtml += String.raw`
         <div class="input-field col s12">
                       <input value="${
-                        e.data[1][parameter]
+                        e.data[2][parameter]
                       }" id="${parameter}" type="text" />
                       <label for="${parameter}">${parameter}</label>
                     </div>`;
+        }
       }
-    }
-    $("#function-selector-div>ul>li.active form").html(parametersHtml);
-    M.updateTextFields();
-    for (let parameter in e.data[1]) {
-      // atualize boolean checkboxes values
-      $("#" + parameter).prop("checked", e.data[1][parameter]);
+      $("#function-selector-div>ul>li.active form").html(parametersHtml);
+      M.updateTextFields();
+      for (let parameter in e.data[2]) {
+        // atualize boolean checkboxes values
+        $("#" + parameter).prop("checked", e.data[2][parameter]);
+        //change detector parameter on
+        $("#" + parameter).on("change", checkBoxEvent => {
+          imgCreationWorker.postMessage([
+            "yellowDetector",
+            "setParameters",
+            parameter,
+            checkBoxEvent.currentTarget.checked
+          ]);
+        });
+      }
+    } else if (e.data[1] === "setParameters") {
+      for (parameter in e.data[2]) {
+        let parameterType = typeof e.data[2][parameter];
+
+        if (parameterType === "number") {
+          $("#" + parameter).val(e.data[2][parameter]);
+        } else if (parameterType === "boolean") {
+          $("#" + parameter).prop("checked", e.data[2][parameter]);
+        }
+      }
     }
     return;
   }
@@ -143,7 +164,7 @@ function videoTriedToBeStartedOrStopped(e) {
         .text())
     ) {
       if (className.includes("Yellow Detector")) {
-        imgCreationWorker.postMessage("getYellowDetectorDebugImagesSize");
+        imgCreationWorker.postMessage(["yellowDetector", "getDebugImageSize"]);
       }
     }
   }
@@ -173,10 +194,9 @@ function detectorClicked(event) {
       getSelectedIndex(),
       "Yellow Detector"
     ]);
-    imgCreationWorker.postMessage("getYellowDetectorDebugImagesSize");
-    imgCreationWorker.postMessage("getYellowDetectorParameters");
+    imgCreationWorker.postMessage(["yellowDetector", "getDebugImageSize"]);
+    imgCreationWorker.postMessage(["yellowDetector", "getParameters"]);
   }
-  console.log(event.target);
 }
 
 function getSelectedIndex() {

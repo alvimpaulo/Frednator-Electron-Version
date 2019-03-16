@@ -7,16 +7,38 @@ onmessage = function(e) {
     closeCap(cap);
     postMessage("capture closed");
     console.log("capture closed");
-  } else if (e.data == "getYellowDetectorDebugImagesSize") {
-    postMessage([
-      "YellowDetectorDebugImagesSize",
-      yellowDetectorUtil.getDebugImageSize(yellowDetectorUtil.detector)
-    ]);
-  } else if (e.data == "getYellowDetectorParameters") {
-    postMessage([
-      "YellowDetectorParameters",
-      yellowDetectorUtil.getParameters(yellowDetectorUtil.detector)
-    ]);
+  } else if (e.data[0] === "yellowDetector") {
+    if (e.data[1] === "getDebugImageSize") {
+      postMessage([
+        "yellowDetector",
+        "getDebugImageSize",
+        yellowDetectorUtil.getDebugImageSize(yellowDetectorUtil.detector)
+      ]);
+    } else if (e.data[1] === "getParameters") {
+      postMessage([
+        "yellowDetector",
+        "getParameters",
+        yellowDetectorUtil.getParameters(yellowDetectorUtil.detector)
+      ]);
+    } else if (e.data[1] === "setParameters") {
+      let keysToSet = e.data[2];
+      let valuesToSet = e.data[3];
+      let paramObj = {};
+      if (typeof keysToSet === "string") {
+        // single parameter
+        paramObj[keysToSet] = valuesToSet;
+      } else if (typeof keysToSet === "object") {
+        //multiple parameters
+        for (const [index, key] of keysToSet.entries()) {
+          paramObj[key] = valuesToSet[index]; //create the object for the parameters to be set
+        }
+      }
+      postMessage([
+        "yellowDetector",
+        "setParameters",
+        yellowDetectorUtil.setParameters(yellowDetectorUtil.detector, paramObj)
+      ]);
+    }
   } else if (
     !(
       (e.data[0].startsWith("animation frame") ||
