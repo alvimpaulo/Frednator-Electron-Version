@@ -42,3 +42,15 @@
   justify-items: center;
   align-items: center;
 }
+
+.collapsible-body-grid {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.debug-image-index-div {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-auto-flow: column;
+  overflow-x: auto;
+}

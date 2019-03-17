@@ -1,52 +1,31 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "(lldb) Launch Forge",
-            "program": "/usr/bin/node",
-            "args": [
-                "${workspaceFolder}/node_modules/electron-forge/dist/electron-forge-start.js",
-                "-i"
-            ],
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "(lldb) Launch Program",
-            "preLaunchTask": "npm: build:dev",
-            "program": "/usr/bin/node",
-            "args": [
-                "src/js/napi-tester.js"
-            ],
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Electron Main",
-            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron-forge-vscode-nix",
-            "windows": {
-                "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron-forge-vscode-win.cmd"
-            },
-            // runtimeArgs will be passed directly to your Electron application
-            "runtimeArgs": [],
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "name": "Debug Main Process",
-            "type": "node",
-            "request": "launch",
-            "cwd": "${workspaceRoot}",
-            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
-            "windows": {
-                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
-            },
-            "args": [
-                "."
-            ]
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Main Process",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+      "windows": {
+        "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+      },
+      "program": "${workspaceRoot}/src/index.js",
+      "protocol": "inspector"
+    },
+    {
+      "name": "Debug Renderer Process",
+      "type": "chrome",
+      "request": "launch",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+      "windows": {
+        "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+      },
+      "runtimeArgs": [
+        "${workspaceRoot}/src/index.js",
+        "--remote-debugging-port=9222"
+      ],
+      "webRoot": "${workspaceRoot}"
+    }
+  ]
 }

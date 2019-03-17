@@ -35,15 +35,16 @@ imgCreationWorker.onmessage = function(e) {
       </label>`;
       } else {
         for (let index = 0; index < e.data[2]; index++) {
-          radioHtml += String.raw` <label>
-        <input name="yellowDetectorDebugImageIndex" type="radio" />
-        <span>${index}</span>
-        </label> `;
+          radioHtml += String.raw`
+            <label>
+              <input name="yellowDetectorDebugImageIndex" type="radio" />
+              <span>${index}</span>
+            </label> `;
         }
       }
-      $(
-        "#function-selector-div>ul>li.active>.collapsible-body>div>.debug-image-index-div"
-      ).html(radioHtml);
+      $("#function-selector-div>ul>li.active .debug-image-index-div").html(
+        radioHtml
+      );
       return;
     } else if (e.data[1] === "getParameters") {
       let parametersHtml = "";
@@ -52,26 +53,27 @@ imgCreationWorker.onmessage = function(e) {
         //create boolean checkboxes
         let parameterType = typeof e.data[2][parameter];
         if (parameterType === "boolean") {
-          parametersHtml += String.raw`<div class="col s12">
-        <p>
-          <label for="${parameter}">
-            <input
-              type="checkbox"
-              name="${parameter}"
-              id="${parameter}"
-            />
-            <span>${parameter}</span>
-          </label>
-        </p>
-      </div>`;
+          parametersHtml += String.raw`
+          <div>
+            <p>
+              <label for="${parameter}">
+                <input
+                  type="checkbox"
+                  name="${parameter}"
+                  id="${parameter}"
+                />
+                <span>${parameter}</span>
+              </label>
+            </p>
+          </div>`;
         } else if (parameterType === "number") {
           parametersHtml += String.raw`
-        <div class="input-field col s12">
-                      <input value="${
-                        e.data[2][parameter]
-                      }" id="${parameter}" type="text" />
-                      <label for="${parameter}">${parameter}</label>
-                    </div>`;
+        <div class="input-field">
+          <input value="${
+            e.data[2][parameter]
+          }" id="${parameter}" type="text" />
+          <label for="${parameter}">${parameter}</label>
+        </div>`;
         }
       }
       $("#function-selector-div>ul>li.active form").html(parametersHtml);
@@ -190,17 +192,18 @@ function detectorClicked(event) {
   if (
     event.currentTarget.parentElement.classList["toString"]().includes("active")
   ) {
-    event.currentTarget.nextElementSibling.innerHTML = String.raw`<div class="row">
-    <div class="col s12 debug-image-index-div">
-      <label>
-        <input name="group1" type="radio" checked />
-        <span>0</span>
-      </label>
-    </div>
-    <div class="col s12 parameters-div">
-      <form></form>
-    </div>
-  </div>`;
+    event.currentTarget.nextElementSibling.innerHTML = String.raw`
+    <div class="collapsible-body-grid">
+      <div class="debug-image-index-div">
+        <label>
+          <input name="group1" type="radio" checked />
+          <span>0</span>
+        </label>
+      </div>
+      <div class="parameters-div">
+        <form></form>
+      </div>
+    </div>`;
   }
   let className = event.target.innerText;
   if (className.includes("Yellow Detector")) {
@@ -217,9 +220,7 @@ function detectorClicked(event) {
 
 function getSelectedIndex() {
   let indexSelected = "";
-  $(
-    "#function-selector-div>ul>li.active>.collapsible-body>div>div>label>input"
-  ).each(function(index, element) {
+  $(".debug-image-index-div input").each(function(index, element) {
     if (element.checked)
       indexSelected = element.nextSibling.nextSibling.textContent;
   });
@@ -233,18 +234,39 @@ $(function() {
     M.AutoInit();
 
     // -----------------bindings---------------------------
+    //bind pressing of enter inside the capture parameter text input
     $("#capture-param").on("keyup", function(e) {
       if (e.keyCode == 13) {
         videoTriedToBeStartedOrStopped(e);
       }
     });
+
+    //bind video start/stop button
     $("#capture-param-btn").on("click", function(e) {
       videoTriedToBeStartedOrStopped(e);
     });
 
+    //bind detector selection
     $(".function-selection>ul>li>.collapsible-header").on("click", e => {
       detectorClicked(e);
     });
+
+    //collapsible size once opened
+    let detectorSelectionCollapsibleheight = $("#function-selector-div>ul")
+      .first()
+      .height();
+    $("#function-selector-div>.collapsible").prop(
+      "M_Collapsible"
+    ).options.onOpenEnd = li => {
+      li.lastElementChild.style["height"] =
+        parseInt(
+          document.documentElement.clientHeight -
+            detectorSelectionCollapsibleheight -
+            parseInt(window.getComputedStyle(li).marginTop) -
+            parseInt(window.getComputedStyle(li).marginBottom)
+        ).toString() + "px";
+      li.lastElementChild.style["overflow-y"] = "auto";
+    };
     // -------------------------------------------------------
 
     /* requestAnimationFrame(timestamp => {
