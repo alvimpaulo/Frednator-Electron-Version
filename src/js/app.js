@@ -2,7 +2,69 @@ let Readable = require("stream").Readable;
 
 const { webFrame } = require("electron");
 
-function getDebugImageSize(detectorName, e) {
+function getParameters(e, detectorName) {
+  let parametersHtml = "";
+
+  for (let parameter in e.data[2]) {
+    //create boolean checkboxes
+    let parameterType = typeof e.data[2][parameter];
+    if (parameterType === "boolean") {
+      parametersHtml += String.raw`
+          <div>
+            <p>
+              <label for="${parameter}">
+                <input
+                  type="checkbox"
+                  name="${parameter}"
+                  id="${parameter}"
+                />
+                <span>${parameter}</span>
+              </label>
+            </p>
+          </div>`;
+    } else if (parameterType === "number") {
+      parametersHtml += String.raw`
+        <div class="input-field">
+          <input value="${
+            e.data[2][parameter]
+          }" id="${parameter}" type="text" />
+          <label for="${parameter}">${parameter}</label>
+        </div>`;
+    }
+  }
+  $("#function-selector-div>ul>li.active form").html(parametersHtml);
+  M.updateTextFields();
+  for (let parameter in e.data[2]) {
+    let parameterType = typeof e.data[2][parameter];
+    if (parameterType === "boolean") {
+      // atualize boolean checkboxes values
+      $("#" + parameter).prop("checked", e.data[2][parameter]);
+      //change detector parameter
+      $("#" + parameter).on("change", checkBoxEvent => {
+        imgCreationWorker.postMessage([
+          detectorName,
+          "setParameters",
+          parameter,
+          checkBoxEvent.currentTarget.checked
+        ]);
+      });
+    }
+    if (parameterType === "number") {
+      $("#" + parameter).on("keyup", keyupEvent => {
+        if (keyupEvent.key === "Enter") {
+          imgCreationWorker.postMessage([
+            detectorName,
+            "setParameters",
+            parameter,
+            keyupEvent.target.value
+          ]);
+        }
+      });
+    }
+  }
+}
+
+function getDebugImageSize(e, detectorName) {
   let radioHtml = "";
 
   if (e.data[2] == 0) {
@@ -16,7 +78,7 @@ function getDebugImageSize(detectorName, e) {
     for (let index = 0; index < e.data[2]; index++) {
       radioHtml += String.raw`
             <label>
-              <input name="yellowDetectorDebugImageIndex" type="radio" />
+              <input name="${detectorName}DebugImageIndex" type="radio" />
               <span>${index}</span>
             </label> `;
     }
@@ -53,65 +115,7 @@ imgCreationWorker.onmessage = function(e) {
       getDebugImageSize("yellowDetector", e);
       return;
     } else if (e.data[1] === "getParameters") {
-      let parametersHtml = "";
-
-      for (let parameter in e.data[2]) {
-        //create boolean checkboxes
-        let parameterType = typeof e.data[2][parameter];
-        if (parameterType === "boolean") {
-          parametersHtml += String.raw`
-          <div>
-            <p>
-              <label for="${parameter}">
-                <input
-                  type="checkbox"
-                  name="${parameter}"
-                  id="${parameter}"
-                />
-                <span>${parameter}</span>
-              </label>
-            </p>
-          </div>`;
-        } else if (parameterType === "number") {
-          parametersHtml += String.raw`
-        <div class="input-field">
-          <input value="${
-            e.data[2][parameter]
-          }" id="${parameter}" type="text" />
-          <label for="${parameter}">${parameter}</label>
-        </div>`;
-        }
-      }
-      $("#function-selector-div>ul>li.active form").html(parametersHtml);
-      M.updateTextFields();
-      for (let parameter in e.data[2]) {
-        let parameterType = typeof e.data[2][parameter];
-        if (parameterType === "boolean") {
-          // atualize boolean checkboxes values
-          $("#" + parameter).prop("checked", e.data[2][parameter]);
-          //change detector parameter
-          $("#" + parameter).on("change", checkBoxEvent => {
-            imgCreationWorker.postMessage([
-              "yellowDetector",
-              "setParameters",
-              parameter,
-              checkBoxEvent.currentTarget.checked
-            ]);
-          });
-        }
-        if (parameterType === "number") {
-          $("#" + parameter).on("keyup", keyupEvent => {
-            if (keyupEvent.key === "Enter") {
-              imgCreationWorker.postMessage([
-                "yellowDetector",
-                "setParameters",
-                parameter,
-                keyupEvent.target.value
-              ]);
-            }
-          });
-        }
-      }
+      getParameters(e, "yellowDetector");
     } else if (e.data[1] === "setParameters") {
       for (parameter in e.data[2]) {
         //atualize values
