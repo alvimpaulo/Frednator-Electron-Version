@@ -58,5 +58,8 @@
     "lldb.executable": "lldb-7",
     "files.watcherExclude": {
         "**/build/**": true
-    }
+    },
+    "C_Cpp.intelliSenseCachePath": "${workspaceFolder}/.cache",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "C_Cpp.loggingLevel": "Warning"
 }
