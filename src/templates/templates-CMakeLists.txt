@@ -1,0 +1,34 @@
+Patterns info:
+lowercaseDetector  = detectorDetector
+ 
+
+ # $start CMakeLists.txt:moduleNameSet:#lowercaseDetector#$
+set(MODULE_#NUMBER#_NAME "#lowercaseDetector#Util")
+# $end CMakeLists.txt:moduleNameSet:#lowercaseDetector#$
+
+#$start CMakeLists.txt:libraryBuilds:#lowercaseDetector#$
+set( MODULE_#NUMBER#_SOURCE_FILES "src/cpp/#lowercaseDetector#Util.cc")
+add_library(${MODULE_#NUMBER#_NAME} SHARED ${MODULE_2_SOURCE_FILES})
+#$end CMakeLists.txt:libraryBuilds:#lowercaseDetector#$
+
+#$start CMakeLists.txt:P_SRC:#lowercaseDetector#$
+    ${CMAKE_SOURCE_DIR}/includes-competition-code/perception/src/#lowercaseDetector#.cpp
+    ${CMAKE_SOURCE_DIR}/includes-competition-code/perception/include/#lowercaseDetector#.hpp
+#$end CMakeLists.txt:P_SRC:#lowercaseDetector#$
+
+#$start CMakeLists.txt:targetProperties:#lowercaseDetector#$
+set_target_properties(${MODULE_#NUMBER#_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
+#$end CMakeLists.txt:targetProperties:#lowercaseDetector#$
+
+#$start CMakeLists.txt:includeDirectories:#lowercaseDetector#$
+target_include_directories( ${MODULE_#NUMBER#_NAME} 
+PRIVATE ${CMAKE_JS_INC} 
+${OpenCV_INCLUDE_DIRS} 
+PRIVATE "${CMAKE_SOURCE_DIR}/node_modules/node-addon-api" 
+${NAOQI_INCLUDE_PATH} 
+${P_SRC_INCLUDE_DIR})
+#$end CMakeLists.txt:includeDirectories:#lowercaseDetector#$
+
+#$start CMakeLists.txt:linkLibraries:#lowercaseDetector#$
+target_link_libraries(${MODULE_#NUMBER#_NAME} ${CMAKE_JS_LIB} ${OpenCV_LIBS} ${Boost_LIBRARIES} P_SRC_LIB MISC_SRC_LIB ${NAOQI_LIBS})
+#$end CMakeLists.txt:linkLibraries:#lowercaseDetector#$

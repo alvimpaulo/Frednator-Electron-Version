@@ -3,3 +3,5 @@ out
 build
 bin
 .cache
+rebuild-exit.txt
+include_dir_file.txt

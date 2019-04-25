@@ -1,5 +1,8 @@
 const videoUtil = require("../../build/Release/videoUtil");
+
+//$start imgCreation.js:requires$
 const yellowDetectorUtil = require("../../build/Release/yellowDetectorUtil");
+//$end imgCreation.js:requires$
 
 let cap;
 
