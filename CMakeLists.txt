@@ -3,6 +3,10 @@ cmake_minimum_required(VERSION 2.8)
 # Name of the project (will be the name of the plugin)
 project(Napi_modules)
 
+#File with all the include directories
+set(INCLUDE_DIR_FILE "include_dir_file.txt")
+file(WRITE ${INCLUDE_DIR_FILE} "Start:\n")
+
 #Name of the modules
 set(MODULE_1_NAME "videoUtil")
 set(MODULE_2_NAME "yellowDetectorUtil")
@@ -123,6 +127,13 @@ ${OpenCV_INCLUDE_DIRS}
 PRIVATE "${CMAKE_SOURCE_DIR}/node_modules/node-addon-api" 
 ${NAOQI_INCLUDE_PATH} 
 ${P_SRC_INCLUDE_DIR})
+
+file(APPEND ${INCLUDE_DIR_FILE} 
+"${CMAKE_JS_INC}" ";"
+"${OpenCV_INCLUDE_DIRS}" ";"
+"${CMAKE_SOURCE_DIR}/node_modules/node-addon-api" ";"
+"${NAOQI_INCLUDE_PATH}" ";"
+"${P_SRC_INCLUDE_DIR}")
 
 # Essential library files to link to a node addon
 # You should add this line in every CMake.js based project

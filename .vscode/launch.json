@@ -2,6 +2,14 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Python: Terminal (integrated)",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "args": ["-W ignore::DeprecationWarning"]
+    },
+    {
       "name": "Debug Main Process",
       "type": "node",
       "request": "launch",
