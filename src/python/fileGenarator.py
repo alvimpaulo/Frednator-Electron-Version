@@ -107,8 +107,8 @@ def CMakeListsGenerator():
         CMakeListsFile.truncate()
 
 def imgCreationjsGenerator():
-    with open("src/js/imgCreation.js", "r+") as imgCreationjs:
-        imgCreationjsContent = imgCreationjs.read()
+    with open("src/js/imgCreation.js", "r+") as imgCreationjsFile:
+        imgCreationjsContent = imgCreationjsFile.read()
         
         templateSections = re.findall(r"(\/\/ *\$start (.+) *\$([\d\D]+)\/\/ *\$end \2 *\$)", fileContents) #separete sections in template file
         for section in templateSections:
@@ -125,9 +125,30 @@ def imgCreationjsGenerator():
             imgCreationjsContent = imgCreationjsContent.replace(mainFileSectionOldContent, mainFileSectionNewContent)
         
         #overwrite file
-        imgCreationjs.seek(0)
-        imgCreationjs.write(imgCreationjsContent)
-        imgCreationjs.truncate()
+        imgCreationjsFile.seek(0)
+        imgCreationjsFile.write(imgCreationjsContent)
+        imgCreationjsFile.truncate()
+
+def imgCreationWorkerjsGenerator():
+    with open("src/js/imgCreationWorker.js", "r+") as imgCreationWorkerjsFile:
+        imgCreationWorkerjsContent = imgCreationWorkerjsFile.read()
+        
+        templateSections = re.findall(r"(\/\/ *\$start (.+) *\$([\d\D]+)\/\/ *\$end \2 *\$)", fileContents) #separete sections in template file
+        for section in templateSections:
+            parentSection = re.search(r"^(.+):.+$", section[1]).group(1) #section without :#lowercaseDetector# ending
+            mainFileSection = re.search(r"\/\/ *\$start {0}\$([\d\D]+)\/\/ *\$end {0} *\$".format(parentSection), imgCreationWorkerjsContent) #search for section in CMakeLists.txt  
+            mainFileSectionOldContent = mainFileSection.group(1) #whatever was already in the section
+            
+            #replacing things
+            newContent = section[0].replace("#lowercaseDetector#", lowercaseDetector)
+
+            mainFileSectionNewContent = mainFileSectionOldContent + newContent + "\n\n"
+            imgCreationWorkerjsContent = imgCreationWorkerjsContent.replace(mainFileSectionOldContent, mainFileSectionNewContent)
+        
+        #overwrite file
+        imgCreationWorkerjsFile.seek(0)
+        imgCreationWorkerjsFile.write(imgCreationWorkerjsContent)
+        imgCreationWorkerjsFile.truncate()
 
 #strings to be replaced
 uppercaseDetector = cppfr.getUppercaseDetector(classHeaderFile)
@@ -147,10 +168,10 @@ for file in listdir(templatesLocation):
             #appjsGenerator()
             pass
         if(file == "templates-imgCreation.js"):
-            imgCreationjsGenerator()
+            #imgCreationjsGenerator()
             pass
         if(file == "templates-imgCreationWorker.js"):
-            #imgCreationWorkerjsGenerator()
+            imgCreationWorkerjsGenerator()
             pass
         if(file == "templates-index.html"):
             #indexHtmlGenerator()
