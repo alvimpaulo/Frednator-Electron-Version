@@ -9,10 +9,6 @@ private:
     std::vector<cv::Point2f> lines, filteredLines;
     std::vector<cv::Point> corners;
 
-#ifdef DEBUG_PERCEPTION
-    std::vector<cv::Mat> debugImgVector;
-#endif
-
 
 public:
     LineDetector():
@@ -23,6 +19,10 @@ public:
     {}
     virtual void run(cv::Mat topImg, cv::Mat greenFrame, PerceptionData *data);
     virtual void updateData(PerceptionData *data);
+
+    #ifdef DEBUG_PERCEPTION
+    std::vector<cv::Mat> debugImgVector;
+    #endif
 
     // Thresholds for angles between lines and hough lines to limit the ammount of lines
     float line_threshold_theta_low;

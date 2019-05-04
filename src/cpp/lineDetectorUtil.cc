@@ -117,7 +117,22 @@ Napi::Value setParameters(const Napi::CallbackInfo &info)
         {
             std::string propertyName = attrObjProperties[i].operator Napi::Value().ToString().Utf8Value();
             //$start #lowercaseDetectector#Util.cc:setParameters:setPropertyNames
-            #setPropertyNames#
+            
+        if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("line_threshold_theta_low") == 0)
+            detector->line_threshold_theta_low = attrObj[propertyName].operator Napi::Value().ToNumber().FloatValue();
+        
+		
+        if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("line_threshold_theta_high") == 0)
+            detector->line_threshold_theta_high = attrObj[propertyName].operator Napi::Value().ToNumber().FloatValue();
+        
+		
+        if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("line_threshold_rho") == 0)
+            detector->line_threshold_rho = attrObj[propertyName].operator Napi::Value().ToNumber().Int32Value();
+        
+		
+        if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("houghLinesThreshold") == 0)
+            detector->houghLinesThreshold = attrObj[propertyName].operator Napi::Value().ToNumber().Int32Value();
+        
             //$start #lowercaseDetectector#Util.cc:setParameters:setPropertyNames
 
         }
