@@ -1,6 +1,5 @@
 /* Patterns info:
 lowercaseDetector  = detectorDetector
-uppercaseDetector = DetectorDetector
 spacedDetector = Detector Detector
  */
 
