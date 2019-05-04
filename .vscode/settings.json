@@ -89,7 +89,7 @@
       "backgroundColor": "transparent"
     },
     {
-      "tag": "*",
+      "tag": "**",
       "color": "#98C379",
       "strikethrough": false,
       "backgroundColor": "transparent"
@@ -100,5 +100,7 @@
       "strikethrough": false,
       "backgroundColor": "transparent"
     }
-  ]
+  ],
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true
 }

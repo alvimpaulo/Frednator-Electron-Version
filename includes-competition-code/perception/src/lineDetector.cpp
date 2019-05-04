@@ -1,4 +1,4 @@
-#include "lineDetector.hpp"
+#include "../include/lineDetector.hpp"
 
 void LineDetector::run(cv::Mat topImg, cv::Mat greenFrame, PerceptionData *data)
 {

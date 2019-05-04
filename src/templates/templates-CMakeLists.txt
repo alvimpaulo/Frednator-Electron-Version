@@ -8,7 +8,7 @@ set(MODULE_#NUMBER#_NAME "#lowercaseDetector#Util")
 
 #$start CMakeLists.txt:libraryBuilds:#lowercaseDetector#$
 set( MODULE_#NUMBER#_SOURCE_FILES "src/cpp/#lowercaseDetector#Util.cc")
-add_library(${MODULE_#NUMBER#_NAME} SHARED ${MODULE_2_SOURCE_FILES})
+add_library(${MODULE_#NUMBER#_NAME} SHARED ${MODULE_#NUMBER#_SOURCE_FILES})
 #$end CMakeLists.txt:libraryBuilds:#lowercaseDetector#$
 
 #$start CMakeLists.txt:P_SRC:#lowercaseDetector#$

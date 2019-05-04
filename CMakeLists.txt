@@ -15,6 +15,10 @@ set(MODULE_1_NAME "videoUtil")
 set(MODULE_2_NAME "yellowDetectorUtil")
 # $end CMakeLists.txt:moduleNameSet:yellowDetector$
 
+# $start CMakeLists.txt:moduleNameSet:lineDetector$
+set(MODULE_3_NAME "lineDetectorUtil")
+# $end CMakeLists.txt:moduleNameSet:lineDetector$
+
 # $end CMakeLists.txt:moduleNameSet$
 
 #Preprocessor define
@@ -47,7 +51,12 @@ set(P_SRC
     ${CMAKE_SOURCE_DIR}/includes-competition-code/perception/include/yellowDetector.hpp
     #$end CMakeLists.txt:P_SRC:yellowDetector$
     
-    #$end CMakeLists.txt:P_SRC$
+    #$start CMakeLists.txt:P_SRC:lineDetector$
+    ${CMAKE_SOURCE_DIR}/includes-competition-code/perception/src/lineDetector.cpp
+    ${CMAKE_SOURCE_DIR}/includes-competition-code/perception/include/lineDetector.hpp
+#$end CMakeLists.txt:P_SRC:lineDetector$
+
+#$end CMakeLists.txt:P_SRC$
 )
 
 #Miscelaneous Files
@@ -69,6 +78,11 @@ set( MODULE_2_SOURCE_FILES "src/cpp/yellowDetectorUtil.cc")
 add_library(${MODULE_2_NAME} SHARED ${MODULE_2_SOURCE_FILES})
 #$end CMakeLists.txt:libraryBuilds:yellowDetector$
 
+#$start CMakeLists.txt:libraryBuilds:lineDetector$
+set( MODULE_3_SOURCE_FILES "src/cpp/lineDetectorUtil.cc")
+add_library(${MODULE_3_NAME} SHARED ${MODULE_3_SOURCE_FILES})
+#$end CMakeLists.txt:libraryBuilds:lineDetector$
+
 #$end CMakeLists.txt:libraryBuilds$
 
 #Custom Libraries
@@ -84,6 +98,10 @@ set_target_properties(${MODULE_1_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
 #$start CMakeLists.txt:targetProperties:yellowDetector$
 set_target_properties(${MODULE_2_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
 #$end CMakeLists.txt:targetProperties:yellowDetector$
+
+#$start CMakeLists.txt:targetProperties:lineDetector$
+set_target_properties(${MODULE_3_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
+#$end CMakeLists.txt:targetProperties:lineDetector$
 
 #$end CMakeLists.txt:targetProperties$
 
@@ -153,6 +171,15 @@ ${NAOQI_INCLUDE_PATH}
 ${P_SRC_INCLUDE_DIR})
 #$end CMakeLists.txt:includeDirectories:yellowDetector$
 
+#$start CMakeLists.txt:includeDirectories:lineDetector$
+target_include_directories( ${MODULE_3_NAME} 
+PRIVATE ${CMAKE_JS_INC} 
+${OpenCV_INCLUDE_DIRS} 
+PRIVATE "${CMAKE_SOURCE_DIR}/node_modules/node-addon-api" 
+${NAOQI_INCLUDE_PATH} 
+${P_SRC_INCLUDE_DIR})
+#$end CMakeLists.txt:includeDirectories:lineDetector$
+
 #$end CMakeLists.txt:includeDirectories$
 
 
@@ -172,6 +199,10 @@ target_link_libraries(${MODULE_1_NAME} ${CMAKE_JS_LIB} ${OpenCV_LIBS})
 #$start CMakeLists.txt:linkLibraries:yellowDetector$
 target_link_libraries(${MODULE_2_NAME} ${CMAKE_JS_LIB} ${OpenCV_LIBS} ${Boost_LIBRARIES} P_SRC_LIB MISC_SRC_LIB ${NAOQI_LIBS})
 #$end CMakeLists.txt:linkLibraries:yellowDetector$
+
+#$start CMakeLists.txt:linkLibraries:lineDetector$
+target_link_libraries(${MODULE_3_NAME} ${CMAKE_JS_LIB} ${OpenCV_LIBS} ${Boost_LIBRARIES} P_SRC_LIB MISC_SRC_LIB ${NAOQI_LIBS})
+#$end CMakeLists.txt:linkLibraries:lineDetector$
 
 #$end CMakeLists.txt:linkLibraries$
 

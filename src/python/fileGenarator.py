@@ -28,26 +28,51 @@ def generateSetPropertyNamesString(publicVariables):
             detector->{0} = attrObj[propertyName].operator Napi::Value().{1};
         '''.format(variable["name"], typeSuffix))
     setsString = "\n\t\t".join(sets)
-    return setsString    
+    return setsString  
+
+def detectorUtilGenerator(file):
+    publicVariables = cppfr.getPublicVariables(classHeaderFile)
+    
+    with open("./src/cpp/{0}Util.cc".format(lowercaseDetector), "w+") as newFile:
+        newFileContents = re.sub(r"#lowercaseDetector#", lowercaseDetector, fileContents)
+        newFileContents = re.sub(r"#uppercaseDetector#", uppercaseDetector, newFileContents)
+        newFileContents = re.sub(r"#spacedDetector#", spacedDetector, newFileContents)
+        attrObjSetsString = generateAttrObjSetsString(publicVariables)
+        newFileContents = re.sub(r"#attrObjSets#", attrObjSetsString, newFileContents)
+        setPropertyNamesString = generateSetPropertyNamesString(publicVariables)
+        newFileContents = re.sub(r"#setPropertyNames#", setPropertyNamesString, newFileContents)
+        newFile.write(newFileContents)
+
+uppercaseDetector = cppfr.getUppercaseDetector(classHeaderFile)
+lowercaseDetector = uppercaseDetector[0].lower() + uppercaseDetector[1:]
+spacedDetector = uppercaseDetector[0] + re.sub(r"([A-Z])", r" \1", uppercaseDetector[1:])
 
 for file in listdir(templatesLocation):
     with open(templatesLocation + file, "r") as currentFile:
         fileContents = currentFile.read()
         if(file == "templates-detectorUtil.cc"):
-            uppercaseDetector = cppfr.getUppercaseDetector(classHeaderFile)
-            lowercaseDetector = uppercaseDetector[0].lower() + uppercaseDetector[1:]
-            spacedDetector = uppercaseDetector[0] + re.sub(r"([A-Z])", r" \1", uppercaseDetector[1:])
-            publicVariables = cppfr.getPublicVariables(classHeaderFile)
-            
-            with open("./src/cpp/{0}Util.cc".format(lowercaseDetector), "w+") as newFile:
-                newFileContents = re.sub(r"#lowercaseDetector#", lowercaseDetector, fileContents)
-                newFileContents = re.sub(r"#uppercaseDetector#", uppercaseDetector, newFileContents)
-                newFileContents = re.sub(r"#spacedDetector#", spacedDetector, newFileContents)
-                attrObjSetsString = generateAttrObjSetsString(publicVariables)
-                newFileContents = re.sub(r"#attrObjSets#", attrObjSetsString, newFileContents)
-                setPropertyNamesString = generateSetPropertyNamesString(publicVariables)
-                newFileContents = re.sub(r"#setPropertyNames#", setPropertyNamesString, newFileContents)
-                newFile.write(newFileContents)
-            
+            #detectorUtilGenerator(file)
+            pass
+        if(file == "templates-CMakeLists.txt"):
+            with open("CMakeLists.txt", "r+") as CMakeListsFile:
+                CMakeListsContent = CMakeListsFile.read()
+                modulesNumbers = re.findall(r"MODULE_(\d+)_NAME", CMakeListsContent)
+                number = int(max(modulesNumbers)) + 1
+                templateSections = re.findall(r"(# *\$start (.+) *\$([\d\D]+)# *\$end \2 *\$)", fileContents)    
+                for section in templateSections:
+                    parentSection = re.search(r"^(.+):.+$", section[1]).group(1)
+                    mainFileSection = re.search(r"# *\$start {0}\$([\d\D]+)# *\$end {0} *\$".format(parentSection), CMakeListsContent)  
+                    mainFileSectionOldContent = mainFileSection.group(1)
+                    newContent = section[0].replace("#lowercaseDetector#", lowercaseDetector)
+                    newContent = newContent.replace("#NUMBER#", str(number))
+                    mainFileSectionNewContent = mainFileSectionOldContent + newContent + "\n\n"
+                    CMakeListsContent = CMakeListsContent.replace(mainFileSectionOldContent, mainFileSectionNewContent)
+                CMakeListsFile.seek(0)
+                CMakeListsFile.write(CMakeListsContent)
+                CMakeListsFile.truncate()
+
+                    
+                    
 
 
+                    
