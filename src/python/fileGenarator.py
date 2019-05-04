@@ -150,6 +150,28 @@ def imgCreationWorkerjsGenerator():
         imgCreationWorkerjsFile.write(imgCreationWorkerjsContent)
         imgCreationWorkerjsFile.truncate()
 
+def indexHtmlGenerator():
+    with open("src/index.html", "r+") as indexHtmlFile:
+        indexHtmlContent = indexHtmlFile.read()
+        
+        templateSections = re.findall(r"(<!-- *\$start (.+) *\$-->\n([\d\D]+)<!-- *\$end \2 *\$-->)", fileContents) #separete sections in template file
+        for section in templateSections:
+            parentSection = re.search(r"^(.+):.+$", section[1]).group(1) #section without :#lowercaseDetector# ending
+            mainFileSection = re.search(r"<!-- *\$start {0}\$ *-->([\d\D]+)<!-- *\$end {0} *\$ *-->".format(parentSection), indexHtmlContent) #search for section in CMakeLists.txt  
+            mainFileSectionOldContent = mainFileSection.group(1) #whatever was already in the section
+            
+            #replacing things
+            newContent = section[0].replace("#lowercaseDetector#", lowercaseDetector)
+            newContent = newContent.replace("#spacedDetector#", spacedDetector)
+
+            mainFileSectionNewContent = mainFileSectionOldContent + newContent + "\n\n"
+            indexHtmlContent = indexHtmlContent.replace(mainFileSectionOldContent, mainFileSectionNewContent)
+        
+        #overwrite file
+        indexHtmlFile.seek(0)
+        indexHtmlFile.write(indexHtmlContent)
+        indexHtmlFile.truncate()
+
 #strings to be replaced
 uppercaseDetector = cppfr.getUppercaseDetector(classHeaderFile)
 lowercaseDetector = uppercaseDetector[0].lower() + uppercaseDetector[1:]
@@ -171,10 +193,10 @@ for file in listdir(templatesLocation):
             #imgCreationjsGenerator()
             pass
         if(file == "templates-imgCreationWorker.js"):
-            imgCreationWorkerjsGenerator()
+            #imgCreationWorkerjsGenerator()
             pass
         if(file == "templates-index.html"):
-            #indexHtmlGenerator()
+            indexHtmlGenerator()
             pass
                     
                     

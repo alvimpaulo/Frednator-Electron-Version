@@ -7,3 +7,4 @@ rebuild-exit.txt
 include_dir_file.txt
 src/python/__pycache__
 .vscode/.ropeproject
+*.jpg

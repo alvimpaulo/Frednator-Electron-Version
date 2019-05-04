@@ -1,7 +1,15 @@
 const videoUtil = require("../../build/Release/videoUtil");
 
 //$start imgCreation.js:requires$
+
+//$start imgCreation.js:requires:yellowDetector$
 const yellowDetectorUtil = require("../../build/Release/yellowDetectorUtil");
+//$end imgCreation.js:requires:yellowDetector$
+
+//$start imgCreation.js:requires:lineDetector$
+const lineDetectorUtil = require("../../build/Release/lineDetectorUtil");
+//$end imgCreation.js:requires:lineDetector$
+
 //$end imgCreation.js:requires$
 
 let cap;
