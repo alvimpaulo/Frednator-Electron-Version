@@ -1,8 +1,5 @@
-from pygccxml import utils
-from pygccxml import declarations
-from pygccxml import parser
-
 import re
+    
 
 def getUppercaseDetector(filename):
     with open(filename, "r") as classFile:
@@ -11,42 +8,28 @@ def getUppercaseDetector(filename):
     return uppercaseDetector
 
 def getPublicVariables(filename):
-    # Find out the c++ parser
-    generator_path, generator_name = utils.find_xml_generator()
-    publicVariables = []
-
-    # Configure the xml generator
-    xml_generator_config = parser.xml_generator_configuration_t(
-        xml_generator_path=generator_path,
-        xml_generator=generator_name,
-        include_paths=[
-            "/home/paulo/.cmake-js/node-x64/v10.15.2/include/node",
-            "/usr/local/include",
-            "/usr/local/include/opencv",
-            "/home/paulo/frednator-2/node_modules/node-addon-api",
-            "/home/paulo/nao/devtools/sdk/naoqi-sdk-2.1.4.13-linux64/include",
-            "/usr/include",
-            "/home/paulo/frednator-2/includes-competition-code/motion/include",
-            "/home/paulo/frednator-2/includes-competition-code/motion/runswift",
-            "/home/paulo/frednator-2/includes-competition-code/unboard",
-            "/home/paulo/frednator-2/includes-competition-code/common",
-            "/home/paulo/frednator-2/includes-competition-code/module",
-        ],
-        )
-
-    # The c++ file we want to parse
 
     uppercaseDetector = getUppercaseDetector(filename)
+    publicVariables = []
 
-    decls = parser.parse([filename], xml_generator_config)
-    global_namespace = declarations.get_global_namespace(decls)
-    detectorClass = global_namespace.classes(name=uppercaseDetector)
-    detectorVariables = detectorClass[0].variables()
-    for member in detectorVariables:
+    with open(filename, "r") as classFile:
+        classFileText = classFile.read()
+        publicSections = re.findall(r"(public:[\d\D]+?)((private)|};|$)", classFileText)
+        for publicSection in publicSections:
+            variablesMatches = re.findall(r"(int|float|double|bool) +(.+);", publicSection[0]);
+            for variablesMatch in variablesMatches:
+                variablesType = variablesMatch[0]
+                variablesNameList = re.split(",", variablesMatch[1])
+                for variableName in variablesNameList:
+                    variableName = variableName.replace(" ", "")
+                    publicVariables.append({"name": variableName, "type":variablesType})
+    return publicVariables
+    
+    """ for member in detectorVariables:
         if(member.access_type == "public"):
             print("Found public variable: {}".format(member.name))
             publicVariables.append(member)
-    return publicVariables
+    return publicVariables """
 
 
-#getPublicVariables("includes-competition-code/perception/include/yellowDetector.hpp")
+#getPublicVariables("includes-competition-code/perception/include/fieldDetector2.hpp")

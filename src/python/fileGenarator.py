@@ -8,7 +8,7 @@ classHeaderFile = "./includes-competition-code/perception/include/lineDetector.h
 def attrObjSets(publicVariables):
     sets = []
     for variable in publicVariables:
-        sets.append("attrObj.Set(\"{0}\", detector->{0});".format(variable.name))
+        sets.append("attrObj.Set(\"{0}\", detector->{0});".format(variable["name"]))
     setsString = "\n\t\t".join(sets)
     return setsString
 
@@ -18,7 +18,7 @@ def attrObjSets(publicVariables):
         sets.append('''
         if (attrObjProperties[i].operator Napi::Value().ToString().Utf8Value().compare("{0}") == 0)
             detector->{0} = attrObj[propertyName].operator Napi::Value().{1};
-        '''.format(variable.name, variable.type))
+        '''.format(variable["name"], variable["type"]))
     setsString = "\n\t\t".join(sets)
     return setsString   """  
 
