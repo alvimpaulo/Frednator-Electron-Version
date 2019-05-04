@@ -1,4 +1,4 @@
-#include "fieldDetector2.hpp"
+#include "../include/fieldDetector2.hpp"
 
 
 void FieldDetector2::run(cv::Mat imgTop, cv::Mat imgBot, PerceptionData *data)

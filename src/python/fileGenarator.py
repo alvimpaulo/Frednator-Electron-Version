@@ -3,7 +3,7 @@ import cppFileReader as cppfr
 import re
 
 templatesLocation = "./src/templates/"
-classHeaderFile = "./includes-competition-code/perception/include/lineDetector.hpp"
+classHeaderFile = "./includes-competition-code/perception/include/fieldDetector2.hpp"
 
 def generateAttrObjSetsString(publicVariables):
     sets = [] #array to store each set string
@@ -181,19 +181,19 @@ for file in listdir(templatesLocation):
     with open(templatesLocation + file, "r") as currentFile:
         fileContents = currentFile.read()
         if(file == "templates-detectorUtil.cc"):
-            #detectorUtilGenerator()
+            detectorUtilGenerator()
             pass
         if(file == "templates-CMakeLists.txt"):
-            #CMakeListsGenerator()
+            CMakeListsGenerator()
             pass
         if(file == "templates-app.js"):
-            #appjsGenerator()
+            appjsGenerator()
             pass
         if(file == "templates-imgCreation.js"):
-            #imgCreationjsGenerator()
+            imgCreationjsGenerator()
             pass
         if(file == "templates-imgCreationWorker.js"):
-            #imgCreationWorkerjsGenerator()
+            imgCreationWorkerjsGenerator()
             pass
         if(file == "templates-index.html"):
             indexHtmlGenerator()

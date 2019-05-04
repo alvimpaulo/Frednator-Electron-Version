@@ -1,7 +1,7 @@
 #ifndef FIELDDETECTOR2_HPP
 #define FIELDDETECTOR2_HPP
 
-#include <featureDetector.hpp>
+#include "./featureDetector.hpp"
 
 
 class FieldDetector2 : public FeatureDetector
@@ -9,10 +9,6 @@ class FieldDetector2 : public FeatureDetector
 private:
     cv::Mat greenRegion;
     int horizont;
-
-#ifdef DEBUG_PERCEPTION
-    std::vector<cv::Mat> debugImgVector;
-#endif
 
 public:
     FieldDetector2():
@@ -30,8 +26,12 @@ public:
         maxRadius(30),
         minRadius(5),
         kernel(3)
-    {}
+    {} 
     cv::Mat getGreenRegion();
+
+#ifdef DEBUG_PERCEPTION
+    std::vector<cv::Mat> debugImgVector;
+#endif
     virtual void run(cv::Mat imgTop, cv::Mat imgBot, PerceptionData *data);
     virtual void updateData(PerceptionData* data);
 

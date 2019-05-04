@@ -10,6 +10,10 @@ const yellowDetectorUtil = require("../../build/Release/yellowDetectorUtil");
 const lineDetectorUtil = require("../../build/Release/lineDetectorUtil");
 //$end imgCreation.js:requires:lineDetector$
 
+//$start imgCreation.js:requires:fieldDetector2$
+const fieldDetector2Util = require("../../build/Release/fieldDetector2Util");
+//$end imgCreation.js:requires:fieldDetector2$
+
 //$end imgCreation.js:requires$
 
 let cap;
@@ -80,6 +84,12 @@ function createMyImageBitmap(
       runDetector(lineDetectorUtil);
     }
     //$end imgCreation.js:createMyImageBitmap:lineDetector$
+
+    //$start imgCreation.js:createMyImageBitmap:fieldDetector2$
+    if (classSelected === "Field Detector2") {
+      runDetector(fieldDetector2Util);
+    }
+    //$end imgCreation.js:createMyImageBitmap:fieldDetector2$
 
     //$end imgCreation.js:createMyImageBitmap$
 

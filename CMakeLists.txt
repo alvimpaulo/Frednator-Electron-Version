@@ -19,6 +19,10 @@ set(MODULE_2_NAME "yellowDetectorUtil")
 set(MODULE_3_NAME "lineDetectorUtil")
 # $end CMakeLists.txt:moduleNameSet:lineDetector$
 
+# $start CMakeLists.txt:moduleNameSet:fieldDetector2$
+set(MODULE_4_NAME "fieldDetector2Util")
+# $end CMakeLists.txt:moduleNameSet:fieldDetector2$
+
 # $end CMakeLists.txt:moduleNameSet$
 
 #Preprocessor define
@@ -56,6 +60,11 @@ set(P_SRC
     ${CMAKE_SOURCE_DIR}/includes-competition-code/perception/include/lineDetector.hpp
 #$end CMakeLists.txt:P_SRC:lineDetector$
 
+#$start CMakeLists.txt:P_SRC:fieldDetector2$
+    ${CMAKE_SOURCE_DIR}/includes-competition-code/perception/src/fieldDetector2.cpp
+    ${CMAKE_SOURCE_DIR}/includes-competition-code/perception/include/fieldDetector2.hpp
+#$end CMakeLists.txt:P_SRC:fieldDetector2$
+
 #$end CMakeLists.txt:P_SRC$
 )
 
@@ -83,6 +92,11 @@ set( MODULE_3_SOURCE_FILES "src/cpp/lineDetectorUtil.cc")
 add_library(${MODULE_3_NAME} SHARED ${MODULE_3_SOURCE_FILES})
 #$end CMakeLists.txt:libraryBuilds:lineDetector$
 
+#$start CMakeLists.txt:libraryBuilds:fieldDetector2$
+set( MODULE_4_SOURCE_FILES "src/cpp/fieldDetector2Util.cc")
+add_library(${MODULE_4_NAME} SHARED ${MODULE_4_SOURCE_FILES})
+#$end CMakeLists.txt:libraryBuilds:fieldDetector2$
+
 #$end CMakeLists.txt:libraryBuilds$
 
 #Custom Libraries
@@ -102,6 +116,10 @@ set_target_properties(${MODULE_2_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
 #$start CMakeLists.txt:targetProperties:lineDetector$
 set_target_properties(${MODULE_3_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
 #$end CMakeLists.txt:targetProperties:lineDetector$
+
+#$start CMakeLists.txt:targetProperties:fieldDetector2$
+set_target_properties(${MODULE_4_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
+#$end CMakeLists.txt:targetProperties:fieldDetector2$
 
 #$end CMakeLists.txt:targetProperties$
 
@@ -180,6 +198,15 @@ ${NAOQI_INCLUDE_PATH}
 ${P_SRC_INCLUDE_DIR})
 #$end CMakeLists.txt:includeDirectories:lineDetector$
 
+#$start CMakeLists.txt:includeDirectories:fieldDetector2$
+target_include_directories( ${MODULE_4_NAME} 
+PRIVATE ${CMAKE_JS_INC} 
+${OpenCV_INCLUDE_DIRS} 
+PRIVATE "${CMAKE_SOURCE_DIR}/node_modules/node-addon-api" 
+${NAOQI_INCLUDE_PATH} 
+${P_SRC_INCLUDE_DIR})
+#$end CMakeLists.txt:includeDirectories:fieldDetector2$
+
 #$end CMakeLists.txt:includeDirectories$
 
 
@@ -203,6 +230,10 @@ target_link_libraries(${MODULE_2_NAME} ${CMAKE_JS_LIB} ${OpenCV_LIBS} ${Boost_LI
 #$start CMakeLists.txt:linkLibraries:lineDetector$
 target_link_libraries(${MODULE_3_NAME} ${CMAKE_JS_LIB} ${OpenCV_LIBS} ${Boost_LIBRARIES} P_SRC_LIB MISC_SRC_LIB ${NAOQI_LIBS})
 #$end CMakeLists.txt:linkLibraries:lineDetector$
+
+#$start CMakeLists.txt:linkLibraries:fieldDetector2$
+target_link_libraries(${MODULE_4_NAME} ${CMAKE_JS_LIB} ${OpenCV_LIBS} ${Boost_LIBRARIES} P_SRC_LIB MISC_SRC_LIB ${NAOQI_LIBS})
+#$end CMakeLists.txt:linkLibraries:fieldDetector2$
 
 #$end CMakeLists.txt:linkLibraries$
 
