@@ -63,7 +63,7 @@ def appjsGenerator():
         templateSections = re.findall(r"(\/\/ *\$start (.+) *\$([\d\D]+)\/\/ *\$end \2 *\$)", fileContents) #separete sections in template file
         for section in templateSections:
             parentSection = re.search(r"^(.+):.+$", section[1]).group(1) #section without :#lowercaseDetector# ending
-            mainFileSection = re.search(r"\/\/ *\$start {0}\$([\d\D]+)\/\/ *\$end {0} *\$".format(parentSection), appjsContent) #search for section in CMakeLists.txt  
+            mainFileSection = re.search(r"\/\/ *\$start {0}\$([\d\D]+)\/\/ *\$end {0} *\$".format(parentSection), appjsContent) #search for section in app.js 
             mainFileSectionOldContent = mainFileSection.group(1) #whatever was already in the section
             
             #replacing things
@@ -113,7 +113,7 @@ def imgCreationjsGenerator():
         templateSections = re.findall(r"(\/\/ *\$start (.+) *\$([\d\D]+)\/\/ *\$end \2 *\$)", fileContents) #separete sections in template file
         for section in templateSections:
             parentSection = re.search(r"^(.+):.+$", section[1]).group(1) #section without :#lowercaseDetector# ending
-            mainFileSection = re.search(r"\/\/ *\$start {0}\$([\d\D]+)\/\/ *\$end {0} *\$".format(parentSection), imgCreationjsContent) #search for section in CMakeLists.txt  
+            mainFileSection = re.search(r"\/\/ *\$start {0}\$([\d\D]+)\/\/ *\$end {0} *\$".format(parentSection), imgCreationjsContent) #search for section in imgCreation.js
             mainFileSectionOldContent = mainFileSection.group(1) #whatever was already in the section
             
             #replacing things
@@ -136,7 +136,7 @@ def imgCreationWorkerjsGenerator():
         templateSections = re.findall(r"(\/\/ *\$start (.+) *\$([\d\D]+)\/\/ *\$end \2 *\$)", fileContents) #separete sections in template file
         for section in templateSections:
             parentSection = re.search(r"^(.+):.+$", section[1]).group(1) #section without :#lowercaseDetector# ending
-            mainFileSection = re.search(r"\/\/ *\$start {0}\$([\d\D]+)\/\/ *\$end {0} *\$".format(parentSection), imgCreationWorkerjsContent) #search for section in CMakeLists.txt  
+            mainFileSection = re.search(r"\/\/ *\$start {0}\$([\d\D]+)\/\/ *\$end {0} *\$".format(parentSection), imgCreationWorkerjsContent) #search for section in imgCreationWorker.js 
             mainFileSectionOldContent = mainFileSection.group(1) #whatever was already in the section
             
             #replacing things
@@ -157,7 +157,7 @@ def indexHtmlGenerator():
         templateSections = re.findall(r"(<!-- *\$start (.+) *\$-->\n([\d\D]+)<!-- *\$end \2 *\$-->)", fileContents) #separete sections in template file
         for section in templateSections:
             parentSection = re.search(r"^(.+):.+$", section[1]).group(1) #section without :#lowercaseDetector# ending
-            mainFileSection = re.search(r"<!-- *\$start {0}\$ *-->([\d\D]+)<!-- *\$end {0} *\$ *-->".format(parentSection), indexHtmlContent) #search for section in CMakeLists.txt  
+            mainFileSection = re.search(r"<!-- *\$start {0}\$ *-->([\d\D]+)<!-- *\$end {0} *\$ *-->".format(parentSection), indexHtmlContent) #search for section in index.html  
             mainFileSectionOldContent = mainFileSection.group(1) #whatever was already in the section
             
             #replacing things
