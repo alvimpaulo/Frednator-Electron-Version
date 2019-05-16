@@ -1,5 +1,11 @@
 importScripts("imgCreation.js");
 
+/**
+ * Function to return, through postMessage, debugImage size from an util.
+ *
+ * @param {*} util Detector util object.
+ * @param {*} detectorName String containing lowercaseDetector.
+ */
 function getDebugImageSizeUtil(util, detectorName) {
   postMessage([
     detectorName,
@@ -8,6 +14,12 @@ function getDebugImageSizeUtil(util, detectorName) {
   ]);
 }
 
+/**
+ * Function to return, through postMessage, parameters from an util.
+ *
+ * @param {*} util Detector util object.
+ * @param {*} detectorName String containing lowercaseDetector.
+ */
 function getParametersUtil(util, detectorName) {
   postMessage([
     detectorName,
@@ -16,6 +28,13 @@ function getParametersUtil(util, detectorName) {
   ]);
 }
 
+/**
+ * Function to set detector parameters.
+ *
+ * @param {*} e Event.
+ * @param {*} util Detector Util object.
+ * @param {*} detectorName String containing lowercaseDetector.
+ */
 function setParametersUtil(e, util, detectorName) {
   let keysToSet = e.data[2];
   let valuesToSet = e.data[3];
@@ -37,8 +56,8 @@ function setParametersUtil(e, util, detectorName) {
 }
 
 onmessage = function(e) {
-  let t0 = performance.now();
-  // console.log('I recieved ' + e.data)
+  //Function called when the worker receive a message.
+
   if (e.data == "stop") {
     closeCap(cap);
     postMessage("capture closed");
@@ -91,7 +110,7 @@ onmessage = function(e) {
     !(
       (e.data[0].startsWith("animation frame") ||
         e.data[0].startsWith("detectorStarted")) &&
-      typeof cap == "boolean"
+      (typeof cap == "boolean" && cap == false)
     )
   ) {
     //if cap is false and it have been requested by an animation frame, get out
